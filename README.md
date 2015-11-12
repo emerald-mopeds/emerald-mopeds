@@ -6,7 +6,7 @@
 
   - __Product Owner__: Thomas Sorensen
   - __Scrum Master__: Rochelle Lee
-  - __Development Team Members__: Amar Mian, Cheyenne Kellis
+  - __Development Team Members__: Ammar Mian, Cheyenne Kellis
 
 ## Table of Contents
 
@@ -50,7 +50,7 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/emerald-mopeds/emerald-mopeds/wiki/Roadmap)
 
 
 ## Contributing
