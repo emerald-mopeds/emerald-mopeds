@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 
 var jobSchema = mongoose.Schema({
  client: String,
+  // client: {type: Schema.ObjectId, ref: 'ClientSchema'},
  rate: Number,
  start: Date,
  end: Date,
