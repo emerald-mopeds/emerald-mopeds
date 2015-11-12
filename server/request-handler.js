@@ -1,72 +1,32 @@
 var request = require('request');
-var crypto = require('crypto');
 var bcrypt = require('bcrypt-nodejs');
-var util = require('../lib/utility');
+var util = require('utility');
 
-var db = require('../app/config');
-var User = require('../app/models/user');
-var Link = require('../app/models/link');
+var db = require('db/database');
+var Job = require('db/models/job');
 
-
-
-exports.renderIndex = function(req, res) {
-  res.render('index');
-};
-
-exports.signupUserForm = function(req, res) {
-  res.render('signup');
-};
-
-exports.loginUserForm = function(req, res) {
-  res.render('login');
-};
-
-exports.logoutUser = function(req, res) {
-  req.session.destroy(function() {
-    res.redirect('/login');
-  });
-};
-
-exports.fetchLinks = function(req, res) {
-  Link.find({}).exec(function(err, links) {
-    res.send(200, links);
+exports.fetchJobs = function(req, res) {
+  Job.find({}).exec(function(err, jobs) {
+    res.send(200, jobs);
   })
 };
 
-exports.saveLink = function(req, res) {
-  var uri = req.body.url;
-
-  if (!util.isValidUrl(uri)) {
-    console.log('Not a valid url: ', uri);
-    return res.send(404);
-  }
-
-  Link.findOne({ url: uri }).exec(function(err, found) {
-    if (found) {
-      res.send(200, found);
+exports.addJob = function(req, res) {
+  var newJob = new Job({
+    client: req.body.client,
+    rate: req.body.rate,
+    start: req.body.start,
+    end: req.body.end,
+    status: req.body.end,
+    description: req.body.description
+  });
+  newJob.save(function(err, newJob) {
+    if (err) {
+      res.send(500, err);
     } else {
-      util.getUrlTitle(uri, function(err, title) {
-        if (err) {
-          console.log('Error reading URL heading: ', err);
-          return res.send(404);
-        }
-        var newLink = new Link({
-          url: uri,
-          title: title,
-          base_url: req.headers.origin,
-          visits: 0
-        });
-        newLink.save(function(err, newLink) {
-          if (err) {
-            res.send(500, err);
-          } else {
-            res.send(200, newLink);
-          }
-        });
-      })
+      res.send(200, newJob);
     }
   });
-};
 
 exports.loginUser = function(req, res) {
   var username = req.body.username;
@@ -110,18 +70,4 @@ exports.signupUser = function(req, res) {
         res.redirect('/signup');
       }
     });
-};
-
-exports.navToLink = function(req, res) {
-  Link.findOne({ code: req.params[0] }).exec(function(err, link) {
-    if (!link) {
-      res.redirect('/');
-    } else {
-      link.visits++;
-      link.save(function(err, link) {
-        res.redirect(link.url);
-        return;
-      })
-    }
-  });
-};
+};  
