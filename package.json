@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rochness/emerald-mopeds.git"
+    "url": "git+https://github.com/emerald-mopeds/emerald-mopeds.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rochness/emerald-mopeds/issues"
+    "url": "https://github.com/emerald-mopeds/emerald-mopeds/issues"
   },
-  "homepage": "https://github.com/rochness/emerald-mopeds#readme",
+  "homepage": "https://github.com/emerald-mopeds/emerald-mopeds#readme",
   "dependencies": {
     "backbone": "^1.2.3",
     "bcrypt-nodejs": "0.0.3",
