@@ -10,23 +10,20 @@
     <script src="lib/backbone/backbone.js"></script>
     <script src="lib/backbone/backbone.js"></script>
     <!-- your scripts -->
-    <script src="scripts/app.js"></script>
+    <script src="scripts/models/job.js"></script>
+    <script src="scripts/collections/jobs.js"></script>
+    <script src="scripts/models/appModel.js"></script>
+    <script src="scripts/views/jobView.js"></script>
+    <script src="scripts/views/jobEntryView.js"></script>
+    <script src="scripts/views/jobsListView.js"></script>
+    <script src="scripts/views/appView.js"></script>
   </head>
   <body>
-  <div id="container"></div>
+    <div id="container"></div>
 
-  <script>
-        $(function() {
-          // set up model objects
+    
+    <script src="scripts/app.js"></script>
 
-          var app = new App();
-          // build a view for the top level of the whole app
-          var appView = new AppView({model: app});
-          // put the view onto the screen
-          $('#container').append(appView.render());
 
-          app.get('jobs').fetch();
-        });
-  </script>
   </body>
 </html>
