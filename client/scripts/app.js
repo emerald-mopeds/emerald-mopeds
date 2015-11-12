@@ -46,7 +46,7 @@ var JobEntryView = Backbone.View.extend({
 
   tagName: 'form',
 
-  template: _.template('<input type="text"/><input type="submit"/>'),
+  template: _.template('<input type="text"/><input type="submit" value="Add Job"/>'),
 
   events: {
     'submit': 'handleSubmit' 
