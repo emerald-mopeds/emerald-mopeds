@@ -14,18 +14,7 @@ var Job = Backbone.Model.extend({
 var Jobs = Backbone.Collection.extend({
 
   model: Job,
-  url: '/jobs',
-
-  parse: function(response, options) {
-    // depends on how Cheyenne sets up server response
-    var results = [];
-
-    for (var i = response.length-1; i >= 0; i--) {
-      results.push(response.results[i]);
-    }
-
-    return results;
-  }
+  url: '/jobs'
 
 });
 
@@ -48,7 +37,12 @@ var JobEntryView = Backbone.View.extend({
 
   tagName: 'form',
 
-  template: _.template('<input type="text"/><input type="submit" value="Add Job"/>'),
+  template: _.template('<label>Client:</label><input id="client" type="text"/><br/>'+
+                      '<label>Description:</label><input id="description" type="text"/><br/>' +
+                      '<label>Rate:</label><input id="rate" type="text"/><br/>' +
+                      '<label>Start:</label><input id="start" type="date"/><br/>' +
+                      '<label>End:</label><input id="end" type="date"/><br/>' +
+                      '<button class="submit">Add Job</button>'),
 
   events: {
     'submit': 'handleSubmit' 
@@ -64,9 +58,19 @@ var JobEntryView = Backbone.View.extend({
 
   handleSubmit: function(e) {
     e.preventDefault();
-    var client = $('input').val();
+
+    var client = $('#client').val();
+    var description = $('#description').val();
+    var rate = $('#rate').val();
+    var start = $('#start').val();
+    var end = $('#end').val();
+
     this.collection.create({
-      client: client
+      client: client,
+      description: description,
+      rate: rate,
+      start: start,
+      end: end,
     });
 
     $('input').val('');
@@ -79,7 +83,13 @@ var JobView = Backbone.View.extend({
 
   tagName: 'tr',
 
-  template: _.template('<td>(<%= client %>)</td>'),
+  template: _.template('<td><%= client %></td>' +
+                     '<td><%= description %></td>' +
+                     '<td>$<%= rate %></td>' +
+                     '<td><%= start %></td>' + 
+                     '<td><%= end %></td>' + 
+                     '<td><%= status %></td>'
+                      ),
 
   initialize: function() {
     this.model.on('change', this.render, this);
@@ -96,6 +106,9 @@ var JobsListView = Backbone.View.extend({
 
   tagName: "table",
 
+  template: _.template('<th>Client</th>' + '<th>Description</th>' + '<th>Rate</th>' + 
+                      '<th>Start</th>' + '<th>End</th>' + '<th>Status</th>'),
+
   initialize: function(){
     this.collection.on('sync', this.render, this);
     this.render();
@@ -104,7 +117,7 @@ var JobsListView = Backbone.View.extend({
   render: function(){
     this.$el.children().detach();
 
-    this.$el.html('<th>Jobs</th>').append(
+    this.$el.html(this.template).append(
       this.collection.map(function(job) {
         return new JobView({model: job}).render();
       })
@@ -119,6 +132,9 @@ var AppView = Backbone.View.extend({
   initialize: function(){
     this.JobsListView = new JobsListView({collection: this.model.get('jobs')});
     this.JobEntryView = new JobEntryView({collection: this.model.get('jobs')});
+
+    // this.router = new Router({ el: this.$el.find('#container') });
+    // Backbone.history.start({ pushState: true });
   },
 
   render: function(){
@@ -137,32 +153,22 @@ var AppView = Backbone.View.extend({
 //   },
 
 //   routes: {
-//     '': 'index',
-//     'create': 'create'
+//     '/': 'index',
+//     '/add': 'addJob'
 //   },
 
+//   swapView: function(){
 
-// });
-
-// initialize: function(options){
-//     this.$el = options.el;
-//   },
-
-//   routes: {
-//     '':       'index',
-//     'create': 'create'
-//   },
-
-//   swapView: function(view){
-//     this.$el.html(view.render().el);
 //   },
 
 //   index: function(){
-//     var links = new Shortly.Links();
-//     var linksView = new Shortly.LinksView({ collection: links });
-//     this.swapView(linksView);
+
 //   },
 
-//   create: function(){
-//     this.swapView(new Shortly.createLinkView());
+//   addJob: function(){
+
 //   }
+
+
+
+// });
