@@ -19,6 +19,16 @@ var JobsListView = Backbone.View.extend({
         return new JobView({model: job}).render();
       })
     );
+  },
+
+  filteredRender: function(list) {
+    this.$el.children().detach();
+
+    this.$el.html(this.template).append(
+      list.map(function(job) {
+        return new JobView({model: job}).render();
+      })
+    );
   }
 
 });
