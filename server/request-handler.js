@@ -12,7 +12,7 @@ exports.fetchJobs = function(req, res) {
 };
 
 exports.addJob = function(req, res) {
-  var newJob = = new Job({
+  var newJob = new Job({
     client: req.body.client,
     rate: req.body.rate,
     start: req.body.start,
@@ -70,4 +70,4 @@ exports.signupUser = function(req, res) {
         res.redirect('/signup');
       }
     });
-};
+};  
