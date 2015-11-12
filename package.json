@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "a job management tool for freelancers",
   "main": "Gruntfile.js",
+  "engines": {
+    "node": "4.1.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
