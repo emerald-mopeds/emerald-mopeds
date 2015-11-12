@@ -6,7 +6,7 @@
 
   - __Product Owner__: Thomas Sorensen
   - __Scrum Master__: Rochelle Lee
-  - __Development Team Members__: Amar Mian, Cheyenne Kellis
+  - __Development Team Members__: Ammar Mian, Cheyenne Kellis
 
 ## Table of Contents
 
@@ -24,11 +24,17 @@
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Backbone 1.2.3x
+- Bcrypt-nodejs 0.0.3x
+- Body-parser 1.14.1x
+- Express 4.13.3x
+- jQuery 2.1.4x
+- Mongoose 4.2.5x
+- Morgan 1.6.1x
+- Underscore 1.8.
+- Bower 2.1.4
+
+
 
 ## Development
 
@@ -44,7 +50,7 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/emerald-mopeds/emerald-mopeds/wiki/Roadmap)
 
 
 ## Contributing
