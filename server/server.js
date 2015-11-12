@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var partials = require('express-partials');
 var handle = require('./request-handler.js');
 
 app.all("/*", function (req, res, next) {
@@ -10,14 +11,23 @@ app.all("/*", function (req, res, next) {
   return next();
 });
 
-app.use(bodyParser.json());
-app.use(express.static(__dirname + '/../client'));
+app.configure(function() {
+  app.set('views', __dirname + '/../client/views');
+  app.set('view engine', 'ejs');
+  app.use(partials());
+  app.use(bodyParser.json());
+  app.use(express.static(__dirname + '/../client'));
+});
 
-app.get('/jobs', function (req, res) {
+app.get('/', function (req, res) {
   handle.fetchJobs(req, res);
 });
 
 app.post('/jobs', function (req, res) {
+  handle.addJob(req, res);
+});
+
+app.post('/add', function (req, res) {
   handle.addJob(req, res);
 });
 
