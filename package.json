@@ -21,6 +21,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "jquery": "^2.1.4",
     "mongoose": "^4.2.5",
     "morgan": "^1.6.1"
   }
