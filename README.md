@@ -5,8 +5,8 @@
 ## Team
 
   - __Product Owner__: Thomas Sorensen
-  - __Scrum Master__: Rochelle
-  - __Development Team Members__: Amar, Cheyenne
+  - __Scrum Master__: Rochelle Lee
+  - __Development Team Members__: Amar Mian, Cheyenne Kellis
 
 ## Table of Contents
 
