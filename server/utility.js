@@ -1,5 +1,3 @@
-var request = require('request');
-
 exports.isLoggedIn = function(req, res) {
   return req.session ? !!req.session.user : false;
 };

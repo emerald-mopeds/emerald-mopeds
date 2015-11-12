@@ -1,17 +1,16 @@
-var request = require('request');
 var bcrypt = require('bcrypt-nodejs');
-var util = require('utility');
+var util = require('./utility');
 
-var db = require('db/database');
-var Job = require('db/models/job');
+var db = require('./db/database');
+var Job = require('./db/models/job');
 
-exports.fetchJobs = function(req, res) {
-  Job.find({}).exec(function(err, jobs) {
+exports.fetchJobs = function (req, res) {
+  Job.find({}).exec(function (err, jobs) {
     res.send(200, jobs);
-  })
+  });
 };
 
-exports.addJob = function(req, res) {
+exports.addJob = function (req, res) {
   var newJob = new Job({
     client: req.body.client,
     rate: req.body.rate,
@@ -20,20 +19,21 @@ exports.addJob = function(req, res) {
     status: req.body.end,
     description: req.body.description
   });
-  newJob.save(function(err, newJob) {
+  newJob.save(function (err, newJob) {
     if (err) {
       res.send(500, err);
     } else {
       res.send(200, newJob);
     }
   });
+};
 
-exports.loginUser = function(req, res) {
+exports.loginUser = function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
 
   User.findOne({ username: username })
-    .exec(function(err, user) {
+    .exec(function (err, user) {
       if (!user) {
         res.redirect('/login');
       } else {
@@ -48,18 +48,18 @@ exports.loginUser = function(req, res) {
   });
 };
 
-exports.signupUser = function(req, res) {
+exports.signupUser = function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
 
   User.findOne({ username: username })
-    .exec(function(err, user) {
+    .exec(function (err, user) {
       if (!user) {
         var newUser = new User({
           username: username,
           password: password
         });
-        newUser.save(function(err, newUser) {
+        newUser.save(function (err, newUser) {
           if (err) {
             res.send(500, err);
           }
@@ -70,4 +70,4 @@ exports.signupUser = function(req, res) {
         res.redirect('/signup');
       }
     });
-};  
+};
