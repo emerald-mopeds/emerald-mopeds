@@ -3,6 +3,30 @@ var util = require('./utility');
 
 var db = require('./db/database');
 var Job = require('./db/models/job');
+var Client = require('./db/models/client');
+
+
+
+exports.fetchClients = function (req, res) {
+  Client.find({}).exec(function (err, clients) {
+    res.send(200, clients);
+  });
+};
+
+exports.addClient = function (req, res) {
+  var newClient = new Client({
+    name: req.body.name,
+    address: req.body.address,
+    phone: req.body.phone
+  });
+  newClient.save(function (err, newJob) {
+    if (err) {
+      res.send(500, err);
+    } else {
+      res.send(200, newClient);
+    }
+  });
+};
 
 exports.fetchJobs = function (req, res) {
   Job.find({}).exec(function (err, jobs) {
