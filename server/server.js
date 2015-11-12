@@ -17,7 +17,7 @@ app.get('/jobs', function (req, res) {
   handle.fetchJobs(req, res);
 });
 
-app.post('/addjob', function (req, res) {
+app.post('/jobs', function (req, res) {
   handle.addJob(req, res);
 });
 
