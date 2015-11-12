@@ -6,7 +6,7 @@ var jobSchema = mongoose.Schema({
  rate: Number,
  start: Date,
  end: Date,
- status: String,
+ status: Boolean,
  description: String
 });
 

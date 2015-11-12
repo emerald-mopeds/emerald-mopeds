@@ -16,7 +16,7 @@ exports.addJob = function (req, res) {
     rate: req.body.rate,
     start: req.body.start,
     end: req.body.end,
-    status: req.body.end,
+    status: req.body.status,
     description: req.body.description
   });
   newJob.save(function (err, newJob) {
