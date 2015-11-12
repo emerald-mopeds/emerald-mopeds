@@ -23,7 +23,9 @@
           var appView = new AppView({model: app});
           // put the view onto the screen
           $('body').append(appView.render());
+
+          app.get('jobs').fetch();
         });
-      </script>
+  </script>
   </body>
 </html>
