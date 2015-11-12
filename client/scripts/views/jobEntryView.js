@@ -8,7 +8,7 @@ var JobEntryView = Backbone.View.extend({
                       '<label>Rate:</label><input id="rate" type="text"/><br/>' +
                       '<label>Start:</label><input id="start" type="date"/><br/>' +
                       '<label>End:</label><input id="end" type="date"/><br/>' +
-                      '<button class="submit">Add Job</button>'),
+                      '<button class="addJob">Add Job</button>'),
 
   events: {
     'submit': 'handleSubmit' 
