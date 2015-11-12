@@ -2,12 +2,12 @@ var db = require('../database');
 var mongoose = require('mongoose');
 
 var jobSchema = mongoose.Schema({
- id: Number,
  client: String,
  rate: Number,
  start: Date,
  end: Date,
- status: String
+ status: String,
+ description: String
 });
 
 var Job = mongoose.model('Job', jobSchema);
