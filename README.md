@@ -1,12 +1,12 @@
-# Project Name
+# Lance-a-lot
 
-> Pithy project description
+> A job management tool for freelancers.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Thomas Sorensen
+  - __Scrum Master__: Rochelle
+  - __Development Team Members__: Amar, Cheyenne
 
 ## Table of Contents
 
