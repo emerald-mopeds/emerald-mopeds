@@ -5,9 +5,25 @@
     <title>Lancelot</title>
     <link rel="stylesheet" href="styles/styles.css">
     <!-- dependencies -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="../node_modules/underscore/underscore.js"></script>
+    <script src="../node_modules/backbone/backbone.js"></script>
+    <script src="../node_modules/backbone/backbone.js"></script>
     <!-- your scripts -->
     <script src="scripts/app.js"></script>
   </head>
   <body>
+
+  <script>
+        $(function() {
+          // set up model objects
+
+          var app = new App();
+          // build a view for the top level of the whole app
+          var appView = new AppView({model: app});
+          // put the view onto the screen
+          $('body').append(appView.render());
+        });
+      </script>
   </body>
 </html>
