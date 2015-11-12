@@ -8,23 +8,23 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['public/client/**/*.js'],
+        src: ['client/**/*.js'],
         dest: 'public/dist/<%= pkg.name %>.js'
       }
           },
 
-    mochaTest: {
-      test: {
-        options: {
-          reporter: 'spec'
-        },
-        src: ['test/**/*.js']
-      }
+    // mochaTest: {
+    //   test: {
+    //     options: {
+    //       reporter: 'spec'
+    //     },
+    //     src: ['test/**/*.js']
+    //   }
     },
 
     nodemon: {
       dev: {
-        script: 'server.js'
+        script: 'server/server.js'
       }
     },
 
@@ -44,17 +44,13 @@ module.exports = function(grunt) {
       files: [
 
         'Gruntfile.js',
-        'app/**/*.js',
-        'public/**/*.js',
-        'lib/**/*.js',
-        './*.js',
-        'spec/**/*.js'
+        'client/**/*.js',
+        'server/**/*.js',
               ],
       options: {
         force: 'true',
         jshintrc: '.jshintrc',
         ignores: [
-          'public/lib/**/*.js',
           'public/dist/**/*.js'
         ]
       }
@@ -75,7 +71,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: [
-          'public/client/**/*.js',
+          'client/**/*.js',
           'public/lib/**/*.js',
         ],
         tasks: [
@@ -107,7 +103,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-mocha-test');
+  // grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
 
