@@ -19,7 +19,7 @@ exports.addClient = function (req, res) {
     address: req.body.address,
     phone: req.body.phone
   });
-  newClient.save(function (err, newJob) {
+  newClient.save(function (err, newClient) {
     if (err) {
       res.send(500, err);
     } else {
@@ -29,26 +29,38 @@ exports.addClient = function (req, res) {
 };
 
 exports.fetchJobs = function (req, res) {
-  Job.find({}).exec(function (err, jobs) {
-    res.send(200, jobs);
-  });
+  Job.find({}).populate('client')
+              .exec(function (err, jobs) {
+                  res.send(200, jobs);
+              });
 };
 
 exports.addJob = function (req, res) {
-  var newJob = new Job({
-    client: req.body.client,
-    rate: req.body.rate,
-    start: req.body.start,
-    end: req.body.end,
-    status: req.body.status,
-    description: req.body.description
-  });
-  newJob.save(function (err, newJob) {
-    if (err) {
+  //find client id by client name
+  Client.find({name:req.body.client}).exec(function (err, client){
+    console.log('client id: ', client._id);
+    if(err){
+      console.error('Error searching for client');
       res.send(500, err);
     } else {
-      res.send(200, newJob);
-    }
+    //create new job using id of found client as the client attribute
+      var newJob = new Job({
+        client: client._id,
+        rate: req.body.rate,
+        start: req.body.start,
+        end: req.body.end,
+        status: req.body.status,
+        description: req.body.description
+      });
+      newJob.save(function (err, newJob) {
+        if (err) {
+          res.send(500, err);
+        } else {
+          console.log('newJob: ', newJob);
+          res.send(200, newJob);
+        }
+      });
+    };
   });
 };
 
