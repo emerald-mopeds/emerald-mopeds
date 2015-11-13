@@ -9,6 +9,8 @@ var AppView = Backbone.View.extend({
     this.ClientSearchView = new ClientSearchView({collection: this.model.get('jobs')});
     this.JobsListView = new JobsListView({collection: this.model.get('jobs')});
     this.JobEntryView = new JobEntryView({collection: this.model.get('jobs')});
+    this.ClientsListView = new ClientsListView({collection: this.model.get('clients')});
+    this.ClientEntryView = new ClientEntryView({collection: this.model.get('clients')}); 
 
     // this.router = new Router({ el: this.$el.find('#container') });
     // Backbone.history.start({ pushState: true });
@@ -16,7 +18,7 @@ var AppView = Backbone.View.extend({
 
   render: function(){
     return this.$el.html([
-      this.JobEntryView.$el, this.ClientSearchView.$el, this.JobsListView.$el
+      this.ClientEntryView.$el, this.ClientsListView.$el, this.JobEntryView.$el, this.ClientSearchView.$el, this.JobsListView.$el
       ]);
   },
 
