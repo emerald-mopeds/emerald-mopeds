@@ -19,6 +19,9 @@ app.use(express.static(__dirname + '/../client'));
 
 app.get('/', renderIndex);
 
+app.get('/clients', handle.fetchClients);
+app.post('/clients', handle.addClient(req, res);
+
 app.get('/add', addJobForm);
 app.post('/add', handle.addJob);
 
