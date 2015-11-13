@@ -3,38 +3,34 @@ Lancealot.JobView = Backbone.View.extend({
 
   tagName: 'tr',
 
-  // events: {
-  //   'click input:checkbox': 'toggleComplete'
-  // },
-
-  // template: _.template('<td><%= client %></td>' +
-  //                    '<td><%= description %></td>' +
-  //                    '<td>$<%= rate %></td>' +
-  //                    '<td><%= start %></td>' + 
-  //                    '<td><%= end %></td>' + 
-  //                    '<td><input type="checkbox" <%= checked %> ></td>'
-  //                     ),
-
-  // initialize: function() {
-  //   this.model.on('change', this.render, this);
-  // },
-
-  // render: function(){
-  //   var data = this.model.toJSON();
-  //   data.checked = data.status ? 'checked' : '';
-  //   return this.$el.html(this.template(data));
-  // },
-
-  // toggleComplete: function(e) {
-  //   var checked = e.target.checked;
-  //   this.model.save({status: checked});
-  // }
+  events: {
+    'click input:checkbox': 'toggleComplete'
+  },
 
   template: Templates['job'],
 
+  initialize: function() {
+    this.model.on('change', this.render, this);
+  },
+
   render: function() {
-    this.$el.html(this.template(this.model.attributes));
+    // we are injecting "checked" into our checkbox view
+    // so that if a job's status is true, it will be checked,
+    // otherwise it will be unchecked
+
+    var modelData = this.model.toJSON();
+    modelData.checked = modelData.status ? 'checked' : '';
+    this.$el.html(this.template(modelData));
+
     return this;
+  },
+
+  // update database to set a job's status to TRUE or FALSE
+  toggleComplete: function(e) {
+    var checked = e.target.checked;
+    var name = this.model.attributes.client.name;
+    this.model.save({client: name, status: checked});
+    console.log(checked);
   }
 
 
