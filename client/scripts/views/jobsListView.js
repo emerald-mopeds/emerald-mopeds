@@ -1,24 +1,39 @@
 // Jobs List View --> connected to Jobs Collection
-var JobsListView = Backbone.View.extend({
+Lancealot.JobsListView = Backbone.View.extend({
 
-  tagName: "table",
+  tagName: 'table',
 
-  template: _.template('<th>Client</th>' + '<th>Description</th>' + '<th>Rate</th>' + 
-                      '<th>Start</th>' + '<th>End</th>' + '<th>Status</th>'),
+  template: Templates['tableheads'],
 
   initialize: function(){
-    this.collection.on('sync', this.render, this);
-    this.render();
+    this.collection.on('sync', this.addAll, this);
+    this.collection.fetch();
   },
 
   render: function(){
-    this.$el.children().detach();
+    this.$el.empty();
+    this.$el.html(this.template());
+    console.log(this.el);
+    return this;
+  },
 
-    this.$el.html(this.template).append(
-      this.collection.map(function(job) {
-        return new JobView({model: job}).render();
-      })
-    );
+  addOne: function(item){
+    var view = new Lancealot.JobView({ model: item });
+    this.$el.append(view.render().el);
+  },
+
+  addAll: function(){
+    this.collection.forEach(this.addOne, this);
   }
+
+  // filteredRender: function(list) {
+  //   this.$el.children().detach();
+
+  //   this.$el.html(this.template).append(
+  //     list.map(function(job) {
+  //       return new JobView({model: job}).render();
+  //     })
+  //   );
+  // }
 
 });

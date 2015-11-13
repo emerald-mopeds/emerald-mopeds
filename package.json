@@ -25,12 +25,14 @@
     "backbone": "^1.2.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",
+    "bower": "^1.6.5",
+    "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "express-partials": "^0.3.0",
     "jquery": "^2.1.4",
     "mongoose": "^4.2.5",
     "morgan": "^1.6.1",
-    "underscore": "^1.8.3",
-    "bower": "^1.6.5"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "bower": "^1.6.5"
