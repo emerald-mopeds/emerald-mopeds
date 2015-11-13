@@ -27,6 +27,7 @@ Lancealot.JobsListView = Backbone.View.extend({
 
   filteredRender: function(list) {
     this.$el.empty();
+    this.$el.html(this.template());
     list.forEach(this.addOne, this);
   }
 
