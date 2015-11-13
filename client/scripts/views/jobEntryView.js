@@ -37,6 +37,7 @@ var JobEntryView = Backbone.View.extend({
       rate: rate,
       start: start,
       end: end,
+      status: false
     });
 
     $('input').val('');
