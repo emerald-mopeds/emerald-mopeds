@@ -2,7 +2,7 @@
 
 var Clients = Backbone.Collection.extend({
 
-  model: 'Client',
+  model: Client,
   url: '/clients'
 
 });
