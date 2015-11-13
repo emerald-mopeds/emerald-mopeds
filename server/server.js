@@ -19,25 +19,17 @@ app.configure(function() {
   app.use(express.static(__dirname + '/../client'));
 });
 
-app.get('/', function (req, res) {
-  handle.fetchJobs(req, res);
-});
+app.get('/', this.renderIndex);
+app.get('/', handle.fetchJobs);
 
-app.post('/jobs', function (req, res) {
-  handle.addJob(req, res);
-});
+app.get('/add', this.addJobForm);
+app.post('/add', handle.addJob);
 
-app.post('/add', function (req, res) {
-  handle.addJob(req, res);
-});
+app.get('/login', this.loginUserForm);
+app.post('/login', handle.loginUser);
 
-app.post('/login', function (req, res) {
-  handle.loginUser(req, res);
-});
-
-app.post('/signup', function (req, res) {
-  handle.signupUser(req, res);
-});
+app.get('/signup', this.signupUserForm);
+app.post('/signup', handle.signupUser);
 
 app.use(function (error, req, res, next) {
   console.error(error.stack);
@@ -47,6 +39,24 @@ app.use(function (error, req, res, next) {
 app.use(function (error, req, res, next) {
   res.send(500, {error: error.message});
 });
+
+
+// Handler functions for template rendering
+var renderIndex = function(req, res) {
+  res.render('index');
+};
+
+var addJobForm = function(req, res) {
+  res.render('add');
+};
+
+var signupUserForm = function(req, res) {
+  res.render('signup');
+};
+
+var loginUserForm = function(req, res) {
+  res.render('login');
+};
 
 var port = process.env.PORT || 3000;
 

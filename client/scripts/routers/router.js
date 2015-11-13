@@ -6,8 +6,8 @@ var Router = Backbone.Router.extend({
   },
 
   routes: {
-    '/jobs': 'index',
-    '/add': 'addJob'
+    '': 'index',
+    'add': 'addJob',
   },
 
   swapView: function(view){
