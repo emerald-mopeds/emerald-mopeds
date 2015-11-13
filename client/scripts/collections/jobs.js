@@ -14,7 +14,7 @@ Lancealot.Jobs = Backbone.Collection.extend({
       return pattern.test(job.get(attribute));
     }));
 
-    return new Jobs(filtered);
+    return new Lancealot.Jobs(filtered);
 
   }
 

@@ -1,49 +1,25 @@
-<<<<<<< HEAD
-// // App View
-// window.Lancealot = Backbone.View.extend({
+// App View
+Lancealot.AppView = Backbone.View.extend({
 
-//   template: Templates['layout'],
+  template: Templates['home'],
 
-//   events: {
-//     // 'keyup #clientSearch': 'handleSearch',
-//     'click li a.index':  'renderIndexView',
-//     'click li a.logout': 'renderAddView'
-//   },
+  events: {
+    'keyup #clientSearch': 'handleSearch'
+  },
 
-//   initialize: function(){
-//     // this.ClientSearchView = new ClientSearchView({collection: this.model.get('jobs')});
-//     // this.JobsListView = new JobsListView({collection: this.model.get('jobs')});
-//     // this.JobEntryView = new JobEntryView({collection: this.model.get('jobs')});
-//  this.ClientsListView = new ClientsListView({collection: this.model.get('clients')});
-//     this.ClientEntryView = new ClientEntryView({collection: this.model.get('clients')}); 
+  initialize: function(){
+    this.JobsListView = new Lancealot.JobsListView({collection: this.collection});
+  },
 
-//     this.router = new Router({ el: this.$el.find('#container') });
+  render: function(){
+    this.$el.html([this.template(), this.JobsListView.render().el]);
+    return this;
+  },
 
-//     Backbone.history.start({ pushState: true });
-//   },
+  handleSearch: function() {
+    var client = $('#clientSearch').val();
+    var filteredList = this.collection.search('client', client);
+    this.JobsListView.filteredRender(filteredList);
+  }
 
-//   // render: function(){
-//   //   return this.$el.html([
-//   //     this.JobEntryView.$el, this.ClientSearchView.$el, this.JobsListView.$el
-//   //     ]);
-//   // },
-
-//   // handleSearch: function(e) {
-//   //   e.preventDefault();
-//   //   var client = $('#clientSearch').val();
-//   //   var filteredList = this.model.get('jobs').search('client', client);
-//   //   this.JobsListView.filteredRender(filteredList);
-//   // },
-
-//   renderIndexView: function(e) {
-//     e && e.preventDefault();
-//     this.router.navigate('/', { trigger: true });
-//   },
-
-//   renderAddView: function(e) {
-//     e && e.preventDefault();
-//     this.router.navigate('/add', { trigger: true });
-//   }
-
-// });
-
+});
