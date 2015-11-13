@@ -1,16 +1,17 @@
 // Client View --> Connected to Client model
 Lancealot.ClientView = Backbone.View.extend({
 
-  tagname: 'tr',
+  tagName: 'tr',
 
-  template: Templates['client'],
+  template: Templates['clientInfo'],
 
   initialize: function() {
     this.model.on('change', this.render, this);
   },
 
   render: function(){
-    return this.$el.html(this.template(this.model.attributes));
+    this.$el.html(this.template(this.model.attributes));
+    return this;
   }
 
 });
