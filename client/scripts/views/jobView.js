@@ -3,12 +3,16 @@ var JobView = Backbone.View.extend({
 
   tagName: 'tr',
 
+  events: {
+    'click input:checkbox': 'toggleComplete'
+  },
+
   template: _.template('<td><%= client %></td>' +
                      '<td><%= description %></td>' +
                      '<td>$<%= rate %></td>' +
                      '<td><%= start %></td>' + 
                      '<td><%= end %></td>' + 
-                     '<td><%= status %></td>'
+                     '<td><input type="checkbox" <%= checked %> ></td>'
                       ),
 
   initialize: function() {
@@ -16,7 +20,15 @@ var JobView = Backbone.View.extend({
   },
 
   render: function(){
-    return this.$el.html(this.template(this.model.attributes));
+    var data = this.model.toJSON();
+    data.checked = data.status ? 'checked' : '';
+    return this.$el.html(this.template(data));
+  },
+
+  toggleComplete: function(e) {
+    var checked = e.target.checked;
+    this.model.save({status: checked});
   }
+
 
 });
