@@ -13,7 +13,6 @@ Lancealot.JobsListView = Backbone.View.extend({
   render: function(){
     this.$el.empty();
     this.$el.html(this.template());
-    console.log(this.el);
     return this;
   },
 
@@ -24,16 +23,18 @@ Lancealot.JobsListView = Backbone.View.extend({
 
   addAll: function(){
     this.collection.forEach(this.addOne, this);
+  },
+
+  handleSearch: function() {
+    var client = $('#clientSearch').val();
+    var filteredList = this.collection.search('client', client);
+
+    this.filteredRender(filteredList);
+  },
+
+  filteredRender: function(list) {
+    this.$el.empty();
+    list.forEach(this.addOne, this);
   }
-
-  // filteredRender: function(list) {
-  //   this.$el.children().detach();
-
-  //   this.$el.html(this.template).append(
-  //     list.map(function(job) {
-  //       return new JobView({model: job}).render();
-  //     })
-  //   );
-  // }
 
 });

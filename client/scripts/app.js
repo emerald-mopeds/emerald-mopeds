@@ -4,7 +4,6 @@ window.Lancealot = Backbone.View.extend({
   template: Templates['layout'],
 
   events: {
-    // 'keyup #clientSearch': 'handleSearch',
     'click li a.index':  'renderIndexView',
     'click li a.logout': 'renderAddView',
     'submit': 'renderIndexView'
@@ -30,6 +29,8 @@ window.Lancealot = Backbone.View.extend({
   renderAddView: function(e) {
     e && e.preventDefault();
     this.router.navigate('/add', { trigger: true });
-  }
+  },
+
+  
 
 });
