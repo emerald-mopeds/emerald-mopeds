@@ -4,7 +4,7 @@ Lancealot.JobEntryView = Backbone.View.extend({
   template: Templates['add'],
 
   events: {
-    'submit': 'handleSubmit' 
+    'submit': 'handleSubmit'
   },
 
   initialize: function() {
@@ -20,6 +20,7 @@ Lancealot.JobEntryView = Backbone.View.extend({
     e.preventDefault();
 
     var client = $('#client').val();
+    console.log(client);
     var description = $('#description').val();
     var rate = $('#rate').val();
     var start = $('#start').val();

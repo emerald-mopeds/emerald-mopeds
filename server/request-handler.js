@@ -38,12 +38,14 @@ exports.fetchJobs = function (req, res) {
 
 exports.addJob = function (req, res) {
   //find client id by client name
+  console.log(req.body, " HELLO")
   Client.find({name:req.body.client}).exec(function (err, client){
     if(err){
       console.error('Error searching for client');
       res.send(500, err);
     } else {
     //create new job using id of found client as the client attribute
+
       var newJob = new Job({
         client: client[0]._id,
         rate: req.body.rate,

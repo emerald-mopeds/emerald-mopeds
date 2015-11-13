@@ -12,7 +12,8 @@ Lancealot.ClientEntryView = Backbone.View.extend({
   },
 
   render: function(){
-    return this.$el.html(this.template());
+    this.$el.html(this.template());
+    return this;
   },
 
   handleSubmit: function(e) {
@@ -22,11 +23,13 @@ Lancealot.ClientEntryView = Backbone.View.extend({
     var address = $('#address').val();
     var phone = $('#phone').val();
 
-    this.collection.create({
+    var client = new Lancealot.Client({
       name: name,
       address: address,
       phone: phone,
     });
+
+    client.save({});
 
     $('input').val('');
   }

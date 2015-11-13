@@ -22,8 +22,9 @@ app.get('/', renderIndex);
 app.get('/clients', handle.fetchClients);
 app.post('/clients', handle.addClient);
 
-app.get('/add', addJobForm);
-app.post('/add', handle.addJob);
+app.get('/addclient', renderIndex);
+
+app.get('/add', renderIndex);
 
 app.get('/jobs', handle.fetchJobs);
 app.post('/jobs', handle.addJob);
@@ -46,10 +47,6 @@ app.use(function (error, req, res, next) {
 
 // Handler functions for template rendering
 function renderIndex (req, res) {
-  res.render('index');
-};
-
-function addJobForm (req, res) {
   res.render('index');
 };
 
