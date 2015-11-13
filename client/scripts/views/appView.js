@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // // App View
 // window.Lancealot = Backbone.View.extend({
 
@@ -45,3 +46,4 @@
 //   }
 
 // });
+

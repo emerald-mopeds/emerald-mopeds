@@ -44,7 +44,6 @@ exports.addJob = function (req, res) {
       res.send(500, err);
     } else {
     //create new job using id of found client as the client attribute
-      console.log('client in addJob post request: ', client);
       var newJob = new Job({
         client: client[0]._id,
         rate: req.body.rate,
