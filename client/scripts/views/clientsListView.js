@@ -3,21 +3,26 @@ Lancealot.ClientsListView = Backbone.View.extend({
 
   tagName: "table",
 
-  template: _.template('<th>Name</th>' + '<th>Address</th>' + '<th>Phone</th>'),
+  template: Templates['clienttable'],
 
   initialize: function(){
-    this.collection.on('sync', this.render, this);
-    this.render();
+    this.collection.on('sync', this.addAll, this);
+    this.collection.fetch();
+  },
+
+  addOne: function(item){
+    var view = new Lancealot.ClientView({ model: item });
+    this.$el.append(view.render().el);
+  },
+
+  addAll: function(){
+    this.collection.forEach(this.addOne, this);
   },
 
   render: function(){
-    this.$el.children().detach();
-
-    this.$el.html(this.template).append(
-      this.collection.map(function(client) {
-        return new ClientView({model: client}).render();
-      })
-    );
+    this.$el.empty();
+    this.$el.html(this.template());
+    return this;
   }
 
 });

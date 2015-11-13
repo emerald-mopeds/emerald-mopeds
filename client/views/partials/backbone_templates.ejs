@@ -1,8 +1,10 @@
 <script id='layout' type='text/x-handlebars-template'>
   <div class='navigation'>
   <ul>
-    <li><a href='#' class='index'>View Jobs</a></li>
+    <li><a href='/' class='index'>View Jobs</a></li>
     <li><a href='/add' class='add'>Add Job</a></li>
+    <li><a href='/clients' class='index'>View Clients</a></li>
+    <li><a href='/addclient' class='add'>Add Client</a></li>
   </ul>
   </div>
   <div id='container'></div>
@@ -21,6 +23,13 @@
     <th>Status</th>
 </script>
 
+<script id='clienttable' type='text/x-handlebars-template'>
+  <th>Name</th>
+  <th>Address</th>
+  <th>Phone</th>
+</script>
+
+
 <script id='job' type='text/x-handlebars-template'>
     <td>{{client.name}}</td>
     <td>{{description}}</td>
@@ -31,7 +40,7 @@
 </script>
 
 <script id='add' type='text/x-handlebars-template'>
-  <form>
+  <form id="addJob">
     <label>Client:</label>
       <input id="client" type="text"/><br/>
         <label>Description:</label>
@@ -47,7 +56,7 @@
 </script>
 
 <script id='addClient' type='text/x-handlebars-template'>
-  <form>
+  <form id="addClient">
     <label>Name:</label>
       <input id="name" type="text"/><br/>
     <label>Address:</label>
