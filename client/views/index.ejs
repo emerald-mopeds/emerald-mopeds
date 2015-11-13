@@ -1,0 +1,11 @@
+<% include partials/backbone_templates %>
+
+<script>
+  $(function(){
+    var app = new App();
+    var appView = new AppView({model: app});
+    $('#container').append(appView.render());
+    app.get('jobs').fetch();
+  });
+</script>
+

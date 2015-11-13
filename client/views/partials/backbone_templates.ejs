@@ -1,0 +1,43 @@
+<script id='layout' type='text/x-handlebars-template'>
+  <div class='navigation'>
+  <ul>
+    <li><a href='#' class='index'>Add Job</a></li>
+  </ul>
+    <a href='/logout' class='logout'>Logout</a>
+  </div>
+  <div id='container'></div>
+</script>
+
+<script id='job' type='text/x-handlebars-template'>
+  <tr>
+    <td>{{client}}</td>
+    <td>{{description}}</td>
+    <td>${{rate}}</td>
+    <td>{{start}}</td>
+    <td>{{end}}</td>
+    <td>{{status}}</td>
+  </tr>
+</script>
+
+<script id='add' type='text/x-handlebars-template'>
+  <form>
+    <label>Client:</label>
+      <input id="client" type="text"/><br/>
+        <label>Description:</label>
+          <input id="description" type="text"/><br/>
+        <label>Rate:</label>
+          <input id="rate" type="text"/><br/>
+        <label>Start:</label>
+          <input id="start" type="date"/><br/>
+        <label>End:</label>
+          <input id="end" type="date"/><br/>
+        <button class="submit">Add Job</button>
+  </form>
+</script>
+
+<script>
+  window.Templates = {};
+  $('[type="text/x-handlebars-template"]').each(function(index, div){
+    Templates[div.id] = Handlebars.compile(div.innerHTML);
+  });
+</script>
