@@ -1,5 +1,5 @@
 // Client Entry View (form) --> connected to Clients Collection
-var ClientEntryView = Backbone.View.extend({
+Lancealot.ClientEntryView = Backbone.View.extend({
 
   tagName: 'form',
 

@@ -1,22 +1,29 @@
 <script id='layout' type='text/x-handlebars-template'>
   <div class='navigation'>
   <ul>
-    <li><a href='#' class='index'>Add Job</a></li>
+    <li><a href='#' class='index'>View Jobs</a></li>
+    <li><a href='/add' class='add'>Add Job</a></li>
   </ul>
-    <a href='/logout' class='logout'>Logout</a>
   </div>
   <div id='container'></div>
 </script>
 
+<script id='tableheads' type='text/x-handlebars-template'>
+    <th>Client</th>
+    <th>Description</th>
+    <th>Rate</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Status</th>
+</script>
+
 <script id='job' type='text/x-handlebars-template'>
-  <tr>
     <td>{{client}}</td>
     <td>{{description}}</td>
     <td>${{rate}}</td>
     <td>{{start}}</td>
     <td>{{end}}</td>
     <td>{{status}}</td>
-  </tr>
 </script>
 
 <script id='add' type='text/x-handlebars-template'>

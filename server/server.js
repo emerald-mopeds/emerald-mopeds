@@ -47,7 +47,7 @@ function renderIndex (req, res) {
 };
 
 function addJobForm (req, res) {
-  res.render('add');
+  res.render('index');
 };
 
 function signupUserForm (req, res) {

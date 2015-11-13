@@ -1,5 +1,5 @@
 // Client View --> Connected to Client model
-var ClientView = Backbone.View.extend({
+Lancealot.ClientView = Backbone.View.extend({
   
   tagname: 'tr',
 

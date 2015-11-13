@@ -1,11 +1,23 @@
 <% include partials/backbone_templates %>
 
 <script>
-  $(function(){
-    var app = new App();
-    var appView = new AppView({model: app});
-    $('#container').append(appView.render());
-    app.get('jobs').fetch();
-  });
+$(function() {
+  new Lancealot();
+})
 </script>
 
+<script src="scripts/app.js"></script>
+<script src="scripts/models/job.js"></script>
+<script src="scripts/models/client.js"></script>
+<script src="scripts/collections/jobs.js"></script>
+<script src="scripts/collections/clients.js"></script>
+<script src="scripts/models/appModel.js"></script>
+<script src="scripts/views/clientEntryView.js"></script>
+<script src="scripts/views/clientSearchView.js"></script>
+<script src="scripts/views/clientsListView.js"></script>
+<script src="scripts/views/clientSearchView.js"></script>
+<script src="scripts/views/jobView.js"></script>
+<script src="scripts/views/jobEntryView.js"></script>
+<script src="scripts/views/jobsListView.js"></script>
+<script src="scripts/views/appView.js"></script>
+<script src="scripts/routers/router.js"></script>

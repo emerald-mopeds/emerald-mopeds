@@ -1,14 +1,7 @@
 // Job Entry View (form) --> connected to Jobs Collection
-var JobEntryView = Backbone.View.extend({
+Lancealot.JobEntryView = Backbone.View.extend({
 
-  tagName: 'form',
-
-  template: _.template('<label>Client:</label><input id="client" type="text"/><br/>'+
-                      '<label>Description:</label><input id="description" type="text"/><br/>' +
-                      '<label>Rate:</label><input id="rate" type="text"/><br/>' +
-                      '<label>Start:</label><input id="start" type="date"/><br/>' +
-                      '<label>End:</label><input id="end" type="date"/><br/>' +
-                      '<button class="addJob">Add Job</button>'),
+  template: Templates['add'],
 
   events: {
     'submit': 'handleSubmit' 
@@ -19,7 +12,8 @@ var JobEntryView = Backbone.View.extend({
   },
 
   render: function(){
-    return this.$el.html(this.template());
+    this.$el.html(this.template());
+    return this;
   },
 
   handleSubmit: function(e) {
@@ -31,7 +25,7 @@ var JobEntryView = Backbone.View.extend({
     var start = $('#start').val();
     var end = $('#end').val();
 
-    this.collection.create({
+    var job = new Lancealot.Job({
       client: client,
       description: description,
       rate: rate,
@@ -39,6 +33,8 @@ var JobEntryView = Backbone.View.extend({
       end: end,
       status: false
     });
+
+    job.save({});
 
     $('input').val('');
   }

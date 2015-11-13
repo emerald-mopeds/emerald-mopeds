@@ -1,7 +1,7 @@
 // Job Collection
-var Jobs = Backbone.Collection.extend({
+Lancealot.Jobs = Backbone.Collection.extend({
 
-  model: Job,
+  model: Lancealot.Job,
   url: '/jobs',
 
   search : function(attribute, value){

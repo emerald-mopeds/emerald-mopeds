@@ -1,5 +1,35 @@
+// App View
+window.Lancealot = Backbone.View.extend({
 
-var app = new App();
-var appView = new AppView({model: app});
-$('#container').append(appView.render());
-app.get('jobs').fetch();
+  template: Templates['layout'],
+
+  events: {
+    // 'keyup #clientSearch': 'handleSearch',
+    'click li a.index':  'renderIndexView',
+    'click li a.logout': 'renderAddView',
+    'submit': 'renderIndexView'
+  },
+
+  initialize: function(){
+    $("#container").append(this.render().el);
+
+    this.router = new Lancealot.Router({ el: this.$el.find('#container') });
+    Backbone.history.start({ pushState: true });
+  },
+
+  render: function(){
+    this.$el.html( this.template() );
+    return this;
+  },
+
+  renderIndexView: function(e) {
+    e && e.preventDefault();
+    this.router.navigate('/', { trigger: true });
+  },
+
+  renderAddView: function(e) {
+    e && e.preventDefault();
+    this.router.navigate('/add', { trigger: true });
+  }
+
+});

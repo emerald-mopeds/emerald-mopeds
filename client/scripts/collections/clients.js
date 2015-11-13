@@ -1,8 +1,8 @@
 // Client Collection
 
-var Clients = Backbone.Collection.extend({
+Lancealot.Clients = Backbone.Collection.extend({
 
-  model: Client,
+  model: Lancealot.Client,
   url: '/clients'
 
 });

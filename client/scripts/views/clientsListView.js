@@ -1,5 +1,5 @@
 // Clients List View --> connected to Clients Collection
-var ClientsListView = Backbone.View.extend({
+Lancealot.ClientsListView = Backbone.View.extend({
 
   tagName: "table",
 

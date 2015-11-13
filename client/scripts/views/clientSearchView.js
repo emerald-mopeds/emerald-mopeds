@@ -1,5 +1,5 @@
 // ClientSearch View --> connected to Jobs collection
-var ClientSearchView = Backbone.View.extend({
+Lancealot.ClientSearchView = Backbone.View.extend({
 
   tagName: 'form',
 
