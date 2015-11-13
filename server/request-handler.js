@@ -3,28 +3,64 @@ var util = require('./utility');
 
 var db = require('./db/database');
 var Job = require('./db/models/job');
+var Client = require('./db/models/client');
 
-exports.fetchJobs = function (req, res) {
-  Job.find({}).exec(function (err, jobs) {
-    res.send(200, jobs);
+
+
+exports.fetchClients = function (req, res) {
+  Client.find({}).exec(function (err, clients) {
+    res.send(200, clients);
   });
 };
 
-exports.addJob = function (req, res) {
-  var newJob = new Job({
-    client: req.body.client,
-    rate: req.body.rate,
-    start: req.body.start,
-    end: req.body.end,
-    status: req.body.status,
-    description: req.body.description
+exports.addClient = function (req, res) {
+  var newClient = new Client({
+    name: req.body.name,
+    address: req.body.address,
+    phone: req.body.phone
   });
-  newJob.save(function (err, newJob) {
+  newClient.save(function (err, newClient) {
     if (err) {
       res.send(500, err);
     } else {
-      res.send(200, newJob);
+      res.send(200, newClient);
     }
+  });
+};
+
+exports.fetchJobs = function (req, res) {
+  Job.find({}).populate('client', 'name')
+              .exec(function (err, jobs) {
+                  res.send(200, jobs);
+                  console.log('fetchJobs call: ', jobs);
+              });
+};
+
+exports.addJob = function (req, res) {
+  //find client id by client name
+  Client.find({name:req.body.client}).exec(function (err, client){
+    if(err){
+      console.error('Error searching for client');
+      res.send(500, err);
+    } else {
+    //create new job using id of found client as the client attribute
+      var newJob = new Job({
+        client: client[0]._id,
+        rate: req.body.rate,
+        start: req.body.start,
+        end: req.body.end,
+        status: req.body.status,
+        description: req.body.description
+      });
+      newJob.save(function (err, newJob) {
+        if (err) {
+          res.send(500, err);
+        } else {
+          console.log('newJob: ', newJob);
+          res.redirect('/jobs');
+        }
+      });
+    };
   });
 };
 

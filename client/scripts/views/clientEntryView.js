@@ -6,7 +6,7 @@ Lancealot.ClientEntryView = Backbone.View.extend({
   template: _.template('<label>Name:</label><input id="name" type="text"/><br/>'+
                       '<label>Address:</label><input id="address" type="text"/><br/>' +
                       '<label>Phone:</label><input id="phone" type="text"/><br/>' +
-                      '<button class="submit">Add Job</button>'),
+                      '<button class="submit">Add Client</button>'),
 
   events: {
     'submit': 'handleSubmit' 
