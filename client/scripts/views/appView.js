@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // // App View
 // window.Lancealot = Backbone.View.extend({
 
@@ -13,6 +14,8 @@
 //     // this.ClientSearchView = new ClientSearchView({collection: this.model.get('jobs')});
 //     // this.JobsListView = new JobsListView({collection: this.model.get('jobs')});
 //     // this.JobEntryView = new JobEntryView({collection: this.model.get('jobs')});
+//  this.ClientsListView = new ClientsListView({collection: this.model.get('clients')});
+//     this.ClientEntryView = new ClientEntryView({collection: this.model.get('clients')}); 
 
 //     this.router = new Router({ el: this.$el.find('#container') });
 
@@ -43,3 +46,4 @@
 //   }
 
 // });
+

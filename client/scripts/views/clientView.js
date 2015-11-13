@@ -3,9 +3,9 @@ Lancealot.ClientView = Backbone.View.extend({
   
   tagname: 'tr',
 
-  template: _template('<td><%= name %></td>' +
+  template: _.template('<td><%= name %></td>' +
                      '<td><%= address %></td>' +
-                     '<td>$<%= phone %></td>' 
+                     '<td><%= phone %></td>' 
                       ),
 
   initialize: function() {
