@@ -11,24 +11,24 @@ app.all("/*", function (req, res, next) {
   return next();
 });
 
-app.configure(function() {
-  app.set('views', __dirname + '/../client/views');
-  app.set('view engine', 'ejs');
-  app.use(partials());
-  app.use(bodyParser.json());
-  app.use(express.static(__dirname + '/../client'));
-});
+app.set('views', __dirname + '/../client/views');
+app.set('view engine', 'ejs');
+app.use(partials());
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/../client'));
 
-app.get('/', this.renderIndex);
-app.get('/', handle.fetchJobs);
+app.get('/', renderIndex);
 
-app.get('/add', this.addJobForm);
+app.get('/add', addJobForm);
 app.post('/add', handle.addJob);
 
-app.get('/login', this.loginUserForm);
+app.get('/jobs', handle.fetchJobs);
+app.post('/jobs', handle.addJob);
+
+app.get('/login', loginUserForm);
 app.post('/login', handle.loginUser);
 
-app.get('/signup', this.signupUserForm);
+app.get('/signup', signupUserForm);
 app.post('/signup', handle.signupUser);
 
 app.use(function (error, req, res, next) {
@@ -42,19 +42,19 @@ app.use(function (error, req, res, next) {
 
 
 // Handler functions for template rendering
-var renderIndex = function(req, res) {
+function renderIndex (req, res) {
   res.render('index');
 };
 
-var addJobForm = function(req, res) {
+function addJobForm (req, res) {
   res.render('add');
 };
 
-var signupUserForm = function(req, res) {
+function signupUserForm (req, res) {
   res.render('signup');
 };
 
-var loginUserForm = function(req, res) {
+function loginUserForm (req, res) {
   res.render('login');
 };
 
