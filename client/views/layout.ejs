@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lance-a-lot</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <!-- dependencies -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
+    <script src="lib/backbone/backbone.js"></script>
+    <script src="lib/backbone/backbone.js"></script>
+    <script src="lib/handlebars.js"></script>
+    <!-- your scripts -->
+    <script src="scripts/models/job.js"></script>
+    <script src="scripts/collections/jobs.js"></script>
+    <script src="scripts/models/appModel.js"></script>
+    <script src="scripts/views/jobView.js"></script>
+    <script src="scripts/views/jobEntryView.js"></script>
+    <script src="scripts/views/jobsListView.js"></script>
+    <script src="scripts/views/appView.js"></script>
+  </head>
+
+  <body>
+    <div id="container">
+      <%- body %>
+    </div>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
