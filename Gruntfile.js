@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         src: ['client/**/*.js'],
         dest: 'public/dist/<%= pkg.name %>.js'
       }
+    },
          
 
     // mochaTest: {
@@ -20,7 +21,7 @@ module.exports = function(grunt) {
     //     },
     //     src: ['test/**/*.js']
     //   }
-    },
+    // },
 
     nodemon: {
       dev: {
