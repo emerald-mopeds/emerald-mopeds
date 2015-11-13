@@ -46,6 +46,24 @@
   </form>
 </script>
 
+<script id='addClient' type='text/x-handlebars-template'>
+  <form>
+    <label>Name:</label>
+      <input id="name" type="text"/><br/>
+    <label>Address:</label>
+      <input id="address" type="text"/><br/>
+    <label>Phone:</label>
+      <input id="phone" type="text"/><br/>
+    <button class="submit">Add Client</button>
+  </form>
+</script>
+
+<script id='client' type='text/x-handlebars-template'>
+    <td>{{name}}</td>
+    <td>{{address}}</td>
+    <td>{{phone}}</td>
+</script>
+
 <script>
   window.Templates = {};
   $('[type="text/x-handlebars-template"]').each(function(index, div){

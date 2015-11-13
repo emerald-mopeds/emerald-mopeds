@@ -1,15 +1,10 @@
 // Client Entry View (form) --> connected to Clients Collection
 Lancealot.ClientEntryView = Backbone.View.extend({
 
-  tagName: 'form',
-
-  template: _.template('<label>Name:</label><input id="name" type="text"/><br/>'+
-                      '<label>Address:</label><input id="address" type="text"/><br/>' +
-                      '<label>Phone:</label><input id="phone" type="text"/><br/>' +
-                      '<button class="submit">Add Client</button>'),
+  template: Templates['addClient'],
 
   events: {
-    'submit': 'handleSubmit' 
+    'submit': 'handleSubmit'
   },
 
   initialize: function() {
