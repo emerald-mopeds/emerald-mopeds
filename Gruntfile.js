@@ -3,7 +3,6 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-
       options: {
         separator: ';'
       },
@@ -13,7 +12,6 @@ module.exports = function(grunt) {
       }
     },
          
-
     // mochaTest: {
     //   test: {
     //     options: {
@@ -67,13 +65,16 @@ module.exports = function(grunt) {
           'public/dist/style.min.css': 'public/style.css'
         }
       }
-          },
+    },
+
+    seedData: {
+      command: 'seed'
+    },
 
     watch: {
       scripts: {
         files: [
           'client/**/*.js',
-          'public/lib/**/*.js',
         ],
         tasks: [
           'concat',
@@ -88,14 +89,13 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
-
-        command: 'git push azure master',
-        options: {
-          stdout: true,
-          stderr: true,
-          failOnError: true
+        // command: 'git push azure master',
+        // options: {
+        //   stdout: true,
+        //   stderr: true,
+        //   failOnError: true
         }
-              }
+      }
     },
   });
 
@@ -117,7 +117,7 @@ module.exports = function(grunt) {
     });
     nodemon.stdout.pipe(process.stdout);
     nodemon.stderr.pipe(process.stderr);
-
+    grunt.task.run(['seedData']);
     grunt.task.run([ 'watch' ]);
   });
 
@@ -126,33 +126,27 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-
     'jshint',
-        'mochaTest'
+    'mochaTest'
   ]);
 
   grunt.registerTask('build', [
-
     'concat',
     'uglify',
     'cssmin'
-      ]);
+  ]);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
-
       grunt.task.run([ 'shell:prodServer' ]);
-          } else {
+    } else {
       grunt.task.run([ 'server-dev' ]);
     }
   });
 
   grunt.registerTask('deploy', [
-
     'test',
     'build',
     'upload'
-      ]);
-
-
+  ]);
 };
