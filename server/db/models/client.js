@@ -9,13 +9,6 @@ var clientSchema = mongoose.Schema({
   phone: String
 });
 
-
-// clientSchema.plugin(autoIncrement.plugin, {
-//     model: 'Client',
-//     field: '_id',
-//     startAt: 2,
-//     incrementBy: 1
-// });
 clientSchema.plugin(autoIncrement.plugin, 'Client');
 
 var Client = mongoose.model('Client', clientSchema);
