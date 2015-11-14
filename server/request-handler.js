@@ -1,6 +1,6 @@
 var bcrypt = require('bcrypt-nodejs');
 var util = require('./utility');
-
+var request = require('request');
 var db = require('./db/database');
 var Job = require('./db/models/job');
 var Client = require('./db/models/client');
@@ -38,9 +38,8 @@ exports.fetchJobs = function (req, res) {
 
 exports.addJob = function (req, res) {
   //find client id by client name
-  console.log(req.body, " HELLO")
-  Client.find({name:req.body.client}).exec(function (err, client){
-    if(err){
+  Client.find({name:req.body.client}).exec(function (err, client) {
+    if (err) {
       console.error('Error searching for client');
       res.send(500, err);
     } else {
@@ -62,7 +61,7 @@ exports.addJob = function (req, res) {
           res.redirect('/jobs');
         }
       });
-    };
+    }
   });
 };
 
@@ -87,21 +86,33 @@ exports.loginUser = function (req, res) {
 };
 
 exports.signupUser = function (req, res) {
-  var username = req.body.username;
+  var email = req.body.email;
   var password = req.body.password;
 
-  User.findOne({ username: username })
+  var options = {
+    url: 'https://www.toggl.com/api/v8/signups',
+    data: {"user":{"email":email,"password":password}},
+    headers: {'Content-Type': 'application/json'}
+  };
+
+  User.findOne({ email: email })
     .exec(function (err, user) {
       if (!user) {
-        var newUser = new User({
-          username: username,
-          password: password
-        });
-        newUser.save(function (err, newUser) {
+        request.post(options, function (err, httpResponse, body) {
           if (err) {
-            res.send(500, err);
+            return console.error('upload failed:', err);
           }
-          util.createSession(req, res, newUser);
+          console.log('Request successful!  Server responded with:', body);
+          var newUser = new User({
+            email: email,
+            password: password
+          });
+          newUser.save(function (err, newUser) {
+            if (err) {
+              res.send(500, err);
+            }
+              res.redirect('/');
+          });
         });
       } else {
         console.log('Account already exists');
