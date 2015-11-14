@@ -8,19 +8,24 @@ Lancealot.JobEntryView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.render();
+    this.collection.on('sync', this.render, this);
+    this.collection.fetch();
   },
 
   render: function(){
-    this.$el.html(this.template());
+
+    // passing in our array of clients so we can render
+    // them in our dropdown menu
+    var clientData = {clients: this.collection.toJSON()};
+    this.$el.html(this.template(clientData));
+    
     return this;
   },
 
   handleSubmit: function(e) {
     e.preventDefault();
 
-    var client = $('#client').val();
-    console.log(client);
+    var client = $("option:selected").text();
     var description = $('#description').val();
     var rate = $('#rate').val();
     var start = $('#start').val();

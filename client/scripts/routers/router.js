@@ -23,7 +23,8 @@ Lancealot.Router = Backbone.Router.extend({
   },
 
   addJob: function(){
-    this.swapView(new Lancealot.JobEntryView());
+    var clients = new Lancealot.Clients();
+    this.swapView(new Lancealot.JobEntryView({collection: clients}));
   },
 
   addClient: function(){

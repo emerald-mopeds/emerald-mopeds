@@ -18,7 +18,7 @@ Lancealot.AppView = Backbone.View.extend({
 
   handleSearch: function() {
     var client = $('#clientSearch').val();
-    var filteredList = this.collection.search('client', client);
+    var filteredList = this.collection.searchByClient(client);
     this.JobsListView.filteredRender(filteredList);
   }
 

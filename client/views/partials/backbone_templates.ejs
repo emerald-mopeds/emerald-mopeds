@@ -15,18 +15,22 @@
 </script>
 
 <script id='tableheads' type='text/x-handlebars-template'>
+  <thead>
     <th>Client</th>
     <th>Description</th>
     <th>Rate</th>
     <th>Start</th>
     <th>End</th>
     <th>Status</th>
+  </thead>
 </script>
 
 <script id='clienttable' type='text/x-handlebars-template'>
-  <th>Name</th>
-  <th>Address</th>
-  <th>Phone</th>
+  <thead>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Phone</th>
+  </thead>
 </script>
 
 
@@ -42,16 +46,22 @@
 <script id='add' type='text/x-handlebars-template'>
   <form id="addJob">
     <label>Client:</label>
-      <input id="client" type="text"/><br/>
-        <label>Description:</label>
-          <input id="description" type="text"/><br/>
-        <label>Rate:</label>
-          <input id="rate" type="text"/><br/>
-        <label>Start:</label>
-          <input id="start" type="date"/><br/>
-        <label>End:</label>
-          <input id="end" type="date"/><br/>
-        <button class="submit">Add Job</button>
+      <select id="client">
+        {{#each clients }}
+          <option value="{{value}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
+        {{/each}}
+      </select>
+      <a href="/addclient">Don't see your client? Create a new client here.</a>
+      <br/>
+      <label>Description:</label>
+        <input id="description" type="text"/><br/>
+      <label>Rate:</label>
+        <input id="rate" type="text"/><br/>
+      <label>Start:</label>
+        <input id="start" type="date"/><br/>
+      <label>End:</label>
+        <input id="end" type="date"/><br/>
+      <button class="submit">Add Job</button>
   </form>
 </script>
 
