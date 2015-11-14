@@ -30,6 +30,11 @@ exports.addClient = function (req, res) {
   });
 };
 
+/*
+fetchJobs is called when /jobs path receives get request
+Finds all jobs in the database, replaces client_id with object that include client Id and name
+Responds with result of query
+*/
 exports.fetchJobs = function (req, res) {
   Job.find({})
               .populate('client', 'name')
@@ -59,7 +64,6 @@ exports.addJob = function (req, res) {
         if (err) {
           res.send(500, err);
         } else {
-          console.log('newJob: ', newJob);
           res.redirect('/jobs');
         }
       });
