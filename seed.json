@@ -1,5 +1,5 @@
 {
-	"undefined": "/server/db/database.js",
-	"dev": "/server/db/database.js",
-	"prod": "localhost/PROD_DB_NAME"
+	"undefined": "mongodb://localhost/lancealot",
+	"dev": "mongodb://localhost/lancealot",
+	"prod": "mongodb://localhost/lancealot"
 }

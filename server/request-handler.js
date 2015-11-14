@@ -22,30 +22,31 @@ exports.addClient = function (req, res) {
   newClient.save(function (err, newClient) {
     if (err) {
       res.send(500, err);
+      console.log('error adding/saving client');
     } else {
+      console.log('added new client: ', newClient);
       res.send(200, newClient);
     }
   });
 };
 
 exports.fetchJobs = function (req, res) {
-  Job.find({}).populate('client', 'name')
+  Job.find({})
+              .populate('client', 'name')
               .exec(function (err, jobs) {
+                console.log('in fetch jobs call: ', jobs);
                   res.send(200, jobs);
-                  console.log('fetchJobs call: ', jobs);
               });
 };
 
 exports.addJob = function (req, res) {
   //find client id by client name
-  console.log(req.body, " HELLO")
   Client.find({name:req.body.client}).exec(function (err, client){
     if(err){
       console.error('Error searching for client');
       res.send(500, err);
     } else {
     //create new job using id of found client as the client attribute
-
       var newJob = new Job({
         client: client[0]._id,
         rate: req.body.rate,

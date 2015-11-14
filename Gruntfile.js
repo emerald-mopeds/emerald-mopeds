@@ -37,7 +37,7 @@ module.exports = function(grunt) {
           'public/dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
         }
       }
-          },
+    },
 
     jshint: {
       files: [
@@ -67,10 +67,6 @@ module.exports = function(grunt) {
       }
     },
 
-    seedData: {
-      command: 'seed'
-    },
-
     watch: {
       scripts: {
         files: [
@@ -87,6 +83,12 @@ module.exports = function(grunt) {
       }
     },
 
+    exec: {
+      seedData: {
+          cmd: 'seed'
+      }
+    },
+
     shell: {
       prodServer: {
         // command: 'git push azure master',
@@ -95,8 +97,7 @@ module.exports = function(grunt) {
         //   stderr: true,
         //   failOnError: true
         }
-      }
-    },
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -107,6 +108,7 @@ module.exports = function(grunt) {
   // grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-exec');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -117,7 +119,7 @@ module.exports = function(grunt) {
     });
     nodemon.stdout.pipe(process.stdout);
     nodemon.stderr.pipe(process.stderr);
-    grunt.task.run(['seedData']);
+    grunt.task.run(['exec']);
     grunt.task.run([ 'watch' ]);
   });
 
@@ -137,11 +139,11 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('upload', function(n) {
-    if(grunt.option('prod')) {
-      grunt.task.run([ 'shell:prodServer' ]);
-    } else {
+    // if(grunt.option('prod')) {
+    //   grunt.task.run([ 'shell:prodServer' ]);
+    // } else {
       grunt.task.run([ 'server-dev' ]);
-    }
+    // }
   });
 
   grunt.registerTask('deploy', [
