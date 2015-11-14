@@ -66,11 +66,6 @@ exports.addJob = function (req, res) {
   Job.findById(req.body._id, function (err, job) {
     if (err) {
       console.error("error");
-  //find client id by client name
-  Client.find({name:req.body.client}).exec(function (err, client){
-    if (err) {
-      console.error('Error searching for client');
-      res.send(500, err);
     } else {
       console.log('it found a job?', job);
         if(job === null) {
