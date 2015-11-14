@@ -1,18 +1,20 @@
 [
-  {
-    "_id": 1,
-    "client": 1,
-    "start": null,
-    "end": null,
-    "status": false,
-    "description": "Web Development"
+  { 
+    "client" : 1000, 
+    "rate" : 100, 
+    "start" : null,
+    "end" : null, 
+    "status" : false, 
+    "description" : "Website Development",
+    "__v" : 0 
   },
-  {
-    "_id": 2,
-    "client": 3,
-    "start": null,
-    "end": null,
-    "status": true,
-    "description": "Brand Messaging"
+  { 
+    "client" : 1001, 
+    "rate" : 75, 
+    "start" : null,
+    "end" : null, 
+    "status" : false, 
+    "description" : "Branding",
+    "__v" : 0
   }
 ]

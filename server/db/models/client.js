@@ -1,13 +1,23 @@
 var db = require('../database');
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
 
 var clientSchema = mongoose.Schema({
- name: String,
- address: String,
- phone: String
+  _id: Number, 
+  name: String,
+  address: String,
+  phone: String
 });
 
-var Client = mongoose.model('Client', clientSchema);
 
+// clientSchema.plugin(autoIncrement.plugin, {
+//     model: 'Client',
+//     field: '_id',
+//     startAt: 2,
+//     incrementBy: 1
+// });
+clientSchema.plugin(autoIncrement.plugin, 'Client');
+
+var Client = mongoose.model('Client', clientSchema);
 
 module.exports = Client;
