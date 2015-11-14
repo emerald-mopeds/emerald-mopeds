@@ -1,7 +1,6 @@
 var bcrypt = require('bcrypt-nodejs');
 var util = require('./utility');
 var mongoose = require('mongoose');
-
 var db = require('./db/database');
 var Job = require('./db/models/job');
 var Client = require('./db/models/client');
@@ -67,6 +66,11 @@ exports.addJob = function (req, res) {
   Job.findById(req.body._id, function (err, job) {
     if (err) {
       console.error("error");
+  //find client id by client name
+  Client.find({name:req.body.client}).exec(function (err, client){
+    if (err) {
+      console.error('Error searching for client');
+      res.send(500, err);
     } else {
       console.log('it found a job?', job);
         if(job === null) {
@@ -136,21 +140,33 @@ exports.loginUser = function (req, res) {
 };
 
 exports.signupUser = function (req, res) {
-  var username = req.body.username;
+  var email = req.body.email;
   var password = req.body.password;
 
-  User.findOne({ username: username })
+  var options = {
+    url: 'https://www.toggl.com/api/v8/signups',
+    data: {"user":{"email":email,"password":password}},
+    headers: {'Content-Type': 'application/json'}
+  };
+
+  User.findOne({ email: email })
     .exec(function (err, user) {
       if (!user) {
-        var newUser = new User({
-          username: username,
-          password: password
-        });
-        newUser.save(function (err, newUser) {
+	request.post(options, function (err, httpResponse, body) {
           if (err) {
-            res.send(500, err);
+	    return console.error('upload failed:', err);
           }
-          util.createSession(req, res, newUser);
+	  console.log('Request successful!  Server responded with:', body);
+	  var newUser = new User({
+	    email: email,
+	    password: password
+	  });
+	  newUser.save(function (err, newUser) {
+	    if (err) {
+	      res.send(500, err);
+	    }
+	      res.redirect('/');
+	  });
         });
       } else {
         console.log('Account already exists');
