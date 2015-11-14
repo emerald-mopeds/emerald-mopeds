@@ -1,16 +1,34 @@
-<form action="/signup" method="post">
-    <div>
-      <label for="username">Username:</label>
-      <input id="username" type="text" name="username">
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lance-a-lot</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <!-- dependencies -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
+    <script src="lib/backbone/backbone.js"></script>
+    <script src="lib/handlebars/handlebars.js"></script>
+  </head>
+
+  <body>
+    <div id="container">
+      <form action="/signup" method="post">
+          <div>
+            <label for="username">Username:</label>
+            <input id="username" type="text" name="username">
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password">
+          </div>
+          <div>
+            <input type="submit" value="Login">
+          </div>
+      </form>
+      <p>
+        <a href="/login">Login to your account &rarr;</a>
+      <p>
     </div>
-    <div>
-      <label for="password">Password:</label>
-      <input id="password" type="password" name="password">
-    </div>
-    <div>
-      <input type="submit" value="Login">
-    </div>
-</form>
-<p>
-  <a href="/login">Login to your account &rarr;</a>
-<p>
+  </body>
+</html>
