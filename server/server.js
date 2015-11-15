@@ -28,6 +28,8 @@ app.get('/add', renderIndex);
 
 app.get('/jobs', handle.fetchJobs);
 app.post('/jobs', handle.addJob);
+app.patch('/jobs', handle.updateJob);
+
 app.put('/jobs', handle.updateJob);
 
 

@@ -1,5 +1,6 @@
 var bcrypt = require('bcrypt-nodejs');
 var util = require('./utility');
+var mongoose = require('mongoose');
 
 var db = require('./db/database');
 var Job = require('./db/models/job');
@@ -44,24 +45,10 @@ exports.fetchJobs = function (req, res) {
               });
 };
 
-exports.addJob = function (req, res) {
-  //call createJobDoc first to find client id to use to create job document
-  console.log('this addJob being called?');
-  util.createJobDoc(req, res, function(newJob){
-    newJob.save(function (err, newJob) {
-      if (err) {
-        res.send(500, err);
-      } else {
-        res.redirect('/jobs');
-      }
-    });
-  });
-};
-
 exports.updateJob = function (req, res) {
-  console.log('updateJob id is:', req.body.id);
-  util.creatJobDoc(req, res, function(newJob) {
-    console.log('is this happening?')
+  console.log('updateJob id is:', req.body);
+  util.creatJobDoc(req, res, function (newJob) {
+    // console.log('is this happening?')
     Job.findOneAndUpdate({_id: req.body.id}, newJob, function(err, job) {
       if(err) {
         console.log('error updating job');
@@ -70,8 +57,41 @@ exports.updateJob = function (req, res) {
         res.redirect('/jobs');
       }
     });
-  })
+  });
 };
+
+exports.addJob = function (req, res) {
+  //call createJobDoc first to find client id to use to create job document
+  console.log('req body in addJob: ', req.body);
+  //check if id already exists
+  Job.findById(req.body._id, function (err, job) {
+    if (err) {
+      console.error("error");
+    } else {
+      console.log('it found a job?', job);
+        if(job === null) {
+          util.createJobDoc(req, res, function(newJob){
+            newJob.save(function (err, newJob) {
+              if (err) {
+                res.send(500, err);
+              } else {
+                res.redirect('/jobs');
+              }
+            });
+          });
+        } else {
+          Job.findOneAndUpdate({_id: req.body._id}, {status:req.body.status}, function(err, job) {
+            if(err) {
+              console.log('error updating job');
+            } else {
+              res.redirect('/');
+              }
+          });
+        }
+      }
+  });
+};
+
   // if (err) {
   //   console.log('got an error');
   // }
