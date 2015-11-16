@@ -20,23 +20,43 @@ exports.createSession = function(req, res, newUser) {
     });
 };
 
-exports.createJobDoc = function(req, res, next) {
+exports.createOrUpdateJob = function(req, res, job) {
+
+  if (job === null) {
+    //create
+    exports.createJobDoc(req, res);
+  } else {
+    //update
+    exports.updateJobDoc(req, res);
+  }
+  
+};
+
+exports.createJobDoc = function(req, res) {
   Client.find({name:req.body.client}).exec(function (err, client){
-    if(err){
-      console.error('Error searching for client');
-      res.send(500, err);
-    } else {
-    //create new job using id of found client as the client attribute
-      var newJob = new Job({
-        client: client[0]._id,
-        rate: req.body.rate,
-        start: req.body.start,
-        end: req.body.end,
-        status: req.body.status,
-        description: req.body.description
-      });
-      console.log('createJobDoc - newJob:', newJob);
-      next(newJob);
-    }
+
+    if(err) return res.send(500, err);
+
+    var newJob = new Job({
+      client: client[0]._id,
+      rate: req.body.rate,
+      start: req.body.start,
+      end: req.body.end,
+      status: req.body.status,
+      description: req.body.description
+    });
+
+    newJob.save(function (err, job) {
+      if (err) return res.send(500, err);
+      res.redirect('/jobs');
+    });
+
   });
 };
+
+exports.updateJobDoc = function (req, res) {
+  Job.findOneAndUpdate({_id: req.body._id}, {status: req.body.status}, function (err, job) {
+    if (err) return res.send(500, err);
+    res.redirect('/');
+  });
+}
