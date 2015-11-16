@@ -11,10 +11,11 @@ app.all("/*", function (req, res, next) {
   return next();
 });
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', __dirname + '/../client/views');
 app.set('view engine', 'ejs');
 app.use(partials());
-app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
 
 app.get('/', renderIndex);
@@ -28,10 +29,6 @@ app.get('/add', renderIndex);
 
 app.get('/jobs', handle.fetchJobs);
 app.post('/jobs', handle.addJob);
-app.patch('/jobs', handle.updateJob);
-
-app.put('/jobs', handle.updateJob);
-
 
 app.get('/login', loginUserForm);
 app.post('/login', handle.loginUser);

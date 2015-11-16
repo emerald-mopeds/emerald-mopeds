@@ -7,7 +7,6 @@
     "node": "4.1.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
     "postinstall": "bower install"
   },
@@ -26,6 +25,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",
     "bower": "^1.6.5",
+    "chai": "^3.4.1",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "express-partials": "^0.3.0",
@@ -42,10 +42,18 @@
     "mongoose": "^4.2.5",
     "mongoose-auto-increment": "^5.0.1",
     "morgan": "^1.6.1",
+<<<<<<< HEAD
     "node-mongo-seeds": "^2.2.7",
+    "request": "^2.65.0",
+    "supertest": "^1.1.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
     "grunt-exec": "^0.4.6"
+=======
+    "request": "^2.65.0",
+    "supertest": "^1.1.0",
+    "underscore": "^1.8.3"
+>>>>>>> 42e1e751e5a92ea7c10e43518a013d05956df173
   }
 }
