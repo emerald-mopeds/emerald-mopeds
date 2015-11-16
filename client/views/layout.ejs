@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Lance-a-lot</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico|Quicksand:400,700|Righteous|Questrial|Josefin+Slab' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
     <!-- dependencies -->
@@ -13,9 +14,17 @@
   </head>
 
   <body>
-    <div id="container">
+    <header>
+      <span><h1> Lance-a-alot </h1> </span>
+      <span class='tagline'> A freelancer's companinon</span>
+    </header>
+    <div id='container'>
       <div class="container">
-        <%- body %>
+        <div class = "row">
+          <div class = "col-md-8">
+          <%- body %>
+          </div>
+        </div>
       </div>
     </div>
   </body>

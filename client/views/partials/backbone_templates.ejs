@@ -6,6 +6,7 @@
         <li><a href='/add' class='add'>Add Job</a></li>
         <li><a href='/clients' class='clients'>View Clients</a></li>
         <li><a href='/addclient' class='add'>Add Client</a></li>
+        <li><a href='/logout' class='add'>Logout</a></li>
       </ul>
     </nav>
   </div>
@@ -17,21 +18,21 @@
 </script>
 
 <script id='tableheads' type='text/x-handlebars-template'>
-  <thead>
-    <th>Client</th>
-    <th>Description</th>
-    <th>Rate</th>
-    <th>Start</th>
-    <th>End</th>
-    <th>Status</th>
-  </thead>
+    <thead>
+      <th>Client</th>
+      <th>Description</th>
+      <th>Rate</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Status</th>
+    </thead>
 </script>
 
 <script id='clienttable' type='text/x-handlebars-template'>
   <thead>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Phone</th>
+    <th class="clientCells">Name</th>
+    <th class="clientCells">Address</th>
+    <th class="clientCells">Phone</th>
   </thead>
 </script>
 
@@ -53,7 +54,8 @@
           <option value="{{value}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
         {{/each}}
       </select>
-      <a href="/addclient">Don't see your client? Create a new client here.</a>
+      <a href="/addclient" id="no_client">Don't see your client? Create a new client here.</a>
+      <br/>
       <br/>
       <label>Description:</label>
         <input class="form-control" id="description" type="text"/><br/>
@@ -80,9 +82,9 @@
 </script>
 
 <script id='clientInfo' type='text/x-handlebars-template'>
-    <td>{{name}}</td>
-    <td>{{address}}</td>
-    <td>{{phone}}</td>
+    <td class="clientCells">{{name}}</td>
+    <td class="clientCells">{{address}}</td>
+    <td class="clientCells">{{phone}}</td>
 </script>
 
 <script>
