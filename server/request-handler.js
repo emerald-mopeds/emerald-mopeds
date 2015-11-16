@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var db = require('./db/database');
 var Job = require('./db/models/job');
 var Client = require('./db/models/client');
-
+var request = require('request');
+var User = require('./db/models/user');
 
 
 exports.fetchClients = function (req, res) {
@@ -139,33 +140,37 @@ exports.signupUser = function (req, res) {
   var password = req.body.password;
 
   var options = {
+    headers: {'Content-Type': 'application/json'},
     url: 'https://www.toggl.com/api/v8/signups',
-    data: {"user":{"email":email,"password":password}},
-    headers: {'Content-Type': 'application/json'}
+    body: '{"user":{"email":"'+email+'","password":"'+password+'"}}'
   };
 
   User.findOne({ email: email })
     .exec(function (err, user) {
-      if (!user) {
-	request.post(options, function (err, httpResponse, body) {
+      if (user === null) {
+        request.post(options, function (err, resp, body) {
           if (err) {
-	    return console.error('upload failed:', err);
+            return console.error('upload failed:', err);
           }
-	  console.log('Request successful!  Server responded with:', body);
-	  var newUser = new User({
-	    email: email,
-	    password: password
-	  });
-	  newUser.save(function (err, newUser) {
-	    if (err) {
-	      res.send(500, err);
-	    }
-	      res.redirect('/');
-	  });
+          parsed = JSON.parse(body);
+          console.log('Request successful!  Server responded with:', parsed);
+          var newUser = new User({
+            email: email,
+            password: password,
+            api_token: parsed.data.api_token
+          });
+          newUser.save(function (err, newUser) {
+            if (err) {
+              res.send(500, err);
+            } else {
+              console.log(newUser);
+              res.redirect('/');
+            }
+          });
         });
       } else {
         console.log('Account already exists');
-        res.redirect('/signup');
+        res.redirect('/login');
       }
     });
 };
