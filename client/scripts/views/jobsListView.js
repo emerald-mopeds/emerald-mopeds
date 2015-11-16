@@ -2,6 +2,7 @@
 Lancealot.JobsListView = Backbone.View.extend({
 
   tagName: 'table',
+  className: 'table table-striped',
 
   template: Templates['tableheads'],
 

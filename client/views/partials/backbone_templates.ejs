@@ -1,17 +1,19 @@
 <script id='layout' type='text/x-handlebars-template'>
   <div class='navigation'>
-  <ul>
-    <li><a href='/' class='index'>View Jobs</a></li>
-    <li><a href='/add' class='add'>Add Job</a></li>
-    <li><a href='/clients' class='clients'>View Clients</a></li>
-    <li><a href='/addclient' class='add'>Add Client</a></li>
-  </ul>
+    <nav class="navbar navbar-default">
+      <ul class="nav navbar-nav">
+        <li><a href='/' class='index'>View Jobs</a></li>
+        <li><a href='/add' class='add'>Add Job</a></li>
+        <li><a href='/clients' class='clients'>View Clients</a></li>
+        <li><a href='/addclient' class='add'>Add Client</a></li>
+      </ul>
+    </nav>
   </div>
   <div id='container'></div>
 </script>
 
 <script id='home' type='text/x-handlebars-template'>
-    <input id="clientSearch" type="text" placeholder="filter by client..."/>
+    <input class="form-control" id="clientSearch" type="text" placeholder="filter by client..."/>
 </script>
 
 <script id='tableheads' type='text/x-handlebars-template'>
@@ -44,9 +46,9 @@
 </script>
 
 <script id='add' type='text/x-handlebars-template'>
-  <form id="addJob">
+  <form class="form-group" id="addJob">
     <label>Client:</label>
-      <select id="client">
+      <select class="form-control" id="client">
         {{#each clients }}
           <option value="{{value}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
         {{/each}}
@@ -54,26 +56,26 @@
       <a href="/addclient">Don't see your client? Create a new client here.</a>
       <br/>
       <label>Description:</label>
-        <input id="description" type="text"/><br/>
-      <label>Rate:</label>
-        <input id="rate" type="text"/><br/>
+        <input class="form-control" id="description" type="text"/><br/>
+      <label>Rate: $</label>
+        <input class="form-control" id="rate" type="text"/><br/>
       <label>Start:</label>
-        <input id="start" type="date"/><br/>
+        <input class="form-control" id="start" type="date"/><br/>
       <label>End:</label>
-        <input id="end" type="date"/><br/>
-      <button class="submit">Add Job</button>
+        <input class="form-control" id="end" type="date"/><br/>
+      <button class="submit btn btn-default">Add Job</button>
   </form>
 </script>
 
 <script id='addClient' type='text/x-handlebars-template'>
-  <form id="addClient">
+  <form class="form-group" id="addClient">
     <label>Name:</label>
-      <input id="name" type="text"/><br/>
+      <input class="form-control" id="name" type="text"/><br/>
     <label>Address:</label>
-      <input id="address" type="text"/><br/>
+      <input class="form-control" id="address" type="text"/><br/>
     <label>Phone:</label>
-      <input id="phone" type="text"/><br/>
-    <button class="submit">Add Client</button>
+      <input class="form-control" id="phone" type="text"/><br/>
+    <button class="submit btn btn-default">Add Client</button>
   </form>
 </script>
 

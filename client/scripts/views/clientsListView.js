@@ -2,6 +2,7 @@
 Lancealot.ClientsListView = Backbone.View.extend({
 
   tagName: "table",
+  className: 'table table-striped',
 
   template: Templates['clienttable'],
 
