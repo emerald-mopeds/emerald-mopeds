@@ -1,6 +1,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var util = require('./utility');
 var mongoose = require('mongoose');
+var request = require('request');
 var db = require('./db/database');
 var Job = require('./db/models/job');
 var Client = require('./db/models/client');

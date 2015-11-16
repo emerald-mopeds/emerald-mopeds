@@ -42,6 +42,7 @@
     "mongoose": "^4.2.5",
     "mongoose-auto-increment": "^5.0.1",
     "morgan": "^1.6.1",
+<<<<<<< HEAD
     "node-mongo-seeds": "^2.2.7",
     "request": "^2.65.0",
     "supertest": "^1.1.0",
@@ -49,5 +50,10 @@
   },
   "devDependencies": {
     "grunt-exec": "^0.4.6"
+=======
+    "request": "^2.65.0",
+    "supertest": "^1.1.0",
+    "underscore": "^1.8.3"
+>>>>>>> 42e1e751e5a92ea7c10e43518a013d05956df173
   }
 }
