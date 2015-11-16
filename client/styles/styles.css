@@ -1,7 +1,31 @@
-h1 {
-  font-family: 'Pacifico', cursive;
-  font-size: 40px;
-  padding-left: 20px;
+/*
+Navbar 
+*/
+
+.navbar {
+  background-color: #85e0e0;
+  font-weight: 700;
+  font-size: 20px;
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  margin-top: 20px;
+  border: none;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: center;
+}
+
+.navbar .navbar-nav>li {
+  padding: 5px 30px;
+  margin: auto 30px;
+}
+
+.navbar-default .navbar-nav li a {
+  text-decoration: none;
+  color: white;
 }
 
 .tagline {
@@ -11,6 +35,16 @@ h1 {
   float: left;
   margin-left: 20px;
   vertical-align: center;
+}
+
+/*
+General page layout
+*/
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 40px;
+  padding-left: 20px;
 }
 
 div {
@@ -30,58 +64,33 @@ div {
   width: 100%;
 }
 
-.navbar {
-  background-color: #85e0e0;
-  margin-top: 20px;
-  border: none;
-}
-
-li {
-  font-color: white;
-}
-
-.navbar-nav {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  color: white;
-  text-align: center;
-}
-
-.navbar .navbar-nav {
-  display: inline-block;
-  float: none;
-  vertical-align: center;
-}
-
-.navbar .navbar-nav>li {
-  padding: 5px 30px;
-  margin: auto 30px;
-}
+/*
+Forms, inputs, and tables
+*/
 
 #clientSearch {
   width: 40%;
   margin: auto;
 }
+
 .table {
-  display: block;
-  width: 50%;
   float: none !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  margin: 20px auto !important;
+  width: 50%;
 }
 
-tr, thead, tbody {
-  display: block;
-  width: 100%;
-  margin: auto;
+.table th {
+  text-align: center;
+  font-size: 14px;
+  background-color: #eaeef2;
+  color: #30312e;
 }
 
-.clientCells {
-  width: 33%;
+td {
+  color: #57616f;
 }
 
-table, form{
+table, form {
   font-family: 'Quicksand', sans-serif;
   font-size: 16px;
   color: #737373;  
@@ -91,6 +100,10 @@ form {
   padding: 50px;
   margin: auto 200px;
   text-align: left;
+}
+
+label {
+  color: #30312e;
 }
 
 #no_client {
