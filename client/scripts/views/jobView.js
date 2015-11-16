@@ -31,7 +31,7 @@ Lancealot.JobView = Backbone.View.extend({
     console.log('did toggleComplete get called?')
     var client = this.model.attributes.client.name;
     console.log('toggle complete: ', this.model.attributes);
-    this.model.save({client:client, status: checked});
+    this.model.save({status: checked});
     // this.model.save({status: checked}, {patch: true});
     console.log(checked);
   }
