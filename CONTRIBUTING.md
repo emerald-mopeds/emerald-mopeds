@@ -2,8 +2,8 @@
 
 ##Getting Started
 
-//server routes
-//
+Look at the diagram in the img file for a walkthrough of how posts to the server made.
+Look in the wiki for our roadmap.
 
 ## General Workflow
 
