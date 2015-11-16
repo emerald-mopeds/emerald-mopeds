@@ -19,14 +19,14 @@ Once the project moves into development, the press release can be used as a touc
 ## Lance-a-lot ##
   
 
-## A simple tool for freelance workers to keep track of jobs and clients. ##
+## A simple tool for freelance workers to help manage time, jobs and clients. ##
 
 
 ## Summary ##
   Keep track of your freelance jobs and clients in one place!  Start by adding a client.  Then add a job.  Now you can view your jobs and/or clients.  
 
 ## Problem ##
-  Keeping track of all your freelance jobs and hours spent can be a hassle, especially when the information is on all sorts of different spreadsheets.
+  Keeping track of all your freelance jobs and hours spent can be a hassle, especially when the information is on all sorts of different spreadsheets and email chains.
 
 ## Solution ##
   Lance-a-lot keeps all your data in one place and makes it easily sortable.  It also lets you keep track of your hours right in the app.  
