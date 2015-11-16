@@ -53,7 +53,7 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/emerald-mopeds/emerald-mopeds/wiki/Roadmap)
+View the project roadmap [here](https://github.com/emerald-mopeds/emerald-mopeds/wiki)
 
 
 ## Contributing
