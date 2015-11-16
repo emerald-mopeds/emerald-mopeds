@@ -16,7 +16,6 @@ exports.fetchClients = function (req, res) {
 };
 
 exports.addClient = function (req, res) {
-  console.log('req header: ', req.header)
   var newClient = new Client({
     name: req.body.name,
     address: req.body.address,
@@ -69,27 +68,8 @@ exports.addJob = function (req, res) {
     if (err) {
       console.error("error");
     } else {
-      console.log('it found a job?', job);
-        if(job === null) {
-          util.createJobDoc(req, res, function(newJob){
-            newJob.save(function (err, newJob) {
-              if (err) {
-                res.send(500, err);
-              } else {
-                res.redirect('/jobs');
-              }
-            });
-          });
-        } else {
-          Job.findOneAndUpdate({_id: req.body._id}, {status:req.body.status}, function(err, job) {
-            if(err) {
-              console.log('error updating job');
-            } else {
-              res.redirect('/');
-              }
-          });
-        }
-      }
+      util.createOrUpdateJob(req, res, job);
+    }
   });
 };
 
@@ -115,22 +95,32 @@ exports.addJob = function (req, res) {
   //   });
   // });
 
+/*
+loginUser
+*/
 
 exports.loginUser = function (req, res) {
-  var username = req.body.username;
+  var email = req.body.email;
   var password = req.body.password;
+  var auth = "Basic " + new Buffer(email + ":" + password).toString("base64");
+  var options = {
+    url: 'https://www.toggl.com/api/v8/me',
+    headers: {
+      "Authorization": auth
+    }
+  };
 
-  User.findOne({ username: username })
+  User.findOne({ email: email })
     .exec(function (err, user) {
-      if (!user) {
+      if (user === null) {
         res.redirect('/login');
       } else {
-        User.comparePassword(password, user.password, function(err, match) {
-          if (match) {
-            util.createSession(req, res, user);
-          } else {
-            res.redirect('/login');
+        request.get(options, function (err, resp, body) {
+          if (err) {
+            return console.error('get failed:', err);
           }
+          console.log('Request successful!  Server responded with:', body);
+          util.createSession(req, res, user);
         });
       }
   });
@@ -165,7 +155,7 @@ exports.signupUser = function (req, res) {
               res.send(500, err);
             } else {
               console.log(newUser);
-              res.redirect('/');
+              util.createSession(req, res, newUser);
             }
           });
         });

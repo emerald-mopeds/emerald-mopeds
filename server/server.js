@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var partials = require('express-partials');
 var handle = require('./request-handler.js');
+var session = require('express-session');
 
 app.all("/*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -17,6 +18,11 @@ app.set('views', __dirname + '/../client/views');
 app.set('view engine', 'ejs');
 app.use(partials());
 app.use(express.static(__dirname + '/../client'));
+app.use(session({
+  secret: 'nyan cat',
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.get('/', renderIndex);
 
@@ -35,6 +41,12 @@ app.post('/login', handle.loginUser);
 
 app.get('/signup', signupUserForm);
 app.post('/signup', handle.signupUser);
+
+app.get('/logout', function (req, res) {
+  req.session.destroy(function () {
+    res.redirect('/login');
+  });
+});
 
 app.use(function (error, req, res, next) {
   console.error(error.stack);
