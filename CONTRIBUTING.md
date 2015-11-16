@@ -1,4 +1,9 @@
-# Contributing
+# Contributing 
+
+##Getting Started
+
+//server routes
+//
 
 ## General Workflow
 
@@ -33,7 +38,7 @@
 Use github’s interface to make a fork of the repo, then add that repo as an upstream remote:
 
 ```
-git remote add upstream https://github.com/hackreactor-labs/<NAME_OF_REPO>.git
+git remote add upstream https://github.com/emerald-mopeds/emerald-mopeds.git
 ```
 
 ### Cut a namespaced feature branch from master

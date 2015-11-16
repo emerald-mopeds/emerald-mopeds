@@ -20,7 +20,10 @@
 
 ## Usage
 
-> Some usage instructions
+Deployed address:
+http://lance-a-lot.herokuapp.com/
+
+Start by adding a client.  Then add a job.  Put in the job information and now you can view your jobs and/or clients.  
 
 ## Requirements
 

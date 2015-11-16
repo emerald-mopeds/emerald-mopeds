@@ -1,4 +1,4 @@
-# Project Name #
+# Lance-a-lot #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -16,29 +16,32 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+## Lance-a-lot ##
+  
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+## A simple tool for freelance workers to keep track of jobs and clients. ##
+
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Keep track of your freelance jobs and clients in one place!  Start by adding a client.  Then add a job.  Now you can view your jobs and/or clients.  
 
 ## Problem ##
-  > Describe the problem your product solves.
+  Keeping track of all your freelance jobs and hours spent can be a hassle, especially when the information is on all sorts of different spreadsheets.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  Lance-a-lot keeps all your data in one place and makes it easily sortable.  It also lets you keep track of your hours right in the app.  
 
-## Quote from You ##
-  > A quote from a spokesperson in your company.
+## Word from our founder ##
+  Lance-a-lot is exactly what I needed when I was freelancer.
 
-## How to Get Started ##
-  > Describe how easy it is to get started.
+## Try it now! ##
+  http://lance-a-lot.herokuapp.com/
 
-## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  Start by adding a client.  Then add a job.  Put in the job information and now you can view your jobs and/or clients. 
 
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+## What customers are saying ##
+  "I couldn't believe how easy it was to get set up and get going with Lance-alot!" - Satisfied Customer
+
+## Where do I go from here? ##
+  Try It! - http://lance-a-lot.herokuapp.com/
+  Contrtibute - https://github.com/emerald-mopeds/emerald-mopeds 
