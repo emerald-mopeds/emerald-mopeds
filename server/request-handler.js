@@ -8,13 +8,19 @@ var Client = require('./db/models/client');
 var request = require('request');
 var User = require('./db/models/user');
 
-
+/*
+fetchClients is called when /clients path receives get request
+Finds all clients in the database and responds with result of query
+*/
 exports.fetchClients = function (req, res) {
   Client.find({}).exec(function (err, clients) {
     res.send(200, clients);
   });
 };
 
+/*
+Builds new Client document with request properties and saves it to the db
+*/
 exports.addClient = function (req, res) {
   var newClient = new Client({
     name: req.body.name,
@@ -39,16 +45,18 @@ Responds with result of query
 */
 exports.fetchJobs = function (req, res) {
   Job.find({})
-              .populate('client', 'name')
-              .exec(function (err, jobs) {
-                  res.send(200, jobs);
-              });
+     .populate('client', 'name')
+     .exec(function (err, jobs) {
+       res.send(200, jobs);
+     });
 };
 
+/*
+Builds new Job document with request properties and saves it to the db
+*/
 exports.updateJob = function (req, res) {
   console.log('updateJob id is:', req.body);
   util.creatJobDoc(req, res, function (newJob) {
-    // console.log('is this happening?')
     Job.findOneAndUpdate({_id: req.body.id}, newJob, function(err, job) {
       if(err) {
         console.log('error updating job');
@@ -60,6 +68,9 @@ exports.updateJob = function (req, res) {
   });
 };
 
+/*
+Builds new Job document with request properties and saves it to the db
+*/
 exports.addJob = function (req, res) {
   //call createJobDoc first to find client id to use to create job document
   console.log('req body in addJob: ', req.body);
@@ -73,32 +84,12 @@ exports.addJob = function (req, res) {
   });
 };
 
-  // if (err) {
-  //   console.log('got an error');
-  // }
-  //call createJobDoc first to find client id to use to create job document
-  // util.createJobDoc(req, res, function(newJob){
-  //   Job.findOneAndUpdate({description:}, update, options, function(err, person) {
-  // if (err) {
-  //   console.log('got an error');
-  // }
-
-
-
-
-  //   newJob.save(function (err, newJob) {
-  //     if (err) {
-  //       res.send(500, err);
-  //     } else {
-  //       res.redirect('/jobs');
-  //     }
-  //   });
-  // });
-
 /*
-loginUser
+loginUser is called when /login receives post request
+Determines if user exists in db; if not, redirects to /signup
+If user exists, sends get request with custom options to toggl api
+Receives all toggl info for later use, and creates user session
 */
-
 exports.loginUser = function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
@@ -113,7 +104,7 @@ exports.loginUser = function (req, res) {
   User.findOne({ email: email })
     .exec(function (err, user) {
       if (user === null) {
-        res.redirect('/login');
+        res.redirect('/signup');
       } else {
         request.get(options, function (err, resp, body) {
           if (err) {
@@ -126,6 +117,14 @@ exports.loginUser = function (req, res) {
   });
 };
 
+/*
+signupUser is called when /signup receives post request
+Determines if user exists in db; if not, adds user to db
+Post request is then sent to toggle api to register user account
+Api token is taken from toggl resp to build new User document, then saves it
+If save is successful, new user session is created
+If user exists, redirect to /login
+*/
 exports.signupUser = function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
@@ -135,29 +134,34 @@ exports.signupUser = function (req, res) {
     url: 'https://www.toggl.com/api/v8/signups',
     body: '{"user":{"email":"'+email+'","password":"'+password+'"}}'
   };
+  console.log('start of signup user req handler ', req.body);
 
   User.findOne({ email: email })
     .exec(function (err, user) {
       if (user === null) {
         request.post(options, function (err, resp, body) {
-          if (err) {
-            return console.error('upload failed:', err);
+          if (err || body.length === 36) {
+          // If the response body is 'User with this email already exists';
+          // Won't work any other way, unfortunately
+            console.error('upload failed:', body);
+            res.redirect('/login');
+          } else {
+            parsed = JSON.parse(body);
+            console.log('Request successful! Server responded with:', parsed);
+            var newUser = new User({
+              email: email,
+              password: password,
+              api_token: parsed.data.api_token
+            });
+            newUser.save(function (err, newUser) {
+              if (err) {
+                return console.error('upload failed:', err);
+              } else {
+                console.log(newUser);
+                util.createSession(req, res, newUser);
+              }
+            });
           }
-          parsed = JSON.parse(body);
-          console.log('Request successful!  Server responded with:', parsed);
-          var newUser = new User({
-            email: email,
-            password: password,
-            api_token: parsed.data.api_token
-          });
-          newUser.save(function (err, newUser) {
-            if (err) {
-              res.send(500, err);
-            } else {
-              console.log(newUser);
-              util.createSession(req, res, newUser);
-            }
-          });
         });
       } else {
         console.log('Account already exists');

@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var partials = require('express-partials');
 var handle = require('./request-handler.js');
 var session = require('express-session');
+var util = require('./utility');
 
 app.all("/*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -12,6 +13,7 @@ app.all("/*", function (req, res, next) {
   return next();
 });
 
+//Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', __dirname + '/../client/views');
@@ -24,13 +26,13 @@ app.use(session({
   saveUninitialized: true
 }));
 
-app.get('/', renderIndex);
+//Request handlers for all routes in app
+app.get('/', splash, util.checkUser, renderIndex);
 
 app.get('/clients', handle.fetchClients);
 app.post('/clients', handle.addClient);
 
 app.get('/addclient', renderIndex);
-
 app.get('/add', renderIndex);
 
 app.get('/jobs', handle.fetchJobs);
@@ -65,6 +67,11 @@ function renderIndex (req, res) {
 
 function signupUserForm (req, res) {
   res.render('signup');
+};
+
+function splash (req, res, next) {
+  res.render('splash');
+  next();
 };
 
 function loginUserForm (req, res) {
