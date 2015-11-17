@@ -27,7 +27,7 @@ app.use(session({
 }));
 
 //Request handlers for all routes in app
-app.get('/', splash, util.checkUser, renderIndex);
+app.get('/', util.checkUser, renderIndex);
 
 app.get('/clients', handle.fetchClients);
 app.post('/clients', handle.addClient);
@@ -63,6 +63,7 @@ app.use(function (error, req, res, next) {
 // Handler functions for template rendering
 function renderIndex (req, res) {
   res.render('index');
+  console.log("IN RENDERINDEX")
 };
 
 function signupUserForm (req, res) {
@@ -71,6 +72,7 @@ function signupUserForm (req, res) {
 
 function splash (req, res, next) {
   res.render('splash');
+  console.log("IN SPLASH")
   next();
 };
 
