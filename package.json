@@ -4,7 +4,7 @@
   "description": "a job management tool for freelancers",
   "main": "/server/server.js",
   "engines": {
-    "node": "4.1.1"
+    "node": "4.2.2"
   },
   "scripts": {
     "start": "node server/server.js",
