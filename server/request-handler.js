@@ -49,8 +49,9 @@ exports.fetchJobs = function (req, res) {
      .exec(function (err, jobs) {
        if(err) {
         res.send(500, err);
+       } else {
+        res.send(jobs);
        }
-       res.send(jobs);
      });
 };
 
