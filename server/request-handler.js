@@ -47,7 +47,10 @@ exports.fetchJobs = function (req, res) {
   Job.find({})
      .populate('client', 'name')
      .exec(function (err, jobs) {
-       res.send({hello: 'hellow world'});
+       if(err) {
+        res.send(500, err);
+       }
+       res.send(jobs);
      });
 };
 
