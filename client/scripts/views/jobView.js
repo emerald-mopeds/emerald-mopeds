@@ -14,26 +14,31 @@ Lancealot.JobView = Backbone.View.extend({
   },
 
   render: function() {
-    // we are injecting "checked" into our checkbox view
-    // so that if a job's status is true, it will be checked,
-    // otherwise it will be unchecked
 
+    // grabbing our job model's attributes
     var modelData = this.model.toJSON();
+
+    // adding the "checked" property to our model
+    // will tell our input HTML tag whether to check off the box or not (true v. false)
     modelData.checked = modelData.status ? 'checked' : '';
+
+    // adding "formattedDate" properties will format the date to look nice(ish)
+    var startDate = new Date(modelData.start);
+    var endDate = new Date(modelData.end);
+
+    modelData.formattedStart = startDate.toDateString();
+    modelData.formattedEnd = endDate.toDateString();
+
     this.$el.html(this.template(modelData));
 
     return this;
   },
 
-  // update database to set a job's status to TRUE or FALSE
+  // updates status of the job in DB (true v. false)
   toggleComplete: function(e) {
     var checked = e.target.checked;
-    console.log('did toggleComplete get called?')
     var client = this.model.attributes.client.name;
-    console.log('toggle complete: ', this.model.attributes);
     this.model.save({status: checked});
-    // this.model.save({status: checked}, {patch: true});
-    console.log(checked);
   }
 
 
