@@ -1,0 +1,35 @@
+hr.style-one {
+    border: 0 !important;
+    height: 1px !important;
+    background: #333 !important;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc) !important;
+}
+
+#splash {
+  background: url('http://newpeninsula.com.au/wp-content/uploads/2014/12/guy-with-laptop-on-beach.jpg') no-repeat top;
+  background-size: 100%;
+  color: #333333;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.splashText {
+  float: left;
+  margin-left: 2%;
+  margin-top: 6%;
+}
+
+h1, .tagline {
+  color: #E3EBF1;
+}
+
+.head{
+  font-family: 'Josefin Slab', sans-serif;
+  color: #333333;
+  font-weight: 600;
+}
+
+.head {
+  font-size: 44px;
+}
