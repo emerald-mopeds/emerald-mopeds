@@ -1,4 +1,11 @@
 // Router
+
+/*
+Look at app.js to see where this router comes into play.
+Based on the specified route (eg '/', '/add'), the router
+will render the appropriate view (eg 'AppView', 'JobEntryView')
+*/
+
 Lancealot.Router = Backbone.Router.extend({
 
   initialize: function(options) {

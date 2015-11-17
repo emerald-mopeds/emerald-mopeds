@@ -1,4 +1,13 @@
 // Jobs List View --> connected to Jobs Collection
+
+/*
+For templates, look at client/views/backbone_templates.
+
+filteredRender takes a list and renders it. This
+allows us to dynamically filter and render jobs as the 
+user is typing in the clientSearch filter.
+*/
+
 Lancealot.JobsListView = Backbone.View.extend({
 
   tagName: 'table',

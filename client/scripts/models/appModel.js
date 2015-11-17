@@ -1,4 +1,9 @@
 // App Model
+
+/*
+Sets up client side business logic
+*/
+
 var App = Backbone.Model.extend({
 
   initialize: function() {

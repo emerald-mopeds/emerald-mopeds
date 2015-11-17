@@ -1,4 +1,9 @@
 // Client View --> Connected to Client model
+
+/*
+For templates, look at client/views/backbone_templates.
+*/
+
 Lancealot.ClientView = Backbone.View.extend({
 
   tagName: 'tr',

@@ -1,4 +1,9 @@
 // Clients List View --> connected to Clients Collection
+
+/*
+For templates, look at client/views/backbone_templates.
+*/
+
 Lancealot.ClientsListView = Backbone.View.extend({
 
   tagName: "table",
