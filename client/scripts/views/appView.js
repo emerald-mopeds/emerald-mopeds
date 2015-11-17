@@ -1,4 +1,15 @@
 // App View
+
+/*
+For templates, look at client/views/backbone_templates.
+
+AppView renders JobsListView, as well as the "Filter by Client" search
+(clientSearchView)
+
+AppView listens for typing in the client filter (#clientSearch) and delegates
+rendering of results to JobsListView via the handleSearch function
+*/
+
 Lancealot.AppView = Backbone.View.extend({
 
   template: Templates['home'],

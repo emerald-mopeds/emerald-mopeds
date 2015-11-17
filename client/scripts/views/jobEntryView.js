@@ -1,4 +1,12 @@
 // Job Entry View (form) --> connected to Jobs Collection
+
+/*
+For templates, look at client/views/backbone_templates.
+
+Similar to clientEntryView, except the client option in this form
+is a dropdown menu of existing clients.
+*/
+
 Lancealot.JobEntryView = Backbone.View.extend({
 
   template: Templates['add'],
