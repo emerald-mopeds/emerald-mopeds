@@ -47,7 +47,7 @@ exports.fetchJobs = function (req, res) {
   Job.find({})
      .populate('client', 'name')
      .exec(function (err, jobs) {
-       res.send(200, jobs);
+       res.send(jobs);
      });
 };
 
