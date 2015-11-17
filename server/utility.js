@@ -7,7 +7,7 @@ exports.isLoggedIn = function(req, res) {
 
 exports.checkUser = function(req, res, next) {
   if (!exports.isLoggedIn(req)) {
-    res.redirect('/login');
+    res.render('splash');
   } else {
     next();
   }
@@ -29,7 +29,7 @@ exports.createOrUpdateJob = function(req, res, job) {
     //update
     exports.updateJobDoc(req, res);
   }
-  
+
 };
 
 exports.createJobDoc = function(req, res) {
