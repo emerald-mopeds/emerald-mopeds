@@ -20,6 +20,11 @@ exports.createSession = function(req, res, newUser) {
     });
 };
 
+/*
+Post requests from the front-end can either be a requests to create a new job or to update a new job.
+This function searches to see if the job that comes in from the request and either creates a new Job
+record if it didn't already exist in the DB or updates the 'status' property of the job if the record already exists. 
+*/
 exports.createOrUpdateJob = function(req, res, job) {
 
   if (job === null) {
@@ -32,6 +37,10 @@ exports.createOrUpdateJob = function(req, res, job) {
 
 };
 
+/*
+Finds the client id that corresponds to the client name from the POST request body.  
+Uses found client id to create a new Job record in the database. 
+*/
 exports.createJobDoc = function(req, res) {
   Client.find({name:req.body.client}).exec(function (err, client){
 
@@ -54,6 +63,9 @@ exports.createJobDoc = function(req, res) {
   });
 };
 
+/*
+Finds the Job record that matches the id in the request body and updates the status of the job. 
+*/
 exports.updateJobDoc = function (req, res) {
   Job.findOneAndUpdate({_id: req.body._id}, {status: req.body.status}, function (err, job) {
     if (err) return res.send(500, err);

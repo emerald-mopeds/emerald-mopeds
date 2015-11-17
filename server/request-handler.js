@@ -40,7 +40,7 @@ exports.addClient = function (req, res) {
 
 /*
 fetchJobs is called when /jobs path receives get request
-Finds all jobs in the database, replaces client_id with object that include client Id and name
+Finds all jobs in the database, replaces client_id with an object that include client Id and name
 Responds with result of query
 */
 exports.fetchJobs = function (req, res) {
@@ -49,23 +49,6 @@ exports.fetchJobs = function (req, res) {
      .exec(function (err, jobs) {
        res.send(200, jobs);
      });
-};
-
-/*
-Builds new Job document with request properties and saves it to the db
-*/
-exports.updateJob = function (req, res) {
-  console.log('updateJob id is:', req.body);
-  util.creatJobDoc(req, res, function (newJob) {
-    Job.findOneAndUpdate({_id: req.body.id}, newJob, function(err, job) {
-      if(err) {
-        console.log('error updating job');
-      } else {
-        console.log('updatedJob id is:', req.body.id);
-        res.redirect('/jobs');
-      }
-    });
-  });
 };
 
 /*
