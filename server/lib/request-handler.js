@@ -1,13 +1,10 @@
-var bcrypt = require('bcrypt-nodejs');
 var util = require('./utility');
 var mongoose = require('mongoose');
-var request = require('request');
-var db = require('./db/database');
-var Job = require('./db/models/job');
-var Client = require('./db/models/client');
-var request = require('request');
-var User = require('./db/models/user');
+var db = require('./../db/database');
 
+var Job = require('./../db/models/job');
+var User = require('./../db/models/user');
+var Client = require('./../db/models/client');
 /*
 fetchClients is called when /clients path receives get request
 Finds all clients in the database and responds with result of query
@@ -86,12 +83,11 @@ exports.loginUser = function (req, res) {
       if (user === null) {
         res.redirect('/signup');
       } else {
-        if (user.password === password){
-          util.createSession(req, res, user); 
-        } else {
-          res.redirect('/signup');
+        if (user.password === password) {
+          util.createSession(req, res, user);
+        } else {        
+        res.redirect('/signup');
         }
-        
       }
   });
 };
@@ -108,19 +104,17 @@ exports.signupUser = function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
-
   User.findOne({ email: email })
     .exec(function (err, user) {
-      if (user === null) {    
+      if (user === null) {
         var newUser = new User({
           email: email,
-          password: password,
+          password: password
         });
         newUser.save(function (err, newUser) {
           if (err) {
-            return console.error('failed serving user:', err);
+            return console.error('failed saving user:', err);
           } else {
-            console.log(newUser);
             util.createSession(req, res, newUser);
           }
         });
@@ -130,3 +124,37 @@ exports.signupUser = function (req, res) {
       }
     });
 };
+
+
+
+exports.createJobDoc = function(req, res) {
+  Client.find({name:req.body.client}).exec(function (err, client){
+
+    if(err) return res.send(500, err);
+
+    var newJob = new Job({
+      client: client[0]._id,
+      rate: req.body.rate,
+      start: req.body.start,
+      end: req.body.end,
+      status: req.body.status,
+      description: req.body.description
+    });
+
+    newJob.save(function (err, job) {
+      if (err) return res.send(500, err);
+      res.redirect('/jobs');
+    });
+
+  });
+};
+
+/*
+Finds the Job record that matches the id in the request body and updates the status of the job. 
+*/
+exports.updateJobDoc = function (req, res) {
+  Job.findOneAndUpdate({_id: req.body._id}, {status: req.body.status}, function (err, job) {
+    if (err) return res.send(500, err);
+    res.redirect('/');
+  });
+}
