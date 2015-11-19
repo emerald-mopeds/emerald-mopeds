@@ -1,12 +1,7 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
+var bookshelf = require('../config');
 
-var userSchema = mongoose.Schema({
-  email: { type: String, required: true, index: { unique: true } },
-  password: { type: String, required: true },
-  api_token: String
+var User = bookshelf.Model.extend({
+  tableName: 'users'
 });
-
-var User = mongoose.model('User', userSchema);
 
 module.exports = User;
