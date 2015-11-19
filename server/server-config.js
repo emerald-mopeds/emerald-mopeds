@@ -43,7 +43,7 @@ app.get('/clients', handle.fetchClients);
 app.post('/clients', handle.addClient);
 
 app.get('/addclient', util.renderIndex);
-app.get('/add', util.renderIndex);
+app.get('/addjob', util.renderIndex);
 
 app.get('/jobs', handle.fetchJobs);
 app.post('/jobs', handle.addJob);

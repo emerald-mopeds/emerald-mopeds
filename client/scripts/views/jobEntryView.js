@@ -9,7 +9,7 @@ is a dropdown menu of existing clients.
 
 Lancealot.JobEntryView = Backbone.View.extend({
 
-  template: Templates['add'],
+  template: Templates['addJob'],
 
   events: {
     'submit': 'handleSubmit'

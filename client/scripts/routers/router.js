@@ -14,7 +14,7 @@ Lancealot.Router = Backbone.Router.extend({
 
   routes: {
     '': 'index',
-    'add': 'addJob',
+    'addjob': 'addJob',
     'addclient': 'addClient',
     'clients': 'showClients'
   },
