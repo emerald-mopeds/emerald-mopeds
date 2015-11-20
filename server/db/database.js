@@ -5,14 +5,15 @@ var Employee = require('./models/employee');
 var Expense = require('./models/expense');
 var Job = require('./models/job');
 var Task = require('./models/task');
-
+/*
 new Promise(function (resolve, reject) {
   new User({
     username: 'Rory',
     email: 'sametz@ualberta.ca',
     password: 'drowssap'
   }).save().then(resolve);
-}).then(
+})
+.then(
   new Promise(function (resolve, reject) {
     new Client({
       user_id: 1,
@@ -22,16 +23,8 @@ new Promise(function (resolve, reject) {
       zip_code: 12345,
       phone: 1234567890
     }).save().then(resolve);
-  })
-).then(
-  new Promise(function (resolve, reject) {
-    Client.where('name', 'Haley').fetch({withRelated: ['user']}).then(function (client) {
-      console.log(client.related('user').get('username'));
-      // === 'Rory'
-      resolve();
-    });
-  })
-).then(
+}))
+.then(
   new Promise(function (resolve, reject) {
     new Employee({
       user_id: 1,
@@ -43,16 +36,8 @@ new Promise(function (resolve, reject) {
       hourly_billing_fee: 50000,
       phone: 0987654321
     }).save().then(resolve);
-  })
-).then(
-  new Promise(function (resolve, reject) {
-    Employee.where('city', 'Paris').fetch({withRelated: ['user']}).then(function (employee) {
-      console.log(employee.related('user').get('password'));
-      // === 'drowssap'
-      resolve();
-    });
-  })
-).then(
+}))
+.then(
   new Promise(function (resolve, reject) {
     new Expense({
       user_id: 1,
@@ -60,31 +45,15 @@ new Promise(function (resolve, reject) {
       common: false,
       unit_price: 500
     }).save().then(resolve);
-  })
-).then(
-  new Promise(function (resolve, reject) {
-    Expense.where('expense_name', 'hairgel').fetch({withRelated: ['user']}).then(function (employee) {
-      console.log(employee.related('user').get('email'));
-      // === 'sametz@ualberta.ca'
-      resolve();
-    });
-  })
-).then(
+}))
+.then(
   new Promise(function (resolve, reject) {
     new Job({
       client_id: 1,
       job_status: 'xxyyxx'
     }).save().then(resolve);
-  })
-).then(
-  new Promise(function (resolve, reject) {
-    Job.where('job_status','xxyyxx').fetch({withRelated: ['client']}).then(function (job) {
-      console.log(job.related('client').get('name'));
-      // === 'Haley'
-      resolve();
-    });
-  })
-).then(
+}))
+.then(
   new Promise(function (resolve, reject) {
     new Task({
       user_id: 1,
@@ -92,26 +61,81 @@ new Promise(function (resolve, reject) {
       default_price: 200,
       common: true
     }).save().then(resolve);
-  })
-).then(
-  new Promise(function (resolve, reject) {
-    Task.where('common',true).fetch({withRelated: ['user']}).then(function (task) {
-      console.log(task.related('user').get('username'));
-      // === 'Rory'
-      resolve();
-    });
-  })
-).then(
-  new Promise(function (resolve, reject) {
-    Job.where('id', 1).fetch({withRelated: ['tasks']}).then(function (job) {
-      //job: specific job with id of 1
-      //job.related('tasks'): tasks related to job id of 1
-      //job.related('tasks').get(id).pivot: status of 
-      console.log('**********JOB*********',job);
-      // === 'pending'
-      console.log(job.related('tasks'));
-      console.log(job.related('tasks').get(1).pivot);
-      resolve();
-    });
-  })
-);
+}));
+*/
+new Promise(function (resolve,reject) {
+  var task1 = Task.where('id', 1).fetch().then(function(model) {
+    console.log(model);
+  });
+  console.log(task1);
+  var job1 = Job.where('id', 1).fetch().then(function(model) {
+    console.log(model);
+  });
+  job1.tasks().attach([task1]);
+  console.log(job1)
+});
+
+
+// new Promise(function (resolve, reject) {
+//   Client.where('name', 'Haley').fetch({withRelated: ['user']}).then(function (client) {
+//     console.log('Test 1:','Rory' === client.related('user').get('username'));
+//     // === 'Rory'
+//     resolve();
+//   });
+// })
+// .then(
+//   new Promise(function (resolve, reject) {
+//     Employee.where('city', 'Paris').fetch({withRelated: ['user']}).then(function (employee) {
+//       console.log('Test 2:','drowssap' === employee.related('user').get('password'));
+//       // === 'drowssap'
+//       resolve();
+//     });
+// }))
+// .then(
+//   new Promise(function (resolve, reject) {
+//     Expense.where('expense_name', 'hairgel').fetch({withRelated: ['user']}).then(function (employee) {
+//       console.log('Test 3:','sametz@ualberta.ca' === employee.related('user').get('email'));
+//       // === 'sametz@ualberta.ca'
+//       resolve();
+//     });
+// }))
+// .then(
+//   new Promise(function (resolve, reject) {
+//     Job.where('job_status','xxyyxx').fetch({withRelated: ['client']}).then(function (job) {
+//       console.log('Test 4:','Haley' === job.related('client').get('name'));
+//       // === 'Haley'
+//       resolve();
+//     });
+// }))
+// .then(
+//   new Promise(function (resolve, reject) {
+//     Task.where('common',true).fetch({withRelated: ['user']}).then(function (task) {
+//       console.log('Test 5:','Rory' === task.related('user').get('username'));
+//       // === 'Rory'
+//       resolve();
+//     });
+// }));
+
+
+
+
+// .then(
+//   new Promise(function (resolve, reject) {
+//     var id = 1;
+//     Job.where('id', id).fetch({withRelated: ['tasks']}).then(function (job) {
+//       //job: specific job with id of 1
+//       //job.related('tasks'): tasks related to job id of 1
+//       //job.related('tasks').get(id).pivot: status of 
+//       console.log('Test 6:','xxyyxx' === job.get('job_status'));
+//       // === 'pending'
+//       console.log('Test 7:',job.related('tasks').length === 1);
+// /*      job.related('tasks').get(1).updatePivot({
+//         job_id: 1,
+
+//         status: 
+//       })*/
+//       console.log('Test 8:',job.related('tasks').get(1).pivot.get('job_id') === 1);
+//       resolve();
+//     });
+// }));
+
