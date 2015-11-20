@@ -48,7 +48,9 @@ Lancealot.JobEntryView = Backbone.View.extend({
       status: false
     });
 
-    job.save({});
+    job.save(null, {
+      // success: Lancealot.renderJobEntryView
+    });
 
     $('input').val('');
   }
