@@ -15,17 +15,16 @@ window.Lancealot = Backbone.View.extend({
   template: Templates['layout'],
 
   events: {
-    'click li a.index':  'renderIndexView',
-    'click li a.addJob': 'renderJobEntryView',
+    'click li a.jobs':  'renderIndexView',
     'click li a.clients': 'renderClientsView',
-    'click li a.addClient': 'renderClientEntryView',
+    'click button#createNewJob': 'renderJobEntryView',
+    'click button#createNewClient': 'renderClientEntryView',
     'submit #addJob': 'renderIndexView',
     'submit #addClient': 'renderJobEntryView'
   },
 
   initialize: function(){
     $("#container").append(this.render().el);
-
     this.router = new Lancealot.Router({ el: this.$el.find('#container') });
     Backbone.history.start({ pushState: true });
   },

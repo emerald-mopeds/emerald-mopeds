@@ -29,6 +29,12 @@ Lancealot.ClientsListView = Backbone.View.extend({
     this.$el.empty();
     this.$el.html(this.template());
     return this;
+  },
+
+  filteredRender: function(list) {
+    this.$el.empty();
+    this.$el.html(this.template());
+    list.forEach(this.addOne, this);
   }
 
 });

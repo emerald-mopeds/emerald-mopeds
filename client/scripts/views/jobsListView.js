@@ -13,7 +13,7 @@ Lancealot.JobsListView = Backbone.View.extend({
   tagName: 'table',
   className: 'table table-striped',
 
-  template: Templates['tableheads'],
+  template: Templates['jobstable'],
 
   initialize: function(){
     this.collection.on('sync', this.addAll, this);

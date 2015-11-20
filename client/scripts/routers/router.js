@@ -3,7 +3,7 @@
 /*
 Look at app.js to see where this router comes into play.
 Based on the specified route (eg '/', '/add'), the router
-will render the appropriate view (eg 'AppView', 'JobEntryView')
+will render the appropriate view (eg 'JobsPageView', 'JobEntryView')
 */
 
 Lancealot.Router = Backbone.Router.extend({
@@ -21,13 +21,14 @@ Lancealot.Router = Backbone.Router.extend({
   },
 
   swapView: function(view){
+    console.log(Backbone.history.getFragment());
     this.$el.html(view.render().el);
   },
 
   showJobs: function(){
     var jobs = new Lancealot.Jobs();
-    var appView = new Lancealot.AppView({ collection: jobs });
-    this.swapView(appView);
+    var jobsPageView = new Lancealot.JobsPageView({ collection: jobs });
+    this.swapView(jobsPageView);
   },
 
   addJob: function(){
@@ -41,7 +42,7 @@ Lancealot.Router = Backbone.Router.extend({
 
   showClients: function(){
     var clients = new Lancealot.Clients();
-    var clientsView = new Lancealot.ClientsListView({ collection: clients });
+    var clientsView = new Lancealot.ClientsPageView({ collection: clients });
     this.swapView(clientsView);
   }
 });
