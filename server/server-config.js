@@ -39,14 +39,14 @@ app.use(session({
 //Request handlers for all routes in app
 app.get('/', util.checkUser, util.renderIndex);
 
-app.get('/clients', handle.fetchClients);
-app.post('/clients', handle.addClient);
+app.get('/api/clients', handle.fetchClients);
+app.post('/api/clients', handle.addClient);
 
 app.get('/addclient', util.renderIndex);
 app.get('/addjob', util.renderIndex);
 
-app.get('/jobs', handle.fetchJobs);
-app.post('/jobs', handle.addJob);
+app.get('/api/jobs', handle.fetchJobs);
+app.post('/api/jobs', handle.addJob);
 
 app.get('/login', util.loginUserForm);
 app.post('/login', handle.loginUser);
