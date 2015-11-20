@@ -37,16 +37,6 @@ app.use(session({
 
 
 //Request handlers for all routes in app
-app.get('/', util.checkUser, util.renderIndex);
-
-app.get('/api/clients', handle.fetchClients);
-app.post('/api/clients', handle.addClient);
-
-app.get('/addclient', util.renderIndex);
-app.get('/addjob', util.renderIndex);
-
-app.get('/api/jobs', handle.fetchJobs);
-app.post('/api/jobs', handle.addJob);
 
 app.get('/login', util.loginUserForm);
 app.post('/login', handle.loginUser);
@@ -59,5 +49,16 @@ app.get('/logout', function (req, res) {
     res.redirect('/login');
   });
 });
+
+app.get('/api/clients', handle.fetchClients);
+app.post('/api/clients', handle.addClient);
+
+// app.get('/addclient', util.renderIndex);
+// app.get('/addjob', util.renderIndex);
+
+app.get('/api/jobs', handle.fetchJobs);
+app.post('/api/jobs', handle.addJob);
+
+app.get('/*', util.checkUser, util.renderIndex);
 
 module.exports = app;
