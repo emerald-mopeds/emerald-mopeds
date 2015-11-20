@@ -68,7 +68,7 @@ div {
 Forms, inputs, and tables
 */
 
-#clientSearch {
+input.filter {
   width: 40%;
   margin: auto;
 }

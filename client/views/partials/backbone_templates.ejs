@@ -13,7 +13,7 @@
 </script>
 
 <script id='subHeader' type='text/x-handlebars-template'>
-    <input class="form-control" id="{{inputDomID}}" type="text" placeholder="{{filterbyText}}"/>
+    <input class="form-control filter" id="{{inputDomID}}" type="text" placeholder="{{filterbyText}}"/>
     <button id="{{buttonId}}" class="btn btn-default">{{buttonText}}</button>
 </script>
 
@@ -51,6 +51,20 @@
     <td class="clientCells">{{phone}}</td>
 </script>
 
+<script id='employeetable' type='text/x-handlebars-template'>
+  <thead>
+    <th class="employeeCells">Name</th>
+    <th class="employeeCells">Address</th>
+    <th class="employeeCells">Phone</th>
+  </thead>
+</script>
+
+<script id='employeeInfo' type='text/x-handlebars-template'>
+    <td class="employeeCells">{{name}}</td>
+    <td class="employeeCells">{{address}}</td>
+    <td class="employeeCells">{{phone}}</td>
+</script>
+
 <script id='addJob' type='text/x-handlebars-template'>
   <form class="form-group" id="addJob">
     <label>Client:</label>
@@ -83,6 +97,18 @@
     <label>Phone:</label>
       <input class="form-control" id="phone" type="text"/><br/>
     <button class="submit btn btn-default">Add Client</button>
+  </form>
+</script>
+
+<script id='addEmployee' type='text/x-handlebars-template'>
+  <form class="form-group" id="addEmployee">
+    <label>Name:</label>
+      <input class="form-control" id="name" type="text"/><br/>
+    <label>Address:</label>
+      <input class="form-control" id="address" type="text"/><br/>
+    <label>Phone:</label>
+      <input class="form-control" id="phone" type="text"/><br/>
+    <button class="submit btn btn-default">Add Employee</button>
   </form>
 </script>
 
