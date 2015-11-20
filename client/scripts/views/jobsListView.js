@@ -27,7 +27,7 @@ Lancealot.JobsListView = Backbone.View.extend({
   },
 
   addOne: function(item){
-    var view = new Lancealot.JobView({ model: item });
+    var view = new Lancealot.JobRowView({ model: item });
     this.$el.append(view.render().el);
   },
 

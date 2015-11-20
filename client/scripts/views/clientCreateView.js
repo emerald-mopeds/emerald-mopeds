@@ -1,4 +1,4 @@
-// Client Entry View (form) --> connected to Clients Collection
+// Client Create View (form) --> connected to Clients Collection
 
 /*
 For templates, look at client/views/backbone_templates.
@@ -7,7 +7,7 @@ handleSubmit takes user's inputs and creates a new client,
 which issues a post request to /clients
 */
 
-Lancealot.ClientEntryView = Backbone.View.extend({
+Lancealot.ClientCreateView = Backbone.View.extend({
 
   template: Templates['addClient'],
 
