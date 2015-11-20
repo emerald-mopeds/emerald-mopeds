@@ -21,6 +21,7 @@ Lancealot.Router = Backbone.Router.extend({
   },
 
   swapView: function(view){
+    console.log(Backbone.history.getFragment());
     this.$el.html(view.render().el);
   },
 

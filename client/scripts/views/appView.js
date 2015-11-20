@@ -12,7 +12,7 @@ rendering of results to JobsListView via the handleSearch function
 
 Lancealot.AppView = Backbone.View.extend({
 
-  template: Templates['home'],
+  template: Templates['jobsHeader'],
 
   events: {
     'keyup #clientSearch': 'handleSearch'
