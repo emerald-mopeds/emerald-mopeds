@@ -2,7 +2,7 @@
 Lancealot.Jobs = Backbone.Collection.extend({
 
   model: Lancealot.Job,
-  url: '/jobs',
+  url: '/api/jobs',
 
   /*
   this function is used to filter jobs
