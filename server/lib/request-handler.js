@@ -11,7 +11,7 @@ Finds all clients in the database and responds with result of query
 */
 exports.fetchClients = function (req, res) {
   Client.find({}).exec(function (err, clients) {
-    res.send(200, clients);
+    res.send(clients);
   });
 };
 
@@ -26,11 +26,11 @@ exports.addClient = function (req, res) {
   });
   newClient.save(function (err, newClient) {
     if (err) {
-      res.send(500, err);
+      res.status(500).send(err);
       console.log('error adding/saving client');
     } else {
       console.log('added new client: ', newClient);
-      res.send(200, newClient);
+      res.send(newClient);
     }
   });
 };
@@ -45,7 +45,7 @@ exports.fetchJobs = function (req, res) {
      .populate('client', 'name')
      .exec(function (err, jobs) {
        if(err) {
-        res.send(500, err);
+        res.status(500).send(err);
        } else {
         res.send(jobs);
        }
@@ -130,7 +130,7 @@ exports.signupUser = function (req, res) {
 exports.createJobDoc = function(req, res) {
   Client.find({name:req.body.client}).exec(function (err, client){
 
-    if(err) return res.send(500, err);
+    if(err) return res.status(500).send(err);
 
     var newJob = new Job({
       client: client[0]._id,
@@ -142,7 +142,7 @@ exports.createJobDoc = function(req, res) {
     });
 
     newJob.save(function (err, job) {
-      if (err) return res.send(500, err);
+      if (err) return res.status(500).send(err);
       res.send(job);
     });
 
@@ -154,7 +154,7 @@ Finds the Job record that matches the id in the request body and updates the sta
 */
 exports.updateJobDoc = function (req, res) {
   Job.findOneAndUpdate({_id: req.body._id}, {status: req.body.status}, function (err, job) {
-    if (err) return res.send(500, err);
+    if (err) return res.status(500).send(err);
     res.redirect('/');
   });
 }
