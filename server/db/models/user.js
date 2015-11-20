@@ -1,4 +1,8 @@
 var bookshelf = require('../config');
+/*var Employee = require('./employee');
+var Task = require('./task');
+var Expense = require('./expense');
+var Client = require('./client');*/
 
 var User = bookshelf.Model.extend({
   tableName: 'users',
