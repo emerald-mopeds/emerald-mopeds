@@ -1,10 +1,10 @@
 var bookshelf = require('../config');
 
-var Client = bookshelf.Model.extend({
-  tableName: 'clients',
+var Employee = bookshelf.Model.extend({
+  tableName: 'employees',
   user: function() {
     return this.belongsTo(User);
   }
 });
 
-module.exports = Client;
+module.exports = Employee;

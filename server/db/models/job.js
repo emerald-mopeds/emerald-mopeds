@@ -1,18 +1,10 @@
-var db = require('../database');
-var mongoose = require('mongoose');
-// var Client = require('./client');
+var bookshelf = require('../config');
 
-var jobSchema = mongoose.Schema({
- // client: String,
- client: {type: Number, ref: 'Client'},
- rate: Number,
- start: Date,
- end: Date,
- status: Boolean,
- description: String
+var Job = bookshelf.Model.extend({
+  tableName: 'jobs',
+  client: function() {
+    return this.belongsTo(Client);
+  }
 });
-
-var Job = mongoose.model('Job', jobSchema);
-
 
 module.exports = Job;
