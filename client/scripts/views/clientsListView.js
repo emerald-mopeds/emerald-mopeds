@@ -17,7 +17,7 @@ Lancealot.ClientsListView = Backbone.View.extend({
   },
 
   addOne: function(item){
-    var view = new Lancealot.ClientView({ model: item });
+    var view = new Lancealot.ClientRowView({ model: item });
     this.$el.append(view.render().el);
   },
 
