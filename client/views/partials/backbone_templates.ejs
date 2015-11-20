@@ -12,12 +12,12 @@
   <div id='container'></div>
 </script>
 
-<script id='jobsHeader' type='text/x-handlebars-template'>
-    <input class="form-control" id="clientSearch" type="text" placeholder="filter by client..."/>
-    <button id="createNewJob" class="btn btn-default">Create new Job</button>
+<script id='subHeader' type='text/x-handlebars-template'>
+    <input class="form-control" id="{{inputDomID}}" type="text" placeholder="{{filterbyText}}"/>
+    <button id="{{buttonId}}" class="btn btn-default">{{buttonText}}</button>
 </script>
 
-<script id='tableheads' type='text/x-handlebars-template'>
+<script id='jobstable' type='text/x-handlebars-template'>
     <thead>
       <th>Client</th>
       <th>Description</th>
@@ -28,6 +28,15 @@
     </thead>
 </script>
 
+<script id='job' type='text/x-handlebars-template'>
+    <td>{{client.name}}</td>
+    <td>{{description}}</td>
+    <td>${{rate}}</td>
+    <td>{{formattedStart}}</td>
+    <td>{{formattedEnd}}</td>
+    <td><input type="checkbox" {{checked}}></td>
+</script>
+
 <script id='clienttable' type='text/x-handlebars-template'>
   <thead>
     <th class="clientCells">Name</th>
@@ -36,14 +45,10 @@
   </thead>
 </script>
 
-
-<script id='job' type='text/x-handlebars-template'>
-    <td>{{client.name}}</td>
-    <td>{{description}}</td>
-    <td>${{rate}}</td>
-    <td>{{formattedStart}}</td>
-    <td>{{formattedEnd}}</td>
-    <td><input type="checkbox" {{checked}}></td>
+<script id='clientInfo' type='text/x-handlebars-template'>
+    <td class="clientCells">{{name}}</td>
+    <td class="clientCells">{{address}}</td>
+    <td class="clientCells">{{phone}}</td>
 </script>
 
 <script id='addJob' type='text/x-handlebars-template'>
@@ -79,12 +84,6 @@
       <input class="form-control" id="phone" type="text"/><br/>
     <button class="submit btn btn-default">Add Client</button>
   </form>
-</script>
-
-<script id='clientInfo' type='text/x-handlebars-template'>
-    <td class="clientCells">{{name}}</td>
-    <td class="clientCells">{{address}}</td>
-    <td class="clientCells">{{phone}}</td>
 </script>
 
 <script>
