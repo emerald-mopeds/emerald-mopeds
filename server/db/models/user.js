@@ -21,16 +21,16 @@ var User = bookshelf.Model.extend({
       });
   },
   employees: function () {
-    return this.hasMany(Employee);
+    return this.hasMany(require('./employee'));
   },
   tasks: function () {
-    return this.hasMany(Task);
+    return this.hasMany(require('./task'));
   },
   expenses: function () {
-    return this.hasMany(Expense);
+    return this.hasMany(require('./expense'));
   },
   clients: function () {
-    return this.hasMany(Client);
+    return this.hasMany(require('./client'));
   }
 });
 

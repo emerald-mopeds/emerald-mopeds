@@ -1,15 +1,13 @@
 var bookshelf = require('../config');
-var Job = require('./job');
-var User = require('./user');
 
 var Task = bookshelf.Model.extend({
   tableName: 'tasks',
   hasTimestamps: true,
   jobs: function () {
-    return this.belongsToMany(Job).through(Job_Task);
+    return this.belongsToMany(require('./job')).through(require('./job_task'));
   },
   user: function () {
-    return this.belongsTo(User);
+    return this.belongsTo(require('./user'));
   }
 });
 
