@@ -3,7 +3,8 @@ Lancealot.EmployeesPageView = Backbone.View.extend({
   template: Templates['subHeader'],
 
   events: {
-    'keyup input': 'handleSearch'
+    'keyup input': 'handleSearch',
+    'click button#createNewEmployee': 'renderEmployeeCreateView'
   },
 
   initialize: function(){
@@ -23,6 +24,11 @@ Lancealot.EmployeesPageView = Backbone.View.extend({
     var employee = $('#' + this.templateContent.inputDomID).val();
     var filteredList = this.collection.searchByClient(employee);
     this.EmployeesListView.filteredRender(filteredList);
+  },
+
+  renderEmployeeCreateView: function(e) {
+    e && e.preventDefault();
+    Backbone.history.navigate('/addemployee', true);
   }
 
 });
