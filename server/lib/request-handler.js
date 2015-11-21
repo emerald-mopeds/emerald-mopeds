@@ -97,6 +97,25 @@ exports.fetchJobs = function (req, res) {
   });
 };
 
+//fetchJob Response: {job, employees, expenses}, with client as job.client
+exports.fetchJob = function (req, res) {
+  var returnObj = {};
+  var jobId = +req.params.id;
+
+  Job.where('id', jobId).fetch({withRelated: ['client']})
+  .then(function (job) {
+    returnObj.job = job.serialize();
+  })
+  .then(function () {
+    Job_Task.where('job_id', jobId).fetch({withRelated: ['employees', 'expenses']})
+    .then(function (job_task) {
+      returnObj.employees = job_task.related('employees').serialize();
+      returnObj.expenses = job_task.related('expenses').serialize();
+      res.send(returnObj);
+    })
+  });
+};
+
 /*
 fetchClients is called when /clients path receives get request
 Finds all clients in the database and responds with result of query
