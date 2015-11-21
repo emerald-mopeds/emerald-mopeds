@@ -17,15 +17,23 @@ Lancealot.EmployeeCreateView = Backbone.View.extend({
 
   handleSubmit: function(e) {
     e.preventDefault();
-    //kept fields from client - will need to update for info in employee table
-    var name = $('#name').val();
+
+    var firstName = $('#firstName').val();
+    var lastName = $('#lastName').val();
     var address = $('#address').val();
+    var city = $('#city').val();
+    var zipCode = $('#zipCode').val();
     var phone = $('#phone').val();
+    var billingFee = $('#billingFee').val();
 
     var employee = new Lancealot.Employee({
-      name: name,
+      first_name: firstName,
+      last_name: lastName,
       address: address,
+      city: city,
+      zip_code: zipCode,
       phone: phone,
+      hourly_billing_fee: billingFee
     });
 
     employee.save({});
