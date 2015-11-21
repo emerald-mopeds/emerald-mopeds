@@ -228,14 +228,17 @@ exports.updateJobDoc = function (req, res) {
 exports.fetchEmployees = function (req, res) {
   Employee.where('user_id', req.session.user.id).fetchAll()
   .then(function (employees) {
-    console.log(employees);
-    res.send(employees);
+    if (employees) {
+      res.send(employees);
+    } else {
+      res.send('');
+    }
   });
 };
 
 exports.addEmployee = function (req, res) {
   Employee.where({
-    'user_id': req.session.user.id,
+    user_id: req.session.user.id,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     phone: req.body.phone})
@@ -261,17 +264,28 @@ exports.addEmployee = function (req, res) {
 
 exports.deleteEmployee = function (req, res) {
   Employee.where({
-    user_id: req.body.user_id, // need to change back to req.session.user.id once done testing
+    user_id: req.session.user.id,
     first_name: req.body.first_name,
-    last_name: req.body.last_name/*,
+    last_name: req.body.last_name,
     address: req.body.address,
     city: req.body.city,
     zip_code: req.body.zip_code,
     hourly_billing_fee: req.body.hourly_billing_fee,
-    phone: req.body.phone*/
+    phone: req.body.phone
     }).fetch().then(function (model) {
       model.destroy();
       res.send('Entry deleted');
     });
 
+};
+
+exports.updateEmployee = function (req, res) {
+  Employee.where({
+    user_id: req.session.user.id // change back to req.session.user.id once done testing
+  }).fetch().then(function (model) {
+    model.set({
+      // set what isn't '' as req.body.x
+    });
+    res.send('Entry updated');
+  });
 };
