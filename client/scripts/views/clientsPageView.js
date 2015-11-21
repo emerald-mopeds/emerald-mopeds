@@ -15,7 +15,8 @@ Lancealot.ClientsPageView = Backbone.View.extend({
   template: Templates['subHeader'],
 
   events: {
-    'keyup input': 'handleSearch'
+    'keyup input': 'handleSearch',
+    'click button#createNewClient': 'renderClientCreateView'
   },
 
   initialize: function(){
@@ -35,6 +36,11 @@ Lancealot.ClientsPageView = Backbone.View.extend({
     var client = $('#' + this.templateContent.inputDomID).val();
     var filteredList = this.collection.searchByClient(client);
     this.ClientsListView.filteredRender(filteredList);
+  },
+
+  renderClientCreateView: function(e) {
+    e && e.preventDefault();
+    Backbone.history.navigate('/addclient', true);
   }
 
 });
