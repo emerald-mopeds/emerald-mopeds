@@ -89,7 +89,11 @@ exports.addClient = function (req, res) {
 exports.fetchJobs = function (req, res) {
   Client.where('user_id', req.session.user.id).fetch({withRelated: ['jobs']})
   .then(function (clients) {
-    res.send(clients.related('jobs').serialize());
+    if (clients) {
+      res.send(clients.related('jobs').serialize());
+    } else {
+      res.send('');
+    }
   });
 };
 
@@ -142,4 +146,32 @@ exports.updateJobDoc = function (req, res) {
 //     if (err) return res.status(500).send(err);
 //     res.redirect('/');
 //   });
-}
+};
+
+exports.fetchEmployees = function (req, res) {
+  Employee.where('user_id', req.session.user.id).fetch()
+  .then(function (employees) {
+    res.send(employees);
+  });
+};
+
+exports.addEmployee = function (req, res) {
+  Employee.where('user_id', req.session.user.id).fetch()
+  .then(function (employee) {
+    if (!employee) {
+      new Employee({
+        user_id: req.session.user.id,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        address: req.body.address,
+        city: req.body.city,
+        zip_code: req.body.zip_code,
+        hourly_billing_fee: req.body.hourly_billing_fee,
+        phone: req.body.phone
+      }).save();
+    } else {
+      // TODO: add error handling of employee already existing
+      res.redirect('/employees');
+    }
+  })
+};
