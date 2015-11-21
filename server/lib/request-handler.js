@@ -133,6 +133,18 @@ exports.fetchClients = function (req, res) {
 // */
 
 exports.addJob = function (req, res) {
+  new Job({
+    client_id: req.body.client_id,
+    job_name: req.body.job_name,
+    job_status: req.body.job_status,
+    due_date: req.body.due_date
+  }).save()
+  .then(function (newJob) {
+    res.send(newJob);
+  }, function (err) {
+    console.log(err);
+    res.status(500).send(err);
+  })
 };
 
 exports.createJobDoc = function(req, res) {
