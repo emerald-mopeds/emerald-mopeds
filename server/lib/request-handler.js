@@ -135,6 +135,32 @@ exports.fetchClients = function (req, res) {
 exports.addJob = function (req, res) {
 };
 
+exports.getTasks = function (req, res) {
+
+};
+
+exports.addTask = function (req, res) {
+  new Task({
+    task_name: req.body.task_name,
+    default_price: req.body.default_price,
+    common: req.body.common,
+    updated_at: req.body.updated_at,
+    created_at: req.body.created_at
+  }).save()
+  .then(res.send)
+};
+
+exports.fetchTasks = function (req, res) {
+
+};
+
+exports.getCommonTasks = function (req, res) {
+  Task.where('common', true).fetchAll()
+  .then(function (tasks) {
+    res.send(tasks.serialize());
+  })
+};
+
 exports.createJobDoc = function(req, res) {
 //   Client.find({name:req.body.client}).exec(function (err, client){
 
