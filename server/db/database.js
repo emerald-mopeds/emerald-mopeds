@@ -6,82 +6,90 @@ var Expense = require('./models/expense');
 var Job = require('./models/job');
 var Task = require('./models/task');
 var Job_Task = require('./models/job_task');
-/*
-new Promise(function (resolve, reject) {
-  new User({
-    username: 'Rory',
-    email: 'sametz@ualberta.ca',
-    password: 'drowssap'
-  }).save().then(resolve);
-})
-.then(
-  new Promise(function (resolve, reject) {
-    new Client({
-      user_id: 1,
-      name: 'Haley',
-      address: '123 Fake Street',
-      city: 'San Francisco',
-      zip_code: 12345,
-      phone: 1234567890
-    }).save().then(resolve);
-}))
-.then(
-  new Promise(function (resolve, reject) {
-    new Employee({
-      user_id: 1,
-      first_name: 'Ambroise',
-      last_name: 'Piganeau',
-      address: '123 Paris Blvd',
-      city: 'Paris',
-      zip_code: 99,
-      hourly_billing_fee: 50000,
-      phone: 0987654321
-    }).save().then(resolve);
-}))
-.then(
-  new Promise(function (resolve, reject) {
-    new Expense({
-      user_id: 1,
-      expense_name: 'hairgel',
-      common: false,
-      unit_price: 500
-    }).save().then(resolve);
-}))
-.then(
-  new Promise(function (resolve, reject) {
-    new Job({
-      client_id: 1,
-      job_status: 'xxyyxx'
-    }).save().then(resolve);
-}))
-.then(
-  new Promise(function (resolve, reject) {
-    new Task({
-      user_id: 1,
-      task_name: 'Haircut',
-      default_price: 200,
-      common: true
-    }).save().then(resolve);
-}))*/
-// .then(
-/*  new Promise(function (resolve, reject) {
-    new Job_Task({
-      job_id: 1,
-      task_id: 1,
-      status: 'pending'
-    }).save().then(resolve);
-  })*/
-// );
 
+// new Promise(function (resolve, reject) {
+//   new User({
+//     username: 'Rory',
+//     email: 'sametz@ualberta.ca',
+//     password: 'drowssap'
+//   }).save().then(resolve);
+// })
+// .then(
+//   new Promise(function (resolve, reject) {
+//     new Client({
+//       user_id: 1,
+//       name: 'Haley',
+//       address: '123 Fake Street',
+//       city: 'San Francisco',
+//       zip_code: 12345,
+//       phone: 1234567890
+//     }).save().then(resolve);
+// }))
+// .then(
+//   new Promise(function (resolve, reject) {
+//     new Employee({
+//       user_id: 1,
+//       first_name: 'Ambroise',
+//       last_name: 'Piganeau',
+//       address: '123 Paris Blvd',
+//       city: 'Paris',
+//       zip_code: 99,
+//       hourly_billing_fee: 50000,
+//       phone: 0987654321
+//     }).save().then(resolve);
+// }))
+// .then(
+//   new Promise(function (resolve, reject) {
+//     new Expense({
+//       user_id: 1,
+//       expense_name: 'hairgel',
+//       common: false,
+//       unit_price: 500
+//     }).save().then(resolve);
+// }))
+// .then(
+//   new Promise(function (resolve, reject) {
+//     new Job({
+//       client_id: 1,
+//       job_status: 'xxyyxx'
+//     }).save().then(resolve);
+// }))
+// .then(
+//   new Promise(function (resolve, reject) {
+//     new Task({
+//       user_id: 1,
+//       task_name: 'Haircut',
+//       default_price: 200,
+//       common: true
+//     }).save().then(resolve);
+// }))
+// .then(
+//   new Promise(function (resolve, reject) {
+//     new Job_Task({
+//       job_id: 1,
+//       task_id: 1,
+//       status: 'pending'
+//     }).save().then(resolve);
+// }));
+
+
+// new Promise(function (resolve, reject) {
+//   Job_Task.where('id', 1).fetch().then(function (job_task) {
+//     Employee.where('id', 1).fetch().then(function (employee) {
+//       job_task.employees().attach(employee).then(function () {
+//         job_task.employees().updatePivot({time_spent: 60});
+//       })
+//     });
+//   });
+// });
 
 new Promise(function (resolve, reject) {
   Job_Task.where('id', 1).fetch().then(function (job_task) {
-    var job_task = job_task;
-    Employee.where('id', 1).fetch().then(function (employee) {
-      console.log(employee);
-      console.log(job_task.employees());
-      job_task.employees().attach(employee).then(function () {
-        job_task.employees().updatePivot({time_spent: 60});
+    Expense.where('id', 1).fetch().then(function (expense) {
+      console.log(expense);
+      console.log(job_task.expenses());
+      job_task.expenses().attach(expense).then(function () {
+        job_task.expenses().updatePivot({quantity: 1000});
       })
     });
   });

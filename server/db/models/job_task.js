@@ -16,7 +16,7 @@ var Job_Task = bookshelf.Model.extend({
     return this.belongsToMany(Employee, 'employees_jobs_tasks', 'job_task_id', 'employee_id').withPivot('time_spent');
   },
   expenses: function() {
-    return this.belongsToMany(Expense).withPivot('quantity');
+    return this.belongsToMany(Expense, 'expenses_jobs_tasks', 'job_task_id', 'expense_id').withPivot('quantity');
   }
 });
 
