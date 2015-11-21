@@ -46,7 +46,6 @@
     "mysql": "^2.9.0",
     "node-mongo-seeds": "2.2.7",
     "request": "2.65.0",
-    "sequelize": "^3.14.0",
     "supertest": "1.1.0",
     "underscore": "1.8.3"
   },
