@@ -141,23 +141,36 @@ exports.getTasks = function (req, res) {
 
 exports.addTask = function (req, res) {
   new Task({
+    user_id: req.session.user.id,
     task_name: req.body.task_name,
     default_price: req.body.default_price,
-    common: req.body.common,
-    updated_at: req.body.updated_at,
-    created_at: req.body.created_at
+    common: req.body.common
   }).save()
-  .then(res.send)
+  .then(function () {
+    res.send();
+  }, function (err) {
+    console.log(err);
+    res.status(500).send(err);
+  });
 };
 
 exports.fetchTasks = function (req, res) {
-
+  Task.fetchAll()
+  .then(function (tasks) {
+    res.send(tasks)
+  }, function (err) {
+    console.log(err);
+    res.status(500).send(err);
+  });
 };
 
 exports.getCommonTasks = function (req, res) {
   Task.where('common', true).fetchAll()
   .then(function (tasks) {
-    res.send(tasks.serialize());
+    res.send(tasks);
+  }, function (err) {
+    console.log(err);
+    res.status(500).send(err);
   })
 };
 
