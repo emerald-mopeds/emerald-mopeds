@@ -4,6 +4,7 @@ var Job = require('./job');
 
 var Client = bookshelf.Model.extend({
   tableName: 'clients',
+  hasTimestamps: true,
   user: function() {
     return this.belongsTo(User);
   },
