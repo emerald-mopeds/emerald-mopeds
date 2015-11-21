@@ -89,11 +89,19 @@ exports.addClient = function (req, res) {
 exports.fetchJobs = function (req, res) {
   Client.where('user_id', req.session.user.id).fetchAll({withRelated: ['jobs']})
   .then(function (clients) {
-    if (clients) {
-      res.send(clients.related('jobs').serialize());
-    } else {
-      res.send('');
-    }
+    var jobsArray = [];
+    clients.serialize().forEach(function (client) {
+      var clientName = client.name;
+      client.jobs.forEach(function (job) {
+        jobsArray.push({description: job.job_name,
+          dueDate: job.due_date.toDateString(),
+          clientName: clientName,
+          status: job.job_status,
+          id: job.id
+        });
+      });
+    });
+    res.send(jobsArray);
   });
 };
 

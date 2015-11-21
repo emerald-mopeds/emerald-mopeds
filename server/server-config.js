@@ -50,10 +50,6 @@ app.get('/logout', function (req, res) {
   });
 });
 
-app.get('/api/jobs/:id?', function (req, res) {
-  handle.fetchJob(req, res);
-});
-
 app.get('/api/clients', handle.fetchClients);
 app.post('/api/clients', handle.addClient);
 
@@ -62,6 +58,10 @@ app.post('/api/employees', handle.addEmployee);
 
 app.get('/api/jobs', handle.fetchJobs);
 app.post('/api/jobs', handle.addJob);
+
+app.get('/api/job/:id?', function (req, res) {
+  handle.fetchJob(req, res);
+});
 
 app.get('/*', util.checkUser, util.renderIndex);
 
