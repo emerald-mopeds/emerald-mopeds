@@ -11,9 +11,11 @@ Lancealot.JobRowView = Backbone.View.extend({
 
   tagName: 'tr',
   className: 'clickable-row',
-  attributes: {'data-href': '#'},
 
   events: {
+    'click': function() {
+      this.model.navigateToView();
+    },
     'click input:checkbox': 'toggleComplete'
   },
 

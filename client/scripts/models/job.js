@@ -1,4 +1,10 @@
 // Job Model
 Lancealot.Job = Backbone.Model.extend({
-  url: '/api/jobs'
+  url: '/api/jobs',
+
+  navigateToView: function() {
+    console.log('coucou');
+    Backbone.history.navigate("/clients", true);
+  }
+
 });
