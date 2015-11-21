@@ -10,12 +10,14 @@ checking and unchecking checkboxes
 Lancealot.JobRowView = Backbone.View.extend({
 
   tagName: 'tr',
+  className: 'clickable-row',
+  attributes: {'data-href': '#'},
 
   events: {
     'click input:checkbox': 'toggleComplete'
   },
 
-  template: Templates['job'],
+  template: Templates['jobRow'],
 
   initialize: function() {
     this.model.on('change', this.render, this);

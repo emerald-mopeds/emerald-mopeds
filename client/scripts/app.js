@@ -18,11 +18,12 @@ window.Lancealot = Backbone.View.extend({
     'click li a.jobs':  'renderIndexView',
     'click li a.clients': 'renderClientsView',
     'click li a.employees' : 'renderEmployeesView',
-    'click button#createNewJob': 'renderJobEntryView',
-    'click button#createNewClient': 'renderClientEntryView',
-    'click button#createNewEmployee': 'renderEmployeeEntryView',
+    'click button#createNewJob': 'renderJobCreateView',
+    'click button#createNewClient': 'renderClientCreateView',
+    'click button#createNewEmployee': 'renderEmployeeCreateView',
+    'click tr.clickable-row' : 'renderJobView',
     'submit #addJob': 'renderIndexView',
-    'submit #addClient': 'renderJobEntryView'
+    'submit #addClient': 'renderJobCreateView'
   },
 
   initialize: function(){
@@ -51,17 +52,17 @@ window.Lancealot = Backbone.View.extend({
     this.router.navigate('/employees', { trigger: true });
   },
 
-  renderClientEntryView: function(e) {
+  renderClientCreateView: function(e) {
     e && e.preventDefault();
     this.router.navigate('/addclient', { trigger: true });
   },
 
-  renderJobEntryView: function(e) {
+  renderJobCreateView: function(e) {
     e && e.preventDefault();
     this.router.navigate('/addjob', { trigger: true });
   },
 
-  renderEmployeeEntryView: function(e) {
+  renderEmployeeCreateView: function(e) {
     e && e.preventDefault();
     this.router.navigate('/addemployee', { trigger: true });
   }
