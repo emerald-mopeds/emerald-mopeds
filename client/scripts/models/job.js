@@ -4,6 +4,10 @@ Lancealot.Job = Backbone.Model.extend({
 
   navigateToView: function() {
     Backbone.history.navigate('/job/' + this.get('id'), true);
+  },
+
+  initialize: function() {
+    this.set('dueDate', new Date(this.get('dueDate')).toDateString());
   }
 
 });

@@ -94,7 +94,7 @@ exports.fetchJobs = function (req, res) {
       var clientName = client.name;
       client.jobs.forEach(function (job) {
         jobsArray.push({description: job.job_name,
-          dueDate: job.due_date.toDateString(),
+          dueDate: job.due_date,
           clientName: clientName,
           status: job.job_status,
           id: job.id
