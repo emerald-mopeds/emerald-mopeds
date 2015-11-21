@@ -7,9 +7,6 @@ var Job = require('./models/job');
 var Task = require('./models/task');
 var Job_Task = require('./models/job_task');
 
-function fetchClients () {
-  return Client.fetchAll();
-}
 
 ///////////////////////////
 // CREATION QUERIES

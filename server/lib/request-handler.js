@@ -62,20 +62,6 @@ exports.loginUser = function (req, res) {
   });
 };
 
-
-/*
-fetchClients is called when /clients path receives get request
-Finds all clients in the database and responds with result of query
-*/
-exports.fetchClients = function (req, res) {
-//   database.fetchClients()
-//   .then(function (clients) {
-//     res.send(clients)
-//   }, function (err) {
-//     throw new Error(err);
-//   });
-};
-
 // /*
 // Builds new Client document with request properties and saves it to the db
 // */
@@ -89,7 +75,6 @@ exports.addClient = function (req, res) {
     phone: req.body.phone
   }).save()
   .then(function (newClient) {
-    console.log('toto');
     res.send(newClient);
   }, function (err) {
     console.log(err);
@@ -102,21 +87,30 @@ exports.addClient = function (req, res) {
 // Finds all jobs in the database, replaces client_id with an object that include client Id and name
 // Responds with result of query
 // */
+
 exports.fetchJobs = function (req, res) {
-//   Job.find({})
-//      .populate('client', 'name')
-//      .exec(function (err, jobs) {
-//        if(err) {
-//         res.status(500).send(err);
-//        } else {
-//         res.send(jobs);
-//        }
-//      });
+  Client.where('user_id', req.session.user.id).fetch({withRelated: ['jobs']})
+  .then(function (clients) {
+    res.send(clients.related('jobs').serialize());
+  });
+};
+
+/*
+fetchClients is called when /clients path receives get request
+Finds all clients in the database and responds with result of query
+*/
+
+exports.fetchClients = function (req, res) {
+  Client.where('user_id', req.session.user.id).fetch()
+  .then(function (clients) {
+    res.send(clients);
+  });
 };
 
 // /*
 // Builds new Job document with request properties and saves it to the db
 // */
+
 exports.addJob = function (req, res) {
 //   //call createJobDoc first to find client id to use to create job document
 //   console.log('req body in addJob: ', req.body);
@@ -129,10 +123,6 @@ exports.addJob = function (req, res) {
 //     }
 //   });
 };
-
-
-
-
 
 exports.createJobDoc = function(req, res) {
 //   Client.find({name:req.body.client}).exec(function (err, client){
