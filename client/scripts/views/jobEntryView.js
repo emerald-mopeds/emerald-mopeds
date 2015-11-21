@@ -1,25 +1,39 @@
 // Job Entry View (form) --> connected to Jobs Collection
+
+/*
+For templates, look at client/views/backbone_templates.
+
+Similar to clientEntryView, except the client option in this form
+is a dropdown menu of existing clients.
+*/
+
 Lancealot.JobEntryView = Backbone.View.extend({
 
-  template: Templates['add'],
+  template: Templates['addJob'],
 
   events: {
-    'submit': 'handleSubmit' 
+    'submit': 'handleSubmit'
   },
 
   initialize: function() {
-    this.render();
+    this.collection.on('sync', this.render, this);
+    this.collection.fetch();
   },
 
   render: function(){
-    this.$el.html(this.template());
+
+    // passing in our array of clients so we can render
+    // them in our dropdown menu
+    var clientData = {clients: this.collection.toJSON()};
+    this.$el.html(this.template(clientData));
+    
     return this;
   },
 
   handleSubmit: function(e) {
     e.preventDefault();
 
-    var client = $('#client').val();
+    var client = $("option:selected").text();
     var description = $('#description').val();
     var rate = $('#rate').val();
     var start = $('#start').val();
@@ -34,7 +48,9 @@ Lancealot.JobEntryView = Backbone.View.extend({
       status: false
     });
 
-    job.save({});
+    job.save(null, {
+      // success: Lancealot.renderJobEntryView
+    });
 
     $('input').val('');
   }

@@ -1,15 +1,18 @@
 // Client Entry View (form) --> connected to Clients Collection
+
+/*
+For templates, look at client/views/backbone_templates.
+
+handleSubmit takes user's inputs and creates a new client,
+which issues a post request to /clients
+*/
+
 Lancealot.ClientEntryView = Backbone.View.extend({
 
-  tagName: 'form',
-
-  template: _.template('<label>Name:</label><input id="name" type="text"/><br/>'+
-                      '<label>Address:</label><input id="address" type="text"/><br/>' +
-                      '<label>Phone:</label><input id="phone" type="text"/><br/>' +
-                      '<button class="submit">Add Client</button>'),
+  template: Templates['addClient'],
 
   events: {
-    'submit': 'handleSubmit' 
+    'submit': 'handleSubmit'
   },
 
   initialize: function() {
@@ -17,7 +20,8 @@ Lancealot.ClientEntryView = Backbone.View.extend({
   },
 
   render: function(){
-    return this.$el.html(this.template());
+    this.$el.html(this.template());
+    return this;
   },
 
   handleSubmit: function(e) {
@@ -27,11 +31,13 @@ Lancealot.ClientEntryView = Backbone.View.extend({
     var address = $('#address').val();
     var phone = $('#phone').val();
 
-    this.collection.create({
+    var client = new Lancealot.Client({
       name: name,
       address: address,
       phone: phone,
     });
+
+    client.save({});
 
     $('input').val('');
   }

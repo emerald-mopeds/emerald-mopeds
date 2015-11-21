@@ -1,49 +1,36 @@
-<<<<<<< HEAD
-// // App View
-// window.Lancealot = Backbone.View.extend({
+// App View
 
-//   template: Templates['layout'],
+/*
+For templates, look at client/views/backbone_templates.
 
-//   events: {
-//     // 'keyup #clientSearch': 'handleSearch',
-//     'click li a.index':  'renderIndexView',
-//     'click li a.logout': 'renderAddView'
-//   },
+AppView renders JobsListView, as well as the "Filter by Client" search
+(clientSearchView)
 
-//   initialize: function(){
-//     // this.ClientSearchView = new ClientSearchView({collection: this.model.get('jobs')});
-//     // this.JobsListView = new JobsListView({collection: this.model.get('jobs')});
-//     // this.JobEntryView = new JobEntryView({collection: this.model.get('jobs')});
-//  this.ClientsListView = new ClientsListView({collection: this.model.get('clients')});
-//     this.ClientEntryView = new ClientEntryView({collection: this.model.get('clients')}); 
+AppView listens for typing in the client filter (#clientSearch) and delegates
+rendering of results to JobsListView via the handleSearch function
+*/
 
-//     this.router = new Router({ el: this.$el.find('#container') });
+Lancealot.AppView = Backbone.View.extend({
 
-//     Backbone.history.start({ pushState: true });
-//   },
+  template: Templates['home'],
 
-//   // render: function(){
-//   //   return this.$el.html([
-//   //     this.JobEntryView.$el, this.ClientSearchView.$el, this.JobsListView.$el
-//   //     ]);
-//   // },
+  events: {
+    'keyup #clientSearch': 'handleSearch'
+  },
 
-//   // handleSearch: function(e) {
-//   //   e.preventDefault();
-//   //   var client = $('#clientSearch').val();
-//   //   var filteredList = this.model.get('jobs').search('client', client);
-//   //   this.JobsListView.filteredRender(filteredList);
-//   // },
+  initialize: function(){
+    this.JobsListView = new Lancealot.JobsListView({collection: this.collection});
+  },
 
-//   renderIndexView: function(e) {
-//     e && e.preventDefault();
-//     this.router.navigate('/', { trigger: true });
-//   },
+  render: function(){
+    this.$el.html([this.template(), this.JobsListView.render().el]);
+    return this;
+  },
 
-//   renderAddView: function(e) {
-//     e && e.preventDefault();
-//     this.router.navigate('/add', { trigger: true });
-//   }
+  handleSearch: function() {
+    var client = $('#clientSearch').val();
+    var filteredList = this.collection.searchByClient(client);
+    this.JobsListView.filteredRender(filteredList);
+  }
 
-// });
-
+});

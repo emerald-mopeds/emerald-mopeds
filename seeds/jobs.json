@@ -1,0 +1,20 @@
+[
+  { 
+    "client" : 1000, 
+    "rate" : 100, 
+    "start" : "2015-11-19T00:00:00Z",
+    "end" : "2016-01-20T00:00:00Z", 
+    "status" : false, 
+    "description" : "Website Development",
+    "__v" : 0 
+  },
+  { 
+    "client" : 1001, 
+    "rate" : 75, 
+    "start" : "2015-12-19T00:00:00Z",
+    "end" : "2016-02-20T00:00:00Z", 
+    "status" : false, 
+    "description" : "Branding",
+    "__v" : 0
+  }
+]

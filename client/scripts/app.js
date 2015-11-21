@@ -1,13 +1,26 @@
-// App View
+// APP
+
+/*
+For templates, look at client/views/backbone_templates.
+
+This is the client-side homebase. It initializes the router,
+adds click/submit listeners, and sets up actions for when
+the user tries navigating to another page.
+
+View this module in tandem with routers.js
+*/
+
 window.Lancealot = Backbone.View.extend({
 
   template: Templates['layout'],
 
   events: {
-    // 'keyup #clientSearch': 'handleSearch',
     'click li a.index':  'renderIndexView',
-    'click li a.logout': 'renderAddView',
-    'submit': 'renderIndexView'
+    'click li a.addJob': 'renderJobEntryView',
+    'click li a.clients': 'renderClientsView',
+    'click li a.addClient': 'renderClientEntryView',
+    'submit #addJob': 'renderIndexView',
+    'submit #addClient': 'renderJobEntryView'
   },
 
   initialize: function(){
@@ -24,12 +37,22 @@ window.Lancealot = Backbone.View.extend({
 
   renderIndexView: function(e) {
     e && e.preventDefault();
-    this.router.navigate('/', { trigger: true });
+    this.router.navigate('/jobs', { trigger: true });
   },
 
-  renderAddView: function(e) {
+  renderClientsView: function(e) {
     e && e.preventDefault();
-    this.router.navigate('/add', { trigger: true });
+    this.router.navigate('/clients', { trigger: true });
+  },
+
+  renderClientEntryView: function(e) {
+    e && e.preventDefault();
+    this.router.navigate('/addclient', { trigger: true });
+  },
+
+  renderJobEntryView: function(e) {
+    e && e.preventDefault();
+    this.router.navigate('/addjob', { trigger: true });
   }
 
 });

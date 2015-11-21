@@ -3,7 +3,6 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-
       options: {
         separator: ';'
       },
@@ -11,8 +10,8 @@ module.exports = function(grunt) {
         src: ['client/**/*.js'],
         dest: 'public/dist/<%= pkg.name %>.js'
       }
+    },
          
-
     // mochaTest: {
     //   test: {
     //     options: {
@@ -20,7 +19,7 @@ module.exports = function(grunt) {
     //     },
     //     src: ['test/**/*.js']
     //   }
-    },
+    // },
 
     nodemon: {
       dev: {
@@ -38,7 +37,7 @@ module.exports = function(grunt) {
           'public/dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
         }
       }
-          },
+    },
 
     jshint: {
       files: [
@@ -66,13 +65,12 @@ module.exports = function(grunt) {
           'public/dist/style.min.css': 'public/style.css'
         }
       }
-          },
+    },
 
     watch: {
       scripts: {
         files: [
           'client/**/*.js',
-          'public/lib/**/*.js',
         ],
         tasks: [
           'concat',
@@ -85,17 +83,21 @@ module.exports = function(grunt) {
       }
     },
 
+    exec: {
+      seedData: {
+          cmd: 'seed'
+      }
+    },
+
     shell: {
       prodServer: {
-
-        command: 'git push azure master',
-        options: {
-          stdout: true,
-          stderr: true,
-          failOnError: true
+        // command: 'git push azure master',
+        // options: {
+        //   stdout: true,
+        //   stderr: true,
+        //   failOnError: true
         }
-              }
-    },
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -106,6 +108,7 @@ module.exports = function(grunt) {
   // grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-exec');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -116,7 +119,7 @@ module.exports = function(grunt) {
     });
     nodemon.stdout.pipe(process.stdout);
     nodemon.stderr.pipe(process.stderr);
-
+    grunt.task.run(['exec']);
     grunt.task.run([ 'watch' ]);
   });
 
@@ -125,33 +128,27 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-
     'jshint',
-        'mochaTest'
+    'mochaTest'
   ]);
 
   grunt.registerTask('build', [
-
     'concat',
     'uglify',
     'cssmin'
-      ]);
+  ]);
 
   grunt.registerTask('upload', function(n) {
-    if(grunt.option('prod')) {
-
-      grunt.task.run([ 'shell:prodServer' ]);
-          } else {
+    // if(grunt.option('prod')) {
+    //   grunt.task.run([ 'shell:prodServer' ]);
+    // } else {
       grunt.task.run([ 'server-dev' ]);
-    }
+    // }
   });
 
   grunt.registerTask('deploy', [
-
     'test',
     'build',
     'upload'
-      ]);
-
-
+  ]);
 };

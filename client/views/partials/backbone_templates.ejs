@@ -1,45 +1,90 @@
 <script id='layout' type='text/x-handlebars-template'>
   <div class='navigation'>
-  <ul>
-    <li><a href='#' class='index'>View Jobs</a></li>
-    <li><a href='/add' class='add'>Add Job</a></li>
-  </ul>
+    <nav class="navbar navbar-default">
+      <ul class="nav navbar-nav">
+        <li><a href='#' class='index'>View Jobs</a></li>
+        <li><a href='/addjob' class='addJob'>Add Job</a></li>
+        <li><a href='#' class='clients'>View Clients</a></li>
+        <li><a href='#' class='addClient'>Add Client</a></li>
+        <li><a href='/logout' class='add'>Logout</a></li>
+      </ul>
+    </nav>
   </div>
   <div id='container'></div>
 </script>
 
-<script id='tableheads' type='text/x-handlebars-template'>
-    <th>Client</th>
-    <th>Description</th>
-    <th>Rate</th>
-    <th>Start</th>
-    <th>End</th>
-    <th>Status</th>
+<script id='home' type='text/x-handlebars-template'>
+    <input class="form-control" id="clientSearch" type="text" placeholder="filter by client..."/>
 </script>
+
+<script id='tableheads' type='text/x-handlebars-template'>
+    <thead>
+      <th>Client</th>
+      <th>Description</th>
+      <th>Rate</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Status</th>
+    </thead>
+</script>
+
+<script id='clienttable' type='text/x-handlebars-template'>
+  <thead>
+    <th class="clientCells">Name</th>
+    <th class="clientCells">Address</th>
+    <th class="clientCells">Phone</th>
+  </thead>
+</script>
+
 
 <script id='job' type='text/x-handlebars-template'>
     <td>{{client.name}}</td>
     <td>{{description}}</td>
     <td>${{rate}}</td>
-    <td>{{start}}</td>
-    <td>{{end}}</td>
-    <td>{{status}}</td>
+    <td>{{formattedStart}}</td>
+    <td>{{formattedEnd}}</td>
+    <td><input type="checkbox" {{checked}}></td>
 </script>
 
-<script id='add' type='text/x-handlebars-template'>
-  <form>
+<script id='addJob' type='text/x-handlebars-template'>
+  <form class="form-group" id="addJob">
     <label>Client:</label>
-      <input id="client" type="text"/><br/>
-        <label>Description:</label>
-          <input id="description" type="text"/><br/>
-        <label>Rate:</label>
-          <input id="rate" type="text"/><br/>
-        <label>Start:</label>
-          <input id="start" type="date"/><br/>
-        <label>End:</label>
-          <input id="end" type="date"/><br/>
-        <button class="submit">Add Job</button>
+      <select class="form-control" id="client">
+        {{#each clients }}
+          <option value="{{value}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
+        {{/each}}
+      </select>
+      <a href="/addclient" id="no_client">Don't see your client? Create a new client here.</a>
+      <br/>
+      <br/>
+      <label>Description:</label>
+        <input class="form-control" id="description" type="text"/><br/>
+      <label>Rate: $</label>
+        <input class="form-control" id="rate" type="text"/><br/>
+      <label>Start:</label>
+        <input class="form-control" id="start" type="date"/><br/>
+      <label>End:</label>
+        <input class="form-control" id="end" type="date"/><br/>
+      <button class="submit btn btn-default">Add Job</button>
   </form>
+</script>
+
+<script id='addClient' type='text/x-handlebars-template'>
+  <form class="form-group" id="addClient">
+    <label>Name:</label>
+      <input class="form-control" id="name" type="text"/><br/>
+    <label>Address:</label>
+      <input class="form-control" id="address" type="text"/><br/>
+    <label>Phone:</label>
+      <input class="form-control" id="phone" type="text"/><br/>
+    <button class="submit btn btn-default">Add Client</button>
+  </form>
+</script>
+
+<script id='clientInfo' type='text/x-handlebars-template'>
+    <td class="clientCells">{{name}}</td>
+    <td class="clientCells">{{address}}</td>
+    <td class="clientCells">{{phone}}</td>
 </script>
 
 <script>

@@ -1,4 +1,9 @@
 // ClientSearch View --> connected to Jobs collection
+
+/*
+For templates, look at client/views/backbone_templates.
+*/
+
 Lancealot.ClientSearchView = Backbone.View.extend({
 
   tagName: 'form',
