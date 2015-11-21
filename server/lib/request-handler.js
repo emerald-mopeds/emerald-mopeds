@@ -261,17 +261,17 @@ exports.addEmployee = function (req, res) {
 
 exports.deleteEmployee = function (req, res) {
   Employee.where({
-    'user_id': req.session.user.id,
+    user_id: req.body.user_id, // need to change back to req.session.user.id once done testing
     first_name: req.body.first_name,
-    last_name: req.body.last_name,
+    last_name: req.body.last_name/*,
     address: req.body.address,
     city: req.body.city,
     zip_code: req.body.zip_code,
     hourly_billing_fee: req.body.hourly_billing_fee,
-    phone: req.body.phone
-    })
-  .fetch()
-  .then(function (employee) {
-    console.log(employee);
-  });
+    phone: req.body.phone*/
+    }).fetch().then(function (model) {
+      model.destroy();
+      res.send('Entry deleted');
+    });
+
 };

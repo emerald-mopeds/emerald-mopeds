@@ -52,13 +52,13 @@ app.get('/logout', function (req, res) {
 
 app.get('/api/clients', handle.fetchClients);
 app.post('/api/clients', handle.addClient);
-// app.delete('/api/clients', handle.deleteClient);
 
 app.get('/api/tasks', handle.fetchTasks);
 app.post('/api/tasks', handle.addTask);
 app.get('/api/commontasks', handle.getCommonTasks);
 
 app.get('/api/employees', handle.fetchEmployees);
+app.delete('/api/employees', handle.deleteEmployee);
 app.post('/api/employees', handle.addEmployee);
 
 app.get('/api/job/:id', function (req, res) {
