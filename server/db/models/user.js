@@ -1,12 +1,23 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
+var bookshelf = require('../config');
+/*var Employee = require('./employee');
+var Task = require('./task');
+var Expense = require('./expense');
+var Client = require('./client');*/
 
-var userSchema = mongoose.Schema({
-  email: { type: String, required: true, index: { unique: true } },
-  password: { type: String, required: true },
-  api_token: String
+var User = bookshelf.Model.extend({
+  tableName: 'users',
+  employees: function () {
+    return this.hasMany(Employee);
+  },
+  tasks: function () {
+    return this.hasMany(Task);
+  },
+  expenses: function () {
+    return this.hasMany(Expense);
+  },
+  clients: function () {
+    return this.hasMany(Client);
+  }
 });
-
-var User = mongoose.model('User', userSchema);
 
 module.exports = User;
