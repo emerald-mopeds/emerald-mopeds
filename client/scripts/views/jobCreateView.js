@@ -33,7 +33,7 @@ Lancealot.JobCreateView = Backbone.View.extend({
   handleSubmit: function(e) {
     e.preventDefault();
 
-    var clientId = $("option:selected").val();
+    var clientId = parseInt($("option:selected").val());
     var description = $('#description').val();
     var dueDate = $('#dueDate').val();
 

@@ -142,7 +142,6 @@ exports.addJob = function (req, res) {
   .then(function (newJob) {
     res.send(newJob);
   }, function (err) {
-    console.log(err);
     res.status(500).send(err);
   })
 };
