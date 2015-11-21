@@ -50,6 +50,10 @@ app.get('/logout', function (req, res) {
   });
 });
 
+app.get('/api/jobs/:id?', function (req, res) {
+  handle.fetchJob(req, res);
+});
+
 app.get('/api/clients', handle.fetchClients);
 app.post('/api/clients', handle.addClient);
 
