@@ -156,8 +156,9 @@ exports.fetchEmployees = function (req, res) {
 };
 
 exports.addEmployee = function (req, res) {
-  Employee.where('user_id', req.session.user.id).fetch()
+  Employee.where({'user_id': req.session.user.id, first_name: req.body.first_name, last_name: req.body.last_name, phone: req.body.phone}).fetch()
   .then(function (employee) {
+    console.log(employee);
     if (!employee) {
       new Employee({
         user_id: req.session.user.id,
