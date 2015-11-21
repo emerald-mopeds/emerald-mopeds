@@ -87,7 +87,7 @@ exports.addClient = function (req, res) {
 // */
 
 exports.fetchJobs = function (req, res) {
-  Client.where('user_id', req.session.user.id).fetch({withRelated: ['jobs']})
+  Client.where('user_id', req.session.user.id).fetchAll({withRelated: ['jobs']})
   .then(function (clients) {
     if (clients) {
       res.send(clients.related('jobs').serialize());
@@ -103,7 +103,7 @@ Finds all clients in the database and responds with result of query
 */
 
 exports.fetchClients = function (req, res) {
-  Client.where('user_id', req.session.user.id).fetch()
+  Client.where('user_id', req.session.user.id).fetchAll()
   .then(function (clients) {
     res.send(clients);
   });
@@ -149,8 +149,9 @@ exports.updateJobDoc = function (req, res) {
 };
 
 exports.fetchEmployees = function (req, res) {
-  Employee.where('user_id', req.session.user.id).fetch()
+  Employee.where('user_id', req.session.user.id).fetchAll()
   .then(function (employees) {
+    console.log(employees);
     res.send(employees);
   });
 };
@@ -158,7 +159,6 @@ exports.fetchEmployees = function (req, res) {
 exports.addEmployee = function (req, res) {
   Employee.where({'user_id': req.session.user.id, first_name: req.body.first_name, last_name: req.body.last_name, phone: req.body.phone}).fetch()
   .then(function (employee) {
-    console.log(employee);
     if (!employee) {
       new Employee({
         user_id: req.session.user.id,
