@@ -170,6 +170,7 @@ exports.addEmployee = function (req, res) {
         phone: req.body.phone
       }).save();
     } else {
+      // TODO: add error handling of employee already existing
       res.redirect('/employees');
     }
   })
