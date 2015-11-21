@@ -67,18 +67,18 @@ Promise.all([
     table.integer('task_id').unsigned().references('tasks.id');
     table.string('status');
   }), tableCreated('jobs_tasks'),
-  knex.schema.createTableIfNotExists('join_job_task_expense', function (table) {
+  knex.schema.createTableIfNotExists('expenses_jobs_tasks', function (table) {
     table.increments('id').primary();
-    table.integer('job_task_id').unsigned().references('join_job_tasks.id');
+    table.integer('job_task_id').unsigned().references('jobs_tasks.id');
     table.integer('expense_id').unsigned().references('expenses.id');
     table.integer('quantity');
-  }), tableCreated('join_job_task_expense'),
-  knex.schema.createTableIfNotExists('join_job_task_employee', function (table) {
+  }), tableCreated('expenses_jobs_tasks'),
+  knex.schema.createTableIfNotExists('employees_jobs_tasks', function (table) {
     table.increments('id').primary();
-    table.integer('job_task_id').unsigned().references('join_job_tasks.id');
+    table.integer('job_task_id').unsigned().references('jobs_tasks.id');
     table.integer('employee_id').unsigned().references('employees.id');
     table.integer('time_spent');
-  }), tableCreated('join_job_task_expense')
+  }), tableCreated('employees_jobs_tasks')
 ]);
 
 /*

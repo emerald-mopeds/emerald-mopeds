@@ -8,7 +8,7 @@ var Job = bookshelf.Model.extend({
     return this.belongsTo(Client);
   },
   tasks: function () {
-    return this.belongsToMany(Task).withPivot(['status']);
+    return this.belongsToMany(Task).through(Job_Task);
   }
 });
 

@@ -5,6 +5,7 @@ var Employee = require('./models/employee');
 var Expense = require('./models/expense');
 var Job = require('./models/job');
 var Task = require('./models/task');
+var Job_Task = require('./models/job_task');
 /*
 new Promise(function (resolve, reject) {
   new User({
@@ -61,19 +62,32 @@ new Promise(function (resolve, reject) {
       default_price: 200,
       common: true
     }).save().then(resolve);
-}));
-*/
-new Promise(function (resolve,reject) {
-  var task1 = Task.where('id', 1).fetch().then(function(model) {
-    console.log(model);
+}))*/
+// .then(
+/*  new Promise(function (resolve, reject) {
+    new Job_Task({
+      job_id: 1,
+      task_id: 1,
+      status: 'pending'
+    }).save().then(resolve);
+  })*/
+// );
+
+
+new Promise(function (resolve, reject) {
+  Job_Task.where('id', 1).fetch().then(function (job_task) {
+    var job_task = job_task;
+    Employee.where('id', 1).fetch().then(function (employee) {
+      console.log(employee);
+      console.log(job_task.employees());
+      job_task.employees().attach(employee).then(function () {
+        job_task.employees().updatePivot({time_spent: 60});
+      })
+    });
   });
-  console.log(task1);
-  var job1 = Job.where('id', 1).fetch().then(function(model) {
-    console.log(model);
-  });
-  job1.tasks().attach([task1]);
-  console.log(job1)
 });
+
+
 
 
 // new Promise(function (resolve, reject) {
@@ -114,7 +128,13 @@ new Promise(function (resolve,reject) {
 //       // === 'Rory'
 //       resolve();
 //     });
-// }));
+// }))
+// .then(
+//   new Promise(function (resolve, reject) {
+//     Job_Task.where('id', 1).fetch().then(function (job_task) {
+//       console.log(job_task.get('status'));
+//     });
+//   }));
 
 
 
