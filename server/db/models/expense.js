@@ -7,7 +7,7 @@ var Expense = bookshelf.Model.extend({
     return this.belongsTo(User);
   },
   jobs_tasks: function() {
-    return this.BelongsToMany(Job_Task, 'expenses_jobs_tasks', 'expense_id', 'job_task_id');
+    return this.belongsToMany(Job_Task, 'expenses_jobs_tasks', 'expense_id', 'job_task_id');
   }
 });
 

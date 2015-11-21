@@ -7,6 +7,10 @@ var Job = require('./models/job');
 var Task = require('./models/task');
 var Job_Task = require('./models/job_task');
 
+function fetchClients () {
+  return Client.fetchAll();
+}
+
 ///////////////////////////
 // CREATION QUERIES
 ///////////////////////////
@@ -78,14 +82,17 @@ var Job_Task = require('./models/job_task');
 
 
 // new Promise(function (resolve, reject) {
-//   Job_Task.where('id', 1).fetch().then(function (job_task) {
-//     Employee.where('id', 1).fetch().then(function (employee) {
-//       job_task.employees().attach(employee).then(function () {
-//         job_task.employees().updatePivot({time_spent: 60});
-//       })
-//     });
-//   });
-// });
+//   Job_Task.where('id', 1).fetch()
+//   .then(function (job_task) {
+//     Employee.where('id', 1).fetch()
+//   })
+//   .then(function (employee) {
+//     job_task.employees().attach(employee)
+//   })
+//   .then(function () {
+//     job_task.employees().updatePivot({time_spent: 60});
+//   })
+// };)
 
 // new Promise(function (resolve, reject) {
 //   Job_Task.where('id', 1).fetch().then(function (job_task) {
