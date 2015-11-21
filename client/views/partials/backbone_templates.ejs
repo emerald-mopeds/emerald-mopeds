@@ -82,7 +82,7 @@
     <label>Client:</label>
       <select class="form-control" id="client">
         {{#each clients }}
-          <option value="{{value}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
+          <option value="{{id}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
         {{/each}}
       </select>
       <a href="/addclient" id="no_client">Don't see your client? Create a new client here.</a>
@@ -90,12 +90,8 @@
       <br/>
       <label>Description:</label>
         <input class="form-control" id="description" type="text"/><br/>
-      <label>Rate: $</label>
-        <input class="form-control" id="rate" type="text"/><br/>
-      <label>Start:</label>
-        <input class="form-control" id="start" type="date"/><br/>
-      <label>End:</label>
-        <input class="form-control" id="end" type="date"/><br/>
+      <label>Due Date:</label>
+        <input class="form-control" id="dueDate" type="date"/><br/>
       <button class="submit btn btn-default">Add Job</button>
   </form>
 </script>

@@ -33,17 +33,14 @@ Lancealot.JobCreateView = Backbone.View.extend({
   handleSubmit: function(e) {
     e.preventDefault();
 
-
-
-    var client = $("option:selected").text();
+    var clientId = $("option:selected").val();
     var description = $('#description').val();
-    var rate = $('#rate').val();
-    var dueDate = $('#end').val();
+    var dueDate = $('#dueDate').val();
 
     var job = new Lancealot.Job({
-      client_id: client,
+      client_id: clientId,  //do something here
       job_name: description,
-      job_status: false,
+      job_status: "Not Started",
       due_date: dueDate      
     });
 
