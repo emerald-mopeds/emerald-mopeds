@@ -234,7 +234,12 @@ exports.fetchEmployees = function (req, res) {
 };
 
 exports.addEmployee = function (req, res) {
-  Employee.where({'user_id': req.session.user.id, first_name: req.body.first_name, last_name: req.body.last_name, phone: req.body.phone}).fetch()
+  Employee.where({
+    'user_id': req.session.user.id,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    phone: req.body.phone})
+  .fetch()
   .then(function (employee) {
     if (!employee) {
       new Employee({
@@ -252,4 +257,21 @@ exports.addEmployee = function (req, res) {
       res.redirect('/employees');
     }
   })
+};
+
+exports.deleteEmployee = function (req, res) {
+  Employee.where({
+    'user_id': req.session.user.id,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    address: req.body.address,
+    city: req.body.city,
+    zip_code: req.body.zip_code,
+    hourly_billing_fee: req.body.hourly_billing_fee,
+    phone: req.body.phone
+    })
+  .fetch()
+  .then(function (employee) {
+    console.log(employee);
+  });
 };
