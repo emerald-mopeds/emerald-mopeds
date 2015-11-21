@@ -49,7 +49,10 @@ Lancealot.JobCreateView = Backbone.View.extend({
     });
 
     job.save(null, {
-      // success: Lancealot.renderJobEntryView
+      success: function() {
+        $('input').val('');
+        Backbone.history.navigate('/jobs', true);
+      }
     });
 
     $('input').val('');
