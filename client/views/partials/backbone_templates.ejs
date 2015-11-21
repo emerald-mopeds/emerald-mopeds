@@ -41,6 +41,8 @@
   <thead>
     <th class="clientCells">Name</th>
     <th class="clientCells">Address</th>
+    <th class="clientCells">City</th>
+    <th class="clientCells">Zip Code</th>
     <th class="clientCells">Phone</th>
   </thead>
 </script>
@@ -48,21 +50,31 @@
 <script id='clientInfo' type='text/x-handlebars-template'>
     <td class="clientCells">{{name}}</td>
     <td class="clientCells">{{address}}</td>
+    <td class="clientCells">{{city}}</td>
+    <td class="clientCells">{{zip_code}}</td>
     <td class="clientCells">{{phone}}</td>
 </script>
 
 <script id='employeetable' type='text/x-handlebars-template'>
   <thead>
-    <th class="employeeCells">Name</th>
+    <th class="employeeCells">First Name</th>
+    <th class="employeeCells">Last Name</th>
     <th class="employeeCells">Address</th>
+    <th class="employeeCells">City</th>
+    <th class="employeeCells">Zip Code</th>
     <th class="employeeCells">Phone</th>
+    <th class="employeeCells">Hourly Billing Fee</th>
   </thead>
 </script>
 
 <script id='employeeInfo' type='text/x-handlebars-template'>
-    <td class="employeeCells">{{name}}</td>
+    <td class="employeeCells">{{first_name}}</td>
+    <td class="employeeCells">{{last_name}}</td>
     <td class="employeeCells">{{address}}</td>
+    <td class="employeeCells">{{city}}</td>
+    <td class="employeeCells">{{zip_code}}</td>
     <td class="employeeCells">{{phone}}</td>
+    <td class="employeeCells">{{hourly_billing_fee}}</td>
 </script>
 
 <script id='addJob' type='text/x-handlebars-template'>
@@ -94,6 +106,10 @@
       <input class="form-control" id="name" type="text"/><br/>
     <label>Address:</label>
       <input class="form-control" id="address" type="text"/><br/>
+    <label>City:</label>
+      <input class="form-control" id="city" type="text"/><br/>
+    <label>Zip Code:</label>
+      <input class="form-control" id="zipCode" type="number"/><br/>
     <label>Phone:</label>
       <input class="form-control" id="phone" type="text"/><br/>
     <button class="submit btn btn-default">Add Client</button>
@@ -102,12 +118,20 @@
 
 <script id='addEmployee' type='text/x-handlebars-template'>
   <form class="form-group" id="addEmployee">
-    <label>Name:</label>
-      <input class="form-control" id="name" type="text"/><br/>
+    <label>First Name:</label>
+      <input class="form-control" id="firstName" type="text"/><br/>
+    <label>Last Name:</label>
+      <input class="form-control" id="lastName" type="text"/><br/>
     <label>Address:</label>
       <input class="form-control" id="address" type="text"/><br/>
+    <label>City:</label>
+      <input class="form-control" id="city" type="text"/><br/>
+    <label>Zip Code:</label>
+      <input class="form-control" id="zipCode" type="number"/><br/>
     <label>Phone:</label>
       <input class="form-control" id="phone" type="text"/><br/>
+    <label>Hourly billing fee:</label>
+      <input class="form-control" id="billingFee" type="number"/><br/>
     <button class="submit btn btn-default">Add Employee</button>
   </form>
 </script>

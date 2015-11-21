@@ -80,20 +80,21 @@ exports.fetchClients = function (req, res) {
 // Builds new Client document with request properties and saves it to the db
 // */
 exports.addClient = function (req, res) {
-//   var newClient = new Client({
-//     name: req.body.name,
-//     address: req.body.address,
-//     phone: req.body.phone
-//   });
-//   newClient.save(function (err, newClient) {
-//     if (err) {
-//       res.status(500).send(err);
-//       console.log('error adding/saving client');
-//     } else {
-//       console.log('added new client: ', newClient);
-//       res.send(newClient);
-//     }
-//   });
+  new Client({
+    user_id: req.session.user.id,
+    name: req.body.name,
+    address: req.body.address,
+    city: req.body.city,
+    zip_code: req.body.zipCode,
+    phone: req.body.phone
+  }).save()
+  .then(function (newClient) {
+    console.log('toto');
+    res.send(newClient);
+  }, function (err) {
+    console.log(err);
+    res.status(500).send(err);
+  })
 };
 
 // /*

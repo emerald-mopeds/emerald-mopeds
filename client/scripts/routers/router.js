@@ -19,6 +19,7 @@ Lancealot.Router = Backbone.Router.extend({
     'clients': 'showClients',
     'addemployee': 'addEmployee',
     'employees': 'showEmployees',
+    'job/:id': 'showJob',
     '': 'showJobs'
   },
 
@@ -56,6 +57,11 @@ Lancealot.Router = Backbone.Router.extend({
     var employees = new Lancealot.Employees();
     var employeesView = new Lancealot.EmployeesPageView( { collection: employees });
     this.swapView(employeesView);
+  },
+
+  showJob: function(id) {
+    console.log(id);//a new JobView has to be created here (JobView does not exist yet, file to create!)
+                    //this JobView shows the job and its tasks, expenses and hours worked, and calls the API to get the data
   }
 
 
