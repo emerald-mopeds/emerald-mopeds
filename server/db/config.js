@@ -29,7 +29,7 @@ Promise.all([
     table.string('address');
     table.string('city');
     table.integer('zip_code');
-    table.integer('phone');
+    table.string('phone');
   }), tableCreated('clients'),
   knex.schema.createTableIfNotExists('employees', function (table) {
     table.increments('id').primary();
@@ -40,7 +40,7 @@ Promise.all([
     table.string('city');
     table.integer('zip_code');
     table.integer('hourly_billing_fee');
-    table.integer('phone');
+    table.string('phone');
   }), tableCreated('employees'),
   knex.schema.createTableIfNotExists('tasks', function (table) {
     table.increments('id').primary();
@@ -60,6 +60,7 @@ Promise.all([
     table.increments('id').primary();
     table.integer('client_id').unsigned().references('clients.id');
     table.string('job_status');
+    table.string('job_name');
   }), tableCreated('jobs'),
   knex.schema.createTableIfNotExists('jobs_tasks', function (table) {
     table.increments('id').primary();

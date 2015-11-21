@@ -47,14 +47,9 @@ exports.loginUser = function (req, res) {
 
   User.where('username', email).fetch()
   .then(function (user) {
-    if (user) {
+    if (user && user.get('password') === password) {
       //TODO: some encryption
-      if (user.get('password') === password) {
-        util.createSession(req, res, user);
-      } else {
-        //TODO: display to user that user or password does not exist
-        res.redirect('/signup');
-      }
+      util.createSession(req, res, user);
     } else {
       //TODO: display to user that user or password does not exist
       res.redirect('/signup');
@@ -112,16 +107,6 @@ exports.fetchClients = function (req, res) {
 // */
 
 exports.addJob = function (req, res) {
-//   //call createJobDoc first to find client id to use to create job document
-//   console.log('req body in addJob: ', req.body);
-//   //check if id already exists
-//   Job.findById(req.body._id, function (err, job) {
-//     if (err) {
-//       console.error("error");
-//     } else {
-//       util.createOrUpdateJob(req, res, job);
-//     }
-//   });
 };
 
 exports.createJobDoc = function(req, res) {
