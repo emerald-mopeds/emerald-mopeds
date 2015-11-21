@@ -7,6 +7,10 @@ var Job = require('./models/job');
 var Task = require('./models/task');
 var Job_Task = require('./models/job_task');
 
+///////////////////////////
+// CREATION QUERIES
+///////////////////////////
+
 // new Promise(function (resolve, reject) {
 //   new User({
 //     username: 'Rory',
@@ -83,19 +87,19 @@ var Job_Task = require('./models/job_task');
 //   });
 // });
 
-new Promise(function (resolve, reject) {
-  Job_Task.where('id', 1).fetch().then(function (job_task) {
-    Expense.where('id', 1).fetch().then(function (expense) {
-      console.log(expense);
-      console.log(job_task.expenses());
-      job_task.expenses().attach(expense).then(function () {
-        job_task.expenses().updatePivot({quantity: 1000});
-      })
-    });
-  });
-});
+// new Promise(function (resolve, reject) {
+//   Job_Task.where('id', 1).fetch().then(function (job_task) {
+//     Expense.where('id', 1).fetch().then(function (expense) {
+//       job_task.expenses().attach(expense).then(function () {
+//         job_task.expenses().updatePivot({quantity: 1000});
+//       })
+//     });
+//   });
+// });
 
-
+///////////////////////////
+// RETRIEVAL QUERIES
+///////////////////////////
 
 
 // new Promise(function (resolve, reject) {
