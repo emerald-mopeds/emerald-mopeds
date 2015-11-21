@@ -10,9 +10,22 @@ Lancealot.EmployeeRowView = Backbone.View.extend({
     this.model.on('change', this.render, this);
   },
 
+  events: {
+    'click .deleteEmployee': 'deleteEmployee',
+    'click .updateEmployee': 'updateEmployee'
+  },
+
   render: function(){
     this.$el.html(this.template(this.model.attributes));
     return this;
+  },
+
+  deleteEmployee: function() {
+    console.log('Pretend an employee is being deleted');
+  },
+
+  updateEmployee: function() {
+    console.log('Pretend an employee is being updated');
   }
 
 });
