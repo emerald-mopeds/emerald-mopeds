@@ -6,6 +6,7 @@ var Expense = require('./expense');
 
 var Job_Task = bookshelf.Model.extend({
   tableName: 'jobs_tasks',
+  hasTimestamps: true,
   job: function() {
     return this.belongsTo(Job);
   },

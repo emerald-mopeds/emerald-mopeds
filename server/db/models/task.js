@@ -4,6 +4,7 @@ var User = require('./user');
 
 var Task = bookshelf.Model.extend({
   tableName: 'tasks',
+  hasTimestamps: true,
   jobs: function () {
     return this.belongsToMany(Job).through(Job_Task);
   },

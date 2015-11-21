@@ -3,6 +3,7 @@ var User = require('./user');
 
 var Expense = bookshelf.Model.extend({
   tableName: 'expenses',
+  hasTimestamps: true,
   user: function() {
     return this.belongsTo(User);
   },
