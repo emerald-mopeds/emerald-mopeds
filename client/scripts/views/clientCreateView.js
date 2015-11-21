@@ -37,9 +37,12 @@ Lancealot.ClientCreateView = Backbone.View.extend({
       phone: phone,
     });
 
-    client.save({});
-
-    $('input').val('');
+    client.save(null, {
+      success: function() {
+        $('input').val('');
+        Backbone.history.navigate('/clients', true);
+      }
+    });
   }
 
 });

@@ -90,6 +90,10 @@ td {
   color: #57616f;
 }
 
+tr.clickable-row {
+    cursor: pointer;
+}
+
 table, form {
   font-family: 'Quicksand', sans-serif;
   font-size: 16px;
