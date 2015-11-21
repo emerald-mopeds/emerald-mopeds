@@ -15,6 +15,7 @@ Lancealot.JobsPageView = Backbone.View.extend({
   template: Templates['subHeader'],
 
   events: {
+    'click button#createNewJob': 'renderJobCreateView',
     'keyup input': 'handleSearch'
   },
 
@@ -35,6 +36,11 @@ Lancealot.JobsPageView = Backbone.View.extend({
     var client = $('#' + this.templateContent.inputDomID).val();
     var filteredList = this.collection.searchByClient(client);
     this.JobsListView.filteredRender(filteredList);
+  },
+
+  renderJobCreateView: function(e) {
+    e && e.preventDefault();
+    Backbone.history.navigate('/addjob', true);
   }
 
 });
