@@ -47,13 +47,16 @@ exports.loginUser = function (req, res) {
 
   User.where('username', email).fetch()
   .then(function (user) {
-    if (user && user.get('password') === password) {
-      //TODO: some encryption
-      util.createSession(req, res, user);
-    } else {
-      //TODO: display to user that user or password does not exist
+    if (!user) {
       res.redirect('/signup');
     }
+    user.comparePassword(password, function(matches) {
+      if (matches) {
+        util.createSession(req, res, user);
+      } else {
+        res.redirect('/signup');
+      }
+    });
   });
 };
 
