@@ -29,11 +29,15 @@ Lancealot.ClientCreateView = Backbone.View.extend({
 
     var name = $('#name').val();
     var address = $('#address').val();
+    var city = $('#city').val();
+    var zipCode = $('#zipCode').val();
     var phone = $('#phone').val();
 
     var client = new Lancealot.Client({
       name: name,
       address: address,
+      city: city,
+      zip_code: zipCode,
       phone: phone,
     });
 
