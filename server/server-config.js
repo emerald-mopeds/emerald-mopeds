@@ -53,8 +53,8 @@ app.get('/logout', function (req, res) {
 app.get('/api/clients', handle.fetchClients);
 app.post('/api/clients', handle.addClient);
 
-// app.get('/addclient', util.renderIndex);
-// app.get('/addjob', util.renderIndex);
+app.get('/api/employees', handle.fetchEmployees);
+app.post('/api/employees', handle.addEmployee);
 
 app.get('/api/jobs', handle.fetchJobs);
 app.post('/api/jobs', handle.addJob);
