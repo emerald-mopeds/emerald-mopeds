@@ -57,6 +57,10 @@ app.get('/api/jobs/:id?', function (req, res) {
 app.get('/api/clients', handle.fetchClients);
 app.post('/api/clients', handle.addClient);
 
+app.get('/api/tasks', handle.fetchTasks);
+app.post('/api/tasks', handle.addTask);
+app.get('/api/commontasks', handle.getCommonTasks);
+
 app.get('/api/employees', handle.fetchEmployees);
 app.post('/api/employees', handle.addEmployee);
 
