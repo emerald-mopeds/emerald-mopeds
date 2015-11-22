@@ -21,20 +21,16 @@
     <thead>
       <th>Client</th>
       <th>Description</th>
-      <th>Rate</th>
-      <th>Start</th>
-      <th>End</th>
+      <th>Due Date</th>
       <th>Status</th>
     </thead>
 </script>
 
 <script id='jobRow' type='text/x-handlebars-template'>
-    <td href='#'>{{client.name}}</td>
+    <td>{{clientName}}</td>
     <td>{{description}}</td>
-    <td>${{rate}}</td>
-    <td>{{formattedStart}}</td>
-    <td>{{formattedEnd}}</td>
-    <td><input type="checkbox" {{checked}}></td>
+    <td>{{dueDate}}</td>
+    <td>{{status}}</td>
 </script>
 
 <script id='clienttable' type='text/x-handlebars-template'>

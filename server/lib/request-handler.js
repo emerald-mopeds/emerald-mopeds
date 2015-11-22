@@ -89,11 +89,19 @@ exports.addClient = function (req, res) {
 exports.fetchJobs = function (req, res) {
   Client.where('user_id', req.session.user.id).fetchAll({withRelated: ['jobs']})
   .then(function (clients) {
-    if (clients) {
-      res.send(clients.related('jobs').serialize());
-    } else {
-      res.send('');
-    }
+    var jobsArray = [];
+    clients.serialize().forEach(function (client) {
+      var clientName = client.name;
+      client.jobs.forEach(function (job) {
+        jobsArray.push({description: job.job_name,
+          dueDate: job.due_date,
+          clientName: clientName,
+          status: job.job_status,
+          id: job.id
+        });
+      });
+    });
+    res.send(jobsArray);
   });
 };
 
@@ -133,6 +141,17 @@ exports.fetchClients = function (req, res) {
 // */
 
 exports.addJob = function (req, res) {
+  new Job({
+    client_id: req.body.client_id,
+    job_name: req.body.job_name,
+    job_status: req.body.job_status,
+    due_date: req.body.due_date
+  }).save()
+  .then(function (newJob) {
+    res.send(newJob);
+  }, function (err) {
+    res.status(500).send(err);
+  })
 };
 
 exports.getTasks = function (req, res) {
