@@ -263,15 +263,10 @@ exports.addEmployee = function (req, res) {
 };
 
 exports.deleteEmployee = function (req, res) {
+  var id = +req.params.id;
   Employee.where({
     user_id: req.session.user.id,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    address: req.body.address,
-    city: req.body.city,
-    zip_code: req.body.zip_code,
-    hourly_billing_fee: req.body.hourly_billing_fee,
-    phone: req.body.phone
+    id: id
     }).fetch().then(function (model) {
       model.destroy();
       res.send('Entry deleted');

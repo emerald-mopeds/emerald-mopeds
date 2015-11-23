@@ -59,7 +59,7 @@ app.get('/api/commontasks', handle.getCommonTasks);
 
 app.get('/api/employees', handle.fetchEmployees);
 app.post('/api/employees', handle.addEmployee);
-app.delete('/api/employees', handle.deleteEmployee);
+app.delete('/api/employees/:id', handle.deleteEmployee);
 app.put('/api/employees', handle.updateEmployee);
 
 app.get('/api/job/:id', function (req, res) {
