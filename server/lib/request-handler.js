@@ -80,6 +80,16 @@ exports.addClient = function (req, res) {
   })
 };
 
+exports.deleteClient = function (req, res) {
+  var id = +req.params.id;
+  Client.where({
+    user_id: req.session.user.id,
+    id: id
+    }).fetch().then(function (model) {
+      model.destroy();
+    });
+};
+
 // /*
 // fetchJobs is called when /jobs path receives get request
 // Finds all jobs in the database, replaces client_id with an object that include client Id and name
@@ -270,7 +280,6 @@ exports.deleteEmployee = function (req, res) {
     }).fetch().then(function (model) {
       model.destroy();
     });
-
 };
 
 exports.updateEmployee = function (req, res) {

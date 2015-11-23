@@ -14,9 +14,18 @@ Lancealot.ClientRowView = Backbone.View.extend({
     this.model.on('change', this.render, this);
   },
 
+  events: {
+    'click .deleteClient': 'deleteClient'
+  },
+
   render: function(){
     this.$el.html(this.template(this.model.attributes));
     return this;
+  },
+
+  deleteClient: function(e) {
+    e && e.preventDefault();
+    this.model.destroy();
   }
 
 });

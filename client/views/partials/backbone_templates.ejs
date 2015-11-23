@@ -40,6 +40,8 @@
     <th class="clientCells">City</th>
     <th class="clientCells">Zip Code</th>
     <th class="clientCells">Phone</th>
+    <th class="clientCells"></th>
+    <th class="clientCells"></th>
   </thead>
 </script>
 
@@ -49,6 +51,8 @@
     <td class="clientCells">{{city}}</td>
     <td class="clientCells">{{zip_code}}</td>
     <td class="clientCells">{{phone}}</td>
+    <td class="clientCells"><button class='updateClient'>Update</button></td>
+    <td class="clientCells"><button class='deleteClient'>Delete</button></td>
 </script>
 
 <script id='employeetable' type='text/x-handlebars-template'>
@@ -66,15 +70,15 @@
 </script>
 
 <script id='employeeInfo' type='text/x-handlebars-template'>
-    <td id="employeeCells">{{first_name}}</td>
-    <td id="employeeCells">{{last_name}}</td>
-    <td id="employeeCells">{{address}}</td>
-    <td id="employeeCells">{{city}}</td>
-    <td id="employeeCells">{{zip_code}}</td>
-    <td id="employeeCells">{{phone}}</td>
-    <td id="employeeCells">{{hourly_billing_fee}}</td>
-    <td id="employeeCells"><button class='updateEmployee'>Update</button></td>
-    <td id="employeeCells"><button class='deleteEmployee'>Delete</button></td>
+    <td class="employeeCells">{{first_name}}</td>
+    <td class="employeeCells">{{last_name}}</td>
+    <td class="employeeCells">{{address}}</td>
+    <td class="employeeCells">{{city}}</td>
+    <td class="employeeCells">{{zip_code}}</td>
+    <td class="employeeCells">{{phone}}</td>
+    <td class="employeeCells">{{hourly_billing_fee}}</td>
+    <td class="employeeCells"><button class='updateEmployee'>Update</button></td>
+    <td class="employeeCells"><button class='deleteEmployee'>Delete</button></td>
 </script>
 
 <script id='addJob' type='text/x-handlebars-template'>

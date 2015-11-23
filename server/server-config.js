@@ -52,6 +52,7 @@ app.get('/logout', function (req, res) {
 
 app.get('/api/clients', handle.fetchClients);
 app.post('/api/clients', handle.addClient);
+app.delete('/api/clients/:id', handle.deleteClient);
 
 app.get('/api/tasks', handle.fetchTasks);
 app.post('/api/tasks', handle.addTask);

@@ -8,6 +8,7 @@ Lancealot.EmployeeEditView = Backbone.View.extend({
 
   initialize: function() {
     this.render();
+    console.log(this.model);
   },
 
   render: function(){

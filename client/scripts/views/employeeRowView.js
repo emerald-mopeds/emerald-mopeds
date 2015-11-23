@@ -22,14 +22,12 @@ Lancealot.EmployeeRowView = Backbone.View.extend({
 
   deleteEmployee: function(e) {
     e && e.preventDefault();
-    var that = this;
     this.model.destroy();
   },
 
   updateEmployee: function(e) {
     e && e.preventDefault();
     Backbone.history.navigate('/editemployee', true);
-    console.log(this.model.get('first_name'));
   }
 
 });
