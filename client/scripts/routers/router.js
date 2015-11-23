@@ -18,7 +18,6 @@ Lancealot.Router = Backbone.Router.extend({
     'addclient': 'addClient',
     'clients': 'showClients',
     'addemployee': 'addEmployee',
-    'editemployee': 'editEmployee',
     'employees': 'showEmployees',
     'job/:id': 'showJob',
     '': 'showJobs'
@@ -52,10 +51,6 @@ Lancealot.Router = Backbone.Router.extend({
 
   addEmployee: function() {
     this.swapView(new Lancealot.EmployeeCreateView());
-  },
-
-  editEmployee: function() {
-    this.swapView(new Lancealot.EmployeeEditView());
   },
   
   showEmployees: function() {

@@ -70,13 +70,13 @@
 </script>
 
 <script id='employeeInfo' type='text/x-handlebars-template'>
-    <td class="employeeCells">{{first_name}}</td>
-    <td class="employeeCells">{{last_name}}</td>
-    <td class="employeeCells">{{address}}</td>
-    <td class="employeeCells">{{city}}</td>
-    <td class="employeeCells">{{zip_code}}</td>
-    <td class="employeeCells">{{phone}}</td>
-    <td class="employeeCells">{{hourly_billing_fee}}</td>
+    <td class="employeeCells" id="employeeFirstName" contenteditable>{{first_name}}</td>
+    <td class="employeeCells" id="employeeLastName" contenteditable>{{last_name}}</td>
+    <td class="employeeCells" id="employeeAddress" contenteditable>{{address}}</td>
+    <td class="employeeCells" id="employeeCity" contenteditable>{{city}}</td>
+    <td class="employeeCells" id="employeeZipCode" contenteditable>{{zip_code}}</td>
+    <td class="employeeCells" id="employeePhone" contenteditable>{{phone}}</td>
+    <td class="employeeCells" id="employeeHourlyBillingFee" contenteditable>{{hourly_billing_fee}}</td>
     <td class="employeeCells"><button class='updateEmployee'>Update</button></td>
     <td class="employeeCells"><button class='deleteEmployee'>Delete</button></td>
 </script>
@@ -133,26 +133,6 @@
     <label>Hourly billing fee:</label>
       <input class="form-control" id="billingFee" type="number"/><br/>
     <button class="submit btn btn-default">Add Employee</button>
-  </form>
-</script>
-
-<script id='editEmployee' type='text/x-handlebars-template'>
-  <form class="form-group" id="editEmployee">
-    <label>First Name:</label>
-      <input class="form-control" id="firstName" type="text"/><br/>
-    <label>Last Name:</label>
-      <input class="form-control" id="lastName" type="text"/><br/>
-    <label>Address:</label>
-      <input class="form-control" id="address" type="text"/><br/>
-    <label>City:</label>
-      <input class="form-control" id="city" type="text"/><br/>
-    <label>Zip Code:</label>
-      <input class="form-control" id="zipCode" type="number"/><br/>
-    <label>Phone:</label>
-      <input class="form-control" id="phone" type="text"/><br/>
-    <label>Hourly billing fee:</label>
-      <input class="form-control" id="billingFee" type="number"/><br/>
-    <button class="submit btn btn-default">Edit Employee</button>
   </form>
 </script>
 

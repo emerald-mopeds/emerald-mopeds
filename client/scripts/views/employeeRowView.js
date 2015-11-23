@@ -27,7 +27,26 @@ Lancealot.EmployeeRowView = Backbone.View.extend({
 
   updateEmployee: function(e) {
     e && e.preventDefault();
-    Backbone.history.navigate('/editemployee', true);
+
+    var tableRow = this.$el[0];
+    var firstName = $(tableRow).find('#employeeFirstName').text();
+    var lastName = $(tableRow).find('#employeeLastName').text();
+    var address = $(tableRow).find('#employeeAddress').text();
+    var city = $(tableRow).find('#employeeCity').text();
+    var zipCode = $(tableRow).find('#employeeZipCode').text();
+    var phone = $(tableRow).find('#employeePhone').text();
+    var hourlyBillingFee = $(tableRow).find('#employeeHourlyBillingFee').text();
+
+    this.model.set({
+      first_name: firstName,
+      last_name: lastName,
+      address: address,
+      city: city,
+      zip_code: zipCode,
+      phone: phone,
+      hourly_billing_fee: hourlyBillingFee
+    });
+    this.model.save();
   }
 
 });

@@ -289,8 +289,15 @@ exports.updateEmployee = function (req, res) {
     id: id
   }).fetch().then(function (model) {
     model.set({
-      // set what isn't '' as req.body.x
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      address: req.body.address,
+      city: req.body.city,
+      zip_code: req.body.zip_code,
+      hourly_billing_fee: req.body.hourly_billing_fee,
+      phone: req.body.phone
     });
+    model.save();
     res.send('Entry updated');
   });
 };
