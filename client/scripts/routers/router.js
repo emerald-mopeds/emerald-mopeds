@@ -60,8 +60,8 @@ Lancealot.Router = Backbone.Router.extend({
   },
 
   showJob: function(id) {
-    console.log(id);//a new JobView has to be created here (JobView does not exist yet, file to create!)
-                    //this JobView shows the job and its tasks, expenses and hours worked, and calls the API to get the data
+    var jobView = new Lancealot.JobView({id: id});
+    this.swapView(jobView);
   }
 
 

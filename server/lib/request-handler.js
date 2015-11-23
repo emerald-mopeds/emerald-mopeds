@@ -109,7 +109,7 @@ exports.fetchJobs = function (req, res) {
 exports.fetchJob = function (req, res) {
   var returnObj = {};
   var jobId = +req.params.id;
-
+  console.log('hi', jobId);
   Job.where('id', jobId).fetch({withRelated: ['client']})
   .then(function (job) {
     returnObj.job = job.serialize();

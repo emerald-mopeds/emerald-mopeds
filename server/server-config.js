@@ -60,12 +60,14 @@ app.get('/api/commontasks', handle.getCommonTasks);
 app.get('/api/employees', handle.fetchEmployees);
 app.post('/api/employees', handle.addEmployee);
 
+app.get('/api/job/:id', function (req, res) {
+  console.log('hi');
+  handle.fetchJob(req, res);
+});
 app.get('/api/jobs', handle.fetchJobs);
 app.post('/api/jobs', handle.addJob);
 
-app.get('/api/job/:id?', function (req, res) {
-  handle.fetchJob(req, res);
-});
+
 
 app.get('/*', util.checkUser, util.renderIndex);
 
