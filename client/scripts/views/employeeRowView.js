@@ -28,14 +28,14 @@ Lancealot.EmployeeRowView = Backbone.View.extend({
   updateEmployee: function(e) {
     e && e.preventDefault();
 
-    var tableRow = this.$el[0];
-    var firstName = $(tableRow).find('#employeeFirstName').text();
-    var lastName = $(tableRow).find('#employeeLastName').text();
-    var address = $(tableRow).find('#employeeAddress').text();
-    var city = $(tableRow).find('#employeeCity').text();
-    var zipCode = $(tableRow).find('#employeeZipCode').text();
-    var phone = $(tableRow).find('#employeePhone').text();
-    var hourlyBillingFee = $(tableRow).find('#employeeHourlyBillingFee').text();
+    var thisRow = this.$el[0];
+    var firstName = $(thisRow).find('#employeeFirstName').text();
+    var lastName = $(thisRow).find('#employeeLastName').text();
+    var address = $(thisRow).find('#employeeAddress').text();
+    var city = $(thisRow).find('#employeeCity').text();
+    var zipCode = $(thisRow).find('#employeeZipCode').text();
+    var phone = $(thisRow).find('#employeePhone').text();
+    var hourlyBillingFee = $(thisRow).find('#employeeHourlyBillingFee').text();
 
     this.model.set({
       first_name: firstName,

@@ -15,7 +15,8 @@ Lancealot.ClientRowView = Backbone.View.extend({
   },
 
   events: {
-    'click .deleteClient': 'deleteClient'
+    'click .deleteClient': 'deleteClient',
+    'click .updateClient': 'updateClient'
   },
 
   render: function(){
@@ -26,6 +27,26 @@ Lancealot.ClientRowView = Backbone.View.extend({
   deleteClient: function(e) {
     e && e.preventDefault();
     this.model.destroy();
+  },
+
+  updateClient: function(e) {
+    e && e.preventDefault();
+    var thisRow = this.$el[0];
+
+    var name = $(thisRow).find('#clientName').text();
+    var address = $(thisRow).find('#clientAddress').text();
+    var city = $(thisRow).find('#clientCity').text();
+    var zipCode = $(thisRow).find('#clientZipCode').text();
+    var phone = $(thisRow).find('#clientPhone').text();
+
+    this.model.set({
+      name: name,
+      address: address,
+      city: city,
+      zipCode: zipCode,
+      phone: phone
+    })
+    this.model.save();
   }
 
 });

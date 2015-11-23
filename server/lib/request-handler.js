@@ -90,6 +90,24 @@ exports.deleteClient = function (req, res) {
     });
 };
 
+exports.updateClient = function (req, res) {
+  var id = +req.params.id;
+  Client.where({
+    user_id: req.session.user.id,
+    id: id
+  }).fetch().then(function (model) {
+    model.set({
+      name: req.body.name,
+      address: req.body.address,
+      city: req.body.city,
+      zip_code: req.body.zipCode,
+      phone: req.body.phone
+    });
+    model.save();
+    res.send('Entry updated');
+  })
+}
+
 // /*
 // fetchJobs is called when /jobs path receives get request
 // Finds all jobs in the database, replaces client_id with an object that include client Id and name

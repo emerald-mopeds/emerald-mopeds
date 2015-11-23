@@ -46,11 +46,11 @@
 </script>
 
 <script id='clientInfo' type='text/x-handlebars-template'>
-    <td class="clientCells">{{name}}</td>
-    <td class="clientCells">{{address}}</td>
-    <td class="clientCells">{{city}}</td>
-    <td class="clientCells">{{zip_code}}</td>
-    <td class="clientCells">{{phone}}</td>
+    <td class="clientCells" id="clientName" contenteditable>{{name}}</td>
+    <td class="clientCells" id="clientAddress" contenteditable>{{address}}</td>
+    <td class="clientCells" id="clientCity" contenteditable>{{city}}</td>
+    <td class="clientCells" id="clientZipCode" contenteditable>{{zip_code}}</td>
+    <td class="clientCells" id="clientPhone" contenteditable>{{phone}}</td>
     <td class="clientCells"><button class='updateClient'>Update</button></td>
     <td class="clientCells"><button class='deleteClient'>Delete</button></td>
 </script>
