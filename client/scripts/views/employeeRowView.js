@@ -1,4 +1,4 @@
-//Employee View --> Connected to Employee model
+//Employee Row View --> Connected to Employee model
 
 Lancealot.EmployeeRowView = Backbone.View.extend({
 
@@ -21,13 +21,15 @@ Lancealot.EmployeeRowView = Backbone.View.extend({
   },
 
   deleteEmployee: function(e) {
-    e.preventDefault();
+    e && e.preventDefault();
     var that = this;
     this.model.destroy();
   },
 
-  updateEmployee: function() {
-    console.log('Pretend an employee is being updated');
+  updateEmployee: function(e) {
+    e && e.preventDefault();
+    Backbone.history.navigate('/editemployee', true);
+    console.log(this.model.get('first_name'));
   }
 
 });
