@@ -269,14 +269,15 @@ exports.deleteEmployee = function (req, res) {
     id: id
     }).fetch().then(function (model) {
       model.destroy();
-      res.send('Entry deleted');
     });
 
 };
 
 exports.updateEmployee = function (req, res) {
+  var id = +req.params.id;
   Employee.where({
-    user_id: req.session.user.id // change back to req.session.user.id once done testing
+    user_id: req.session.user.id,
+    id: id
   }).fetch().then(function (model) {
     model.set({
       // set what isn't '' as req.body.x

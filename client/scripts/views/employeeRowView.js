@@ -24,7 +24,6 @@ Lancealot.EmployeeRowView = Backbone.View.extend({
     e.preventDefault();
     var that = this;
     this.model.destroy();
-    console.log('Pretend an employee is being deleted');
   },
 
   updateEmployee: function() {

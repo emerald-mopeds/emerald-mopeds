@@ -7,6 +7,7 @@ Lancealot.EmployeesListView = Backbone.View.extend({
 
   initialize: function(){
     this.collection.on('sync', this.addAll, this);
+    this.listenTo(this.collection, 'destroy', this.render);
     this.collection.fetch();
   },
 
