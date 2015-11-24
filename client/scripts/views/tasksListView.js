@@ -12,14 +12,20 @@ Lancealot.TasksListView = Backbone.View.extend({
   template: Templates['tasktable'],
 
   initialize: function(options){
+    this.url = options.jobId;
     this.collection.on('sync', this.addAll, this);
     this.collection.fetch({
-      url: '/api/job/' + options.jobId
+      url: '/api/job/' + this.url
     });
   },
 
   addOne: function(item){
     var view = new Lancealot.TaskRowView({ model: item });
+    view.on('reinit', function () {
+      this.collection.fetch({
+        url: '/api/job/' + this.url
+      })
+    }, this);
     this.$el.append(view.render().el);
   },
 

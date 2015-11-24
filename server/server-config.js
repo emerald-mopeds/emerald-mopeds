@@ -68,6 +68,8 @@ app.get('/api/job/:id', handle.fetchJob);
 app.get('/api/jobs', handle.fetchJobs);
 app.post('/api/jobs', handle.addJob);
 
+app.post('/api/expense/', handle.addExpenseToTask);
+
 app.put('/api/preferences', handle.updatePreferences);
 
 app.get('/api/job/:id?', function (req, res) {

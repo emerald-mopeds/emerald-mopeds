@@ -13,10 +13,12 @@ Lancealot.TaskRowView = Backbone.View.extend({
   className: 'clickable-row',
 
   events: {
-    'click': function() {
-      // this.model.navigateToView();
-    },
-    'click input:checkbox': 'toggleComplete'
+    // 'click': function() {
+    //   // this.model.navigateToView();
+    // },
+    'click input:checkbox': 'toggleComplete',
+    'click .addEmployeeToTask': 'addEmployeeToTask',
+    'click .addExpenseToTask': 'addExpenseToTask'
   },
 
   template: Templates['taskRow'],
@@ -31,7 +33,7 @@ Lancealot.TaskRowView = Backbone.View.extend({
 
     modelData.client = modelData.client || "No Client";
     modelData.employees = modelData.employees ? modelData.employees.map(function (employee) {
-      return employee.first_name + ' ' + employee.last_name + ' ($' + employee.hourly_billing_fee + '/hr)';
+      return employee.first_name + ' ' + employee.last_name + ' ($' + employee.hourly_billing_fee + '/hr): ' + employee._pivot_time_spent + 'hrs, TOTAL: $' + employee.hourly_billing_fee * employee._pivot_time_spent;
     }).join(', ') : "No Current Employees";
     modelData.expenses = modelData.expenses.length ? modelData.expenses.map(function (expense) {
       return expense.expense_name + ' ($' + expense.unit_price + ')';
@@ -58,7 +60,24 @@ Lancealot.TaskRowView = Backbone.View.extend({
     var checked = e.target.checked;
     var client = this.model.attributes.client.name;
     this.model.save({status: checked});
+  },
+
+  addEmployeeToTask: function(e) {
+    console.log(e);
+  },
+
+  addExpenseToTask: function(e) {
+    var thisTaskView = this;
+    $.ajax({
+      url: '/api/expense/',
+      method: 'POST',
+      data: {
+        job_task_id: this.model.get('id'),
+        user_id: this.model.get('client').user_id
+      },
+      success: function () {
+        thisTaskView.trigger('reinit');
+      }
+    });
   }
-
-
 });
