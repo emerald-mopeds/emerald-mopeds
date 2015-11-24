@@ -74,7 +74,7 @@ exports.updatePreferences = function (req, res) {
       if (matches) {
         user.set('password', newPassword).save()
         .then(function(userSaved) {
-          console.log(userSaved);
+          res.send(userSaved);
         })
       } else {
         res.redirect('/signup');

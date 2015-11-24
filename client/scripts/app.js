@@ -47,15 +47,9 @@ window.Lancealot = Backbone.View.extend({
     this.router.navigate('/employees', { trigger: true });
   },
 
-  renderJobCreateView: function(e) {
+  renderPreferences: function(e) {
     e && e.preventDefault();
-    this.router.navigate('/addjob', { trigger: true });
-  },
-  
-  renderJobView: function(e) {
-    console.log(e);
-    e && e.preventDefault();
-    this.router.navigate('/addjob', { trigger: true });
+    this.router.navigate('/preferences', { trigger: true });
   }
 
 });

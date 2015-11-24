@@ -21,16 +21,12 @@ Lancealot.PreferencesPageView = Backbone.View.extend({
     var password = $('#oldPassword').val();
     var newPassword = $('#newPassword').val();
   
-    $.ajax({
-      type: 'PUT',
-      url: '/api/preferences',
+    $.ajax('/api/preferences', {
+      method: 'PUT',
       data: { password: password, newPassword: newPassword },
-      success: function (data) {
+      success: function() {
         console.log('hello');
         $('input').val('');
-      }, 
-      error: function (error) {
-        console.log(error);
       }
     });
   }
