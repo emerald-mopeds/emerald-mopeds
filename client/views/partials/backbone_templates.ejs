@@ -45,6 +45,16 @@
   </thead>
 </script>
 
+<script id='tasktable' type='text/x-handlebars-template'>
+</script>
+
+<script id='taskRow' type='text/x-handlebars-template'>
+  <h2>Employees</h2><p>{{employees}}</p>
+  <h2>Client</h2><p>Name: {{client.name}}</p>
+  <h2>Expenses</h2>
+  <p>{{expenses}}</p>
+</script>
+
 <script id='clientInfo' type='text/x-handlebars-template'>
     <td class="clientCells" id="clientName" contenteditable>{{name}}</td>
     <td class="clientCells" id="clientAddress" contenteditable>{{address}}</td>

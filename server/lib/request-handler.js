@@ -137,18 +137,35 @@ exports.fetchJobs = function (req, res) {
 exports.fetchJob = function (req, res) {
   var returnObj = {};
   var jobId = +req.params.id;
-  console.log('hi', jobId);
-  Job.where('id', jobId).fetch({withRelated: ['client']})
-  .then(function (job) {
-    returnObj.job = job.serialize();
-  })
-  .then(function () {
-    Job_Task.where('job_id', jobId).fetch({withRelated: ['employees', 'expenses']})
-    .then(function (job_task) {
-      returnObj.employees = job_task.related('employees').serialize();
-      returnObj.expenses = job_task.related('expenses').serialize();
-      res.send(returnObj);
+  // Promise.all([
+    // Job.where('id', jobId).fetch({withRelated: ['client']})
+    // .then(function (job) {
+    //   returnObj.job = job.serialize();
+    //   returnObj.client = job.related('client').serialize();
+    // }),
+    Job_Task.where('job_id', jobId).fetchAll({withRelated: ['employees', 'expenses']})
+    .then(function (jobs_tasks) {
+      if (jobs_tasks) {
+        // var tasksIds = jobs_tasks.pluck('task_id');
+        // Task.query('whereIn',tasksIds)
+        var returnArr = jobs_tasks.map(function (jt) {
+          return Task.where('id', jt.get('task_id')).fetch()
+                  .then(function () {
+                    
+                  })
+        })
+        console.log(returnArr);
+        console.log(jobs_tasks.serialize())        
+        // returnObj.employees = jobs_tasks.related('employees').serialize();
+        // returnObj.expenses = jobs_tasks.related('expenses').serialize();
+      } else {
+        returnObj.employees = returnObj.expenses = null;
+      }
     })
+  // ])
+  .then(function () {
+    console.log(returnObj);
+    res.send(returnObj);
   });
 };
 
