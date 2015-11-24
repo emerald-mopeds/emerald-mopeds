@@ -6,11 +6,8 @@ Lancealot.EmployeesListView = Backbone.View.extend({
   template: Templates['employeetable'],
 
   initialize: function(){
-    this.collection.on('sync', this.addAll, this);
-    this.listenTo(this.collection, 'destroy', function() {
-      this.render();
-      this.addAll();
-    });
+    this.collection.on('sync', this.render, this);
+    this.listenTo(this.collection, 'destroy', this.render);
     this.collection.fetch();
   },
 
@@ -26,6 +23,7 @@ Lancealot.EmployeesListView = Backbone.View.extend({
   render: function(){
     this.$el.empty();
     this.$el.html(this.template());
+    this.addAll();
     return this;
   },
 
