@@ -39,6 +39,7 @@ Lancealot.EmployeeCreateView = Backbone.View.extend({
     employee.save({});
 
     $('input').val('');
+    Backbone.history.navigate('/employees', true);
   }
 
 });
