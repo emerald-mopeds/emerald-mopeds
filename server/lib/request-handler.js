@@ -135,21 +135,18 @@ exports.fetchJobs = function (req, res) {
 
 //fetchJob Response: {job, employees, expenses}, with client as job.client
 exports.fetchJob = function (req, res) {
-  var returnObj = {};
   var jobId = +req.params.id;
-  console.log('hi', jobId);
-  Job.where('id', jobId).fetch({withRelated: ['client']})
-  .then(function (job) {
-    returnObj.job = job.serialize();
-  })
-  .then(function () {
-    Job_Task.where('job_id', jobId).fetch({withRelated: ['employees', 'expenses']})
-    .then(function (job_task) {
-      returnObj.employees = job_task.related('employees').serialize();
-      returnObj.expenses = job_task.related('expenses').serialize();
+
+  Job_Task.where('job_id', jobId).fetchAll({withRelated: ['employees', 'expenses', 'task', 'client']})
+  .then(function (jobs_tasks) {
+    if (jobs_tasks) {
+      console.log(jobs_tasks.serialize())
+      res.send(jobs_tasks.serialize());
+    } else {
+      returnObj.employees = returnObj.expenses = null;
       res.send(returnObj);
-    })
-  });
+    }
+  })
 };
 
 /*

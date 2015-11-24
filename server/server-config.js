@@ -64,10 +64,7 @@ app.post('/api/employees', handle.addEmployee);
 app.delete('/api/employees/:id', handle.deleteEmployee);
 app.put('/api/employees/:id', handle.updateEmployee);
 
-app.get('/api/job/:id', function (req, res) {
-  console.log('hi');
-  handle.fetchJob(req, res);
-});
+app.get('/api/job/:id', handle.fetchJob);
 app.get('/api/jobs', handle.fetchJobs);
 app.post('/api/jobs', handle.addJob);
 

@@ -12,6 +12,7 @@ Lancealot.Clients = Backbone.Collection.extend({
     var pattern = new RegExp(value,"gi");
 
     var filtered = (this.filter(function (client) {
+      console.log(client);
       return pattern.test(client.get('name'));
     }));
 
