@@ -46,7 +46,15 @@ Lancealot.EmployeeRowView = Backbone.View.extend({
       phone: phone,
       hourly_billing_fee: hourlyBillingFee
     });
-    this.model.save();
+    this.model.save(null, {
+      success: function() {
+        $('<div>Changes changed successfully!</div>').insertBefore('table')
+          .delay(1500)
+          .fadeOut(function() {
+            $(this).remove(); 
+          });
+      }
+    });
   }
 
 });

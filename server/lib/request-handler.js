@@ -345,8 +345,9 @@ exports.updateEmployee = function (req, res) {
       phone: req.body.phone,
       hourly_billing_fee: req.body.hourly_billing_fee
     });
-    model.save();
-    res.send('Entry updated');
+    model.save().then(function (savedCLient) {
+      res.status(204).send('Entry updated');
+    })
   });
 };
 
