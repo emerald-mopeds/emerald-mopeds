@@ -19,12 +19,8 @@ Lancealot.Router = Backbone.Router.extend({
     'clients': 'showClients',
     'addemployee': 'addEmployee',
     'employees': 'showEmployees',
-<<<<<<< de5d3436bb127d240765038b381217a871a32744
-    'job/:id': 'showTasks',
-=======
     'preferences': 'showPreferences',
-    'job/:id': 'showJob',
->>>>>>> changed preferences to a put, and handling preferences througy router
+    'job/:id': 'showTasks',
     '': 'showJobs'
   },
 
