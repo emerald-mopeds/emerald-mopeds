@@ -17,7 +17,8 @@ window.Lancealot = Backbone.View.extend({
   events: {
     'click li a.jobs':  'renderJobsView',
     'click li a.clients': 'renderClientsView',
-    'click li a.employees' : 'renderEmployeesView'
+    'click li a.employees' : 'renderEmployeesView',
+    'click li a.preferences' : 'renderPreferences'
   },
 
   initialize: function(){

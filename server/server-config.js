@@ -44,9 +44,6 @@ app.post('/login', handle.loginUser);
 app.get('/signup', util.signupUserForm);
 app.post('/signup', handle.signupUser);
 
-app.get('/preferences', util.preferencesForm);
-app.post('/preferences', handle.updatePreferences);
-
 app.get('/logout', function (req, res) {
   req.session.destroy(function () {
     res.redirect('/login');
@@ -71,7 +68,11 @@ app.get('/api/job/:id', handle.fetchJob);
 app.get('/api/jobs', handle.fetchJobs);
 app.post('/api/jobs', handle.addJob);
 
+app.put('/api/preferences', handle.updatePreferences);
 
+app.get('/api/job/:id?', function (req, res) {
+  handle.fetchJob(req, res);
+});
 
 app.get('/*', util.checkUser, util.renderIndex);
 

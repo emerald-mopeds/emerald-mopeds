@@ -19,7 +19,12 @@ Lancealot.Router = Backbone.Router.extend({
     'clients': 'showClients',
     'addemployee': 'addEmployee',
     'employees': 'showEmployees',
+<<<<<<< de5d3436bb127d240765038b381217a871a32744
     'job/:id': 'showTasks',
+=======
+    'preferences': 'showPreferences',
+    'job/:id': 'showJob',
+>>>>>>> changed preferences to a put, and handling preferences througy router
     '': 'showJobs'
   },
 
@@ -57,6 +62,11 @@ Lancealot.Router = Backbone.Router.extend({
     var employees = new Lancealot.Employees();
     var employeesView = new Lancealot.EmployeesPageView( { collection: employees });
     this.swapView(employeesView);
+  },
+
+  showPreferences: function() {
+    var preferencesView = new Lancealot.PreferencesPageView();
+    this.swapView(preferencesView);
   },
 
   showTasks: function(jobId) {
