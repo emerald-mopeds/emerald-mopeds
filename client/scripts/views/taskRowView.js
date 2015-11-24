@@ -26,11 +26,8 @@ Lancealot.TaskRowView = Backbone.View.extend({
   },
 
   render: function() {
-
     // grabbing our job model's attributes
     var modelData = this.model.toJSON();
-
-    console.log(modelData);
 
     modelData.client = modelData.client || "No Client";
     modelData.employees = modelData.employees ? modelData.employees.map(function (employee) {
