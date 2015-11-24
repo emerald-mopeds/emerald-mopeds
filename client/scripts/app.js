@@ -17,7 +17,8 @@ window.Lancealot = Backbone.View.extend({
   events: {
     'click li a.jobs':  'renderJobsView',
     'click li a.clients': 'renderClientsView',
-    'click li a.employees' : 'renderEmployeesView'
+    'click li a.employees' : 'renderEmployeesView',
+    'click li a.preferences' : 'renderPreferences'
   },
 
   initialize: function(){
@@ -46,15 +47,9 @@ window.Lancealot = Backbone.View.extend({
     this.router.navigate('/employees', { trigger: true });
   },
 
-  renderJobCreateView: function(e) {
+  renderPreferences: function(e) {
     e && e.preventDefault();
-    this.router.navigate('/addjob', { trigger: true });
-  },
-  
-  renderJobView: function(e) {
-    console.log(e);
-    e && e.preventDefault();
-    this.router.navigate('/addjob', { trigger: true });
+    this.router.navigate('/preferences', { trigger: true });
   }
 
 });

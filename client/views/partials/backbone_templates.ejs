@@ -5,7 +5,8 @@
         <li><a href='#' class='jobs'>Jobs</a></li>
         <li><a href='#' class='clients'>Clients</a></li>
         <li><a href='#' class='employees'>Employees</a></li>
-        <li><a href='/logout' class='add'>Logout</a></li>
+        <li><a href='#' class='preferences'>Preferences</a></li>
+        <li><a href='/logout' class='logout'>Logout</a></li>
       </ul>
     </nav>
   </div>
@@ -122,6 +123,16 @@
     <label>Phone:</label>
       <input class="form-control" id="phone" type="text"/><br/>
     <button class="submit btn btn-default">Add Client</button>
+  </form>
+</script>
+
+<script id='preferences' type='text/x-handlebars-template'>
+  <form class="form-group" id="preferences">
+    <label>Old Password:</label>
+      <input class="form-control" id="oldPassword" type="password" name="oldPassword"/><br/>
+    <label>New Password:</label>
+      <input class="form-control" id="newPassword" type="password" name="newPassword"/><br/>
+    <button class="submit btn btn-default">Change password</button>
   </form>
 </script>
 
