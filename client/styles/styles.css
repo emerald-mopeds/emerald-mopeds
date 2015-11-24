@@ -113,3 +113,7 @@ label {
 #no_client {
   font-size: 15px;
 }
+
+.clickable-row {
+  border: 1px solid black;
+}

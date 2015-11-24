@@ -137,7 +137,7 @@ exports.fetchJobs = function (req, res) {
 exports.fetchJob = function (req, res) {
   var jobId = +req.params.id;
 
-  Job_Task.where('job_id', jobId).fetchAll({withRelated: ['employees', 'expenses', 'tasks']})
+  Job_Task.where('job_id', jobId).fetchAll({withRelated: ['employees', 'expenses', 'task', 'client']})
   .then(function (jobs_tasks) {
     if (jobs_tasks) {
       console.log(jobs_tasks.serialize())

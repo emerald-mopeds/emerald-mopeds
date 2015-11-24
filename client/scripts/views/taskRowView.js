@@ -32,8 +32,13 @@ Lancealot.TaskRowView = Backbone.View.extend({
 
     console.log(modelData);
 
-    modelData.employees = modelData.employees || "No Current Employees";
-    modelData.expenses = modelData.expenses || "No Current Expenses";
+    modelData.client = modelData.client || "No Client";
+    modelData.employees = modelData.employees ? modelData.employees.map(function (employee) {
+      return employee.first_name + ' ' + employee.last_name + ' ($' + employee.hourly_billing_fee + '/hr)';
+    }) : "No Current Employees";
+    modelData.expenses = modelData.expenses.length ? modelData.expenses.map(function (expense) {
+      return expense.expense_name + ' ($' + expense.unit_price + ')';
+    }) : "No Current Expenses";
 
     // // adding the "checked" property to our model
     // // will tell our input HTML tag whether to check off the box or not (true v. false)
