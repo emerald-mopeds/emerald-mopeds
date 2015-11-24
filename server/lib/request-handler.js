@@ -348,3 +348,26 @@ exports.updateEmployee = function (req, res) {
     res.send('Entry updated');
   });
 };
+
+exports.addExpenseToTask = function (req, res) {
+  var job_task_id = req.body.job_task_id;
+  var user_id = req.body.user_id;
+  console.log('data passed in:',job_task_id,user_id)
+  new Expense({
+    user_id: user_id,
+    expense_name: 'New Expense',
+    common: false,
+    unit_price: 0
+  }).save()
+  .then(function (newExpense) {
+    new Job_Task({
+      id: job_task_id,
+    }).expenses().attach({expense_id: newExpense.id, quantity: 1, created_at: new Date(), updated_at: new Date()})
+    .then(function () {
+      res.send()
+    });
+  }, function (err) {
+    console.log(err);
+    res.status(500).send(err);
+  });
+}
