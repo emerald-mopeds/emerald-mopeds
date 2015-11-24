@@ -92,7 +92,8 @@ exports.addClient = function (req, res) {
     address: req.body.address,
     city: req.body.city,
     zip_code: req.body.zip_code,
-    phone: req.body.phone
+    phone: req.body.phone,
+    isActive: true
   }).save()
   .then(function (newClient) {
     res.send(newClient);
@@ -108,7 +109,11 @@ exports.deleteClient = function (req, res) {
     user_id: req.session.user.id,
     id: id
     }).fetch().then(function (model) {
-      model.destroy();
+      model.set({
+        isActive: false
+      });
+      model.save();
+      res.send('Entry set to inactive');
     });
 };
 
@@ -177,7 +182,7 @@ Finds all clients in the database and responds with result of query
 */
 
 exports.fetchClients = function (req, res) {
-  Client.where('user_id', req.session.user.id).fetchAll()
+  Client.where({user_id: req.session.user.id, isActive: true}).fetchAll()
   .then(function (clients) {
     res.send(clients);
   });
@@ -273,7 +278,7 @@ exports.updateJobDoc = function (req, res) {
 };
 
 exports.fetchEmployees = function (req, res) {
-  Employee.where('user_id', req.session.user.id).fetchAll()
+  Employee.where({user_id: req.session.user.id, isActive: true}).fetchAll()
   .then(function (employees) {
     if (employees) {
       res.send(employees);
@@ -300,7 +305,8 @@ exports.addEmployee = function (req, res) {
         city: req.body.city,
         zip_code: req.body.zip_code,
         hourly_billing_fee: req.body.hourly_billing_fee,
-        phone: req.body.phone
+        phone: req.body.phone,
+        isActive: true
       }).save();
     } else {
       // TODO: add error handling of employee already existing
@@ -315,7 +321,11 @@ exports.deleteEmployee = function (req, res) {
     user_id: req.session.user.id,
     id: id
     }).fetch().then(function (model) {
-      model.destroy();
+      model.set({
+        isActive: false
+      });
+      model.save();
+      res.send('Entry set to inactive');
     });
 };
 
