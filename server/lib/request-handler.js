@@ -69,7 +69,7 @@ exports.addClient = function (req, res) {
     name: req.body.name,
     address: req.body.address,
     city: req.body.city,
-    zip_code: req.body.zipCode,
+    zip_code: req.body.zip_code,
     phone: req.body.phone
   }).save()
   .then(function (newClient) {
@@ -100,7 +100,7 @@ exports.updateClient = function (req, res) {
       name: req.body.name,
       address: req.body.address,
       city: req.body.city,
-      zip_code: req.body.zipCode,
+      zip_code: req.body.zip_code,
       phone: req.body.phone
     });
     model.save();
@@ -312,8 +312,8 @@ exports.updateEmployee = function (req, res) {
       address: req.body.address,
       city: req.body.city,
       zip_code: req.body.zip_code,
-      hourly_billing_fee: req.body.hourly_billing_fee,
-      phone: req.body.phone
+      phone: req.body.phone,
+      hourly_billing_fee: req.body.hourly_billing_fee
     });
     model.save();
     res.send('Entry updated');
