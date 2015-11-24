@@ -27,6 +27,9 @@ Lancealot.PreferencesPageView = Backbone.View.extend({
       success: function() {
         console.log('hello');
         $('input').val('');
+      },
+      error: function (error) {
+        console.log(error);
       }
     });
   }
