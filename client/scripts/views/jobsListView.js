@@ -16,7 +16,7 @@ Lancealot.JobsListView = Backbone.View.extend({
   template: Templates['jobstable'],
 
   initialize: function(){
-    this.collection.on('sync', this.addAll, this);
+    this.collection.on('sync', this.render, this);
     this.collection.fetch();
   },
 
@@ -27,6 +27,7 @@ Lancealot.JobsListView = Backbone.View.extend({
   render: function() {
     this.$el.empty();
     this.$el.html(this.template());
+    this.addAll();
     return this;
   },
 
