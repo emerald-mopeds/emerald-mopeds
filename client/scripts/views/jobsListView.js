@@ -20,7 +20,11 @@ Lancealot.JobsListView = Backbone.View.extend({
     this.collection.fetch();
   },
 
-  render: function(){
+  events: {
+    'change #statuses':  'filterStatus'
+  },
+
+  render: function() {
     this.$el.empty();
     this.$el.html(this.template());
     return this;
@@ -39,6 +43,10 @@ Lancealot.JobsListView = Backbone.View.extend({
     this.$el.empty();
     this.$el.html(this.template());
     list.forEach(this.addOne, this);
+  },
+
+  filterStatus: function(to) {
+    console.log('hi');
   }
 
 });
