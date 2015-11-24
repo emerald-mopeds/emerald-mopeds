@@ -130,8 +130,9 @@ exports.updateClient = function (req, res) {
       zip_code: req.body.zip_code,
       phone: req.body.phone
     });
-    model.save();
-    res.send('Entry updated');
+    model.save().then(function (savedCLient) {
+      res.status(204).send('Entry updated');
+    })
   })
 }
 
