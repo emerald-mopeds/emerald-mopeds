@@ -32,7 +32,7 @@ Promise.all([
     table.string('city');
     table.integer('zip_code');
     table.string('phone');
-    table.string('status');
+    table.boolean('isActive');
     table.datetime('updated_at');
     table.datetime('created_at');
   }), tableCreated('clients'),
@@ -46,7 +46,7 @@ Promise.all([
     table.integer('zip_code');
     table.integer('hourly_billing_fee');
     table.string('phone');
-    table.string('status');
+    table.boolean('isActive');
     table.datetime('updated_at');
     table.datetime('created_at');
   }), tableCreated('employees'),
