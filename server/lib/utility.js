@@ -8,6 +8,11 @@ exports.signupUserForm = function(req, res) {
   res.render('signup');
 };
 
+exports.preferencesForm = function(req, res) {
+  res.render('preferences');
+};
+
+
 // exports.splash = function(req, res, next) {
 //   res.render('splash');
 //   next();

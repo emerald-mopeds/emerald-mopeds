@@ -17,13 +17,13 @@ If save is successful, new user session is created
 If user exists, redirect to /login
 */
 exports.signupUser = function (req, res) {
-  var email = req.body.email;
+  var username = req.body.email;
   var password = req.body.password;
 
-  User.where('username', email).fetch()
+  User.where('username', username).fetch()
   .then(function (user) {
     if (!user) {
-      new User({username: email, email: email, password: password}).save()
+      new User({username: username, email: username, password: password}).save()
       .then(function (newUser) {
         util.createSession(req, res, newUser);
       });
@@ -42,12 +42,13 @@ exports.signupUser = function (req, res) {
 // Receives all toggl info for later use, and creates user session
 // */
 exports.loginUser = function (req, res) {
-  var email = req.body.email;
+  var username = req.body.email;
   var password = req.body.password;
 
-  User.where('username', email).fetch()
+  User.where('username', username).fetch()
   .then(function (user) {
     if (!user) {
+      console.log(toto);
       res.redirect('/signup');
     }
     user.comparePassword(password, function(matches) {
@@ -60,6 +61,28 @@ exports.loginUser = function (req, res) {
   });
 };
 
+exports.updatePreferences = function (req, res) {
+  var username = req.session.user.username;
+  var password = req.body.password;
+  var newPassword = req.body.newPassword;
+  
+  User.where('username', username).fetch()
+  .then(function (user) {
+    if (!user) {
+      res.redirect('/login');
+    }
+    user.comparePassword(password, function(matches) {
+      if (matches) {
+        user.set('password', newPassword).save()
+        .then(function(userSaved) {
+          console.log(userSaved);
+        })
+      } else {
+        res.redirect('/signup');
+      }
+    });
+  });
+}
 // /*
 // Builds new Client document with request properties and saves it to the db
 // */

@@ -44,6 +44,9 @@ app.post('/login', handle.loginUser);
 app.get('/signup', util.signupUserForm);
 app.post('/signup', handle.signupUser);
 
+app.get('/preferences', util.preferencesForm);
+app.post('/preferences', handle.updatePreferences);
+
 app.get('/logout', function (req, res) {
   req.session.destroy(function () {
     res.redirect('/login');

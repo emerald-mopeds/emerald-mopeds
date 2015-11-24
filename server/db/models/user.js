@@ -6,7 +6,7 @@ var User = bookshelf.Model.extend({
   tableName: 'users',
   hasTimestamps: true,
   initialize: function(){
-    this.on('creating', this.hashPassword);
+    this.on('saving', this.hashPassword);
   },
   comparePassword: function(attemptedPassword, callback) {
     bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {

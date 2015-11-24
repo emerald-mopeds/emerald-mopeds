@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lance-a-lot</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <!-- dependencies -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
+    <script src="lib/backbone/backbone.js"></script>
+    <script src="lib/handlebars/handlebars.js"></script>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="container">Change Password
+        <form class="form-group" action="/preferences" method="post">
+            <div>
+              <label for="password">Old Password:</label>
+              <input class="form-control"id="password" type="password" name="password">
+            </div>
+            <div>
+              <br>
+              <label for="newPassword">New Password:</label>
+              <input class="form-control"id="newPassword" type="password" name="newPassword">
+            </div>
+            <div>
+              <br>
+              <input class="btn btn-default" type="submit" value="Change Password">
+            </div>
+        </form>
+
+      </div>
+
+    </div>
+  </body>
+</html>
