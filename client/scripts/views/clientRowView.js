@@ -45,7 +45,7 @@ Lancealot.ClientRowView = Backbone.View.extend({
       city: city,
       zip_code: zipCode,
       phone: phone
-    })
+    });
     this.model.save();
   }
 
