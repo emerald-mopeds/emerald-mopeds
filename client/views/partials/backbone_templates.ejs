@@ -184,22 +184,6 @@
   </form>
 </script>
 
-<script id='employeesByJobTable' type='text/x-handlebars-template'>
-    <thead>
-      <th class="employeesByJobTableCells">First Name</th>
-      <th class="employeesByJobTableCells">Last Name</th>
-      <th class="employeesByJobTableCells">Hourly Billing Fee</th>
-      <th class="employeesByJobTableCells">Time Spent</th>
-    </thead>
-</script>
-
-<script id='employeeByJobInfo' type='text/x-handlebars-template'>
-  <td class='employeeByJobCells'>{{first_name}}</td>
-  <td class='employeeByJobCells'>{{last_name}}</td>
-  <td class='employeeByJobCells'>{{hourly_billing_fee}}</td>
-  <td class='employeeByJobCells'>{{_pivot_time_spent}}</td>
-</script>
-
 <script>
   window.Templates = {};
   $('[type="text/x-handlebars-template"]').each(function(index, div){
