@@ -52,7 +52,7 @@ Lancealot.Router = Backbone.Router.extend({
   addEmployee: function() {
     this.swapView(new Lancealot.EmployeeCreateView());
   },
-
+  
   showEmployees: function() {
     var employees = new Lancealot.Employees();
     var employeesView = new Lancealot.EmployeesPageView( { collection: employees });

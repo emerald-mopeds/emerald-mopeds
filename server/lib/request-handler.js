@@ -69,7 +69,7 @@ exports.addClient = function (req, res) {
     name: req.body.name,
     address: req.body.address,
     city: req.body.city,
-    zip_code: req.body.zipCode,
+    zip_code: req.body.zip_code,
     phone: req.body.phone
   }).save()
   .then(function (newClient) {
@@ -79,6 +79,34 @@ exports.addClient = function (req, res) {
     res.status(500).send(err);
   })
 };
+
+exports.deleteClient = function (req, res) {
+  var id = +req.params.id;
+  Client.where({
+    user_id: req.session.user.id,
+    id: id
+    }).fetch().then(function (model) {
+      model.destroy();
+    });
+};
+
+exports.updateClient = function (req, res) {
+  var id = +req.params.id;
+  Client.where({
+    user_id: req.session.user.id,
+    id: id
+  }).fetch().then(function (model) {
+    model.set({
+      name: req.body.name,
+      address: req.body.address,
+      city: req.body.city,
+      zip_code: req.body.zip_code,
+      phone: req.body.phone
+    });
+    model.save();
+    res.send('Entry updated');
+  })
+}
 
 // /*
 // fetchJobs is called when /jobs path receives get request
@@ -228,13 +256,21 @@ exports.updateJobDoc = function (req, res) {
 exports.fetchEmployees = function (req, res) {
   Employee.where('user_id', req.session.user.id).fetchAll()
   .then(function (employees) {
-    console.log(employees);
-    res.send(employees);
+    if (employees) {
+      res.send(employees);
+    } else {
+      res.send('');
+    }
   });
 };
 
 exports.addEmployee = function (req, res) {
-  Employee.where({'user_id': req.session.user.id, first_name: req.body.first_name, last_name: req.body.last_name, phone: req.body.phone}).fetch()
+  Employee.where({
+    user_id: req.session.user.id,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    phone: req.body.phone})
+  .fetch()
   .then(function (employee) {
     if (!employee) {
       new Employee({
@@ -252,4 +288,34 @@ exports.addEmployee = function (req, res) {
       res.redirect('/employees');
     }
   })
+};
+
+exports.deleteEmployee = function (req, res) {
+  var id = +req.params.id;
+  Employee.where({
+    user_id: req.session.user.id,
+    id: id
+    }).fetch().then(function (model) {
+      model.destroy();
+    });
+};
+
+exports.updateEmployee = function (req, res) {
+  var id = +req.params.id;
+  Employee.where({
+    user_id: req.session.user.id,
+    id: id
+  }).fetch().then(function (model) {
+    model.set({
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      address: req.body.address,
+      city: req.body.city,
+      zip_code: req.body.zip_code,
+      phone: req.body.phone,
+      hourly_billing_fee: req.body.hourly_billing_fee
+    });
+    model.save();
+    res.send('Entry updated');
+  });
 };

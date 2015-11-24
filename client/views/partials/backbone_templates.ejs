@@ -40,15 +40,19 @@
     <th class="clientCells">City</th>
     <th class="clientCells">Zip Code</th>
     <th class="clientCells">Phone</th>
+    <th class="clientCells"></th>
+    <th class="clientCells"></th>
   </thead>
 </script>
 
 <script id='clientInfo' type='text/x-handlebars-template'>
-    <td class="clientCells">{{name}}</td>
-    <td class="clientCells">{{address}}</td>
-    <td class="clientCells">{{city}}</td>
-    <td class="clientCells">{{zip_code}}</td>
-    <td class="clientCells">{{phone}}</td>
+    <td class="clientCells" id="clientName" contenteditable>{{name}}</td>
+    <td class="clientCells" id="clientAddress" contenteditable>{{address}}</td>
+    <td class="clientCells" id="clientCity" contenteditable>{{city}}</td>
+    <td class="clientCells" id="clientZipCode" contenteditable>{{zip_code}}</td>
+    <td class="clientCells" id="clientPhone" contenteditable>{{phone}}</td>
+    <td class="clientCells"><button class='updateClient'>Update</button></td>
+    <td class="clientCells"><button class='deleteClient'>Delete</button></td>
 </script>
 
 <script id='employeetable' type='text/x-handlebars-template'>
@@ -60,17 +64,21 @@
     <th class="employeeCells">Zip Code</th>
     <th class="employeeCells">Phone</th>
     <th class="employeeCells">Hourly Billing Fee</th>
+    <th class="employeeCells"></th>
+    <th class="employeeCells"></th>
   </thead>
 </script>
 
 <script id='employeeInfo' type='text/x-handlebars-template'>
-    <td class="employeeCells">{{first_name}}</td>
-    <td class="employeeCells">{{last_name}}</td>
-    <td class="employeeCells">{{address}}</td>
-    <td class="employeeCells">{{city}}</td>
-    <td class="employeeCells">{{zip_code}}</td>
-    <td class="employeeCells">{{phone}}</td>
-    <td class="employeeCells">{{hourly_billing_fee}}</td>
+    <td class="employeeCells" id="employeeFirstName" contenteditable>{{first_name}}</td>
+    <td class="employeeCells" id="employeeLastName" contenteditable>{{last_name}}</td>
+    <td class="employeeCells" id="employeeAddress" contenteditable>{{address}}</td>
+    <td class="employeeCells" id="employeeCity" contenteditable>{{city}}</td>
+    <td class="employeeCells" id="employeeZipCode" contenteditable>{{zip_code}}</td>
+    <td class="employeeCells" id="employeePhone" contenteditable>{{phone}}</td>
+    <td class="employeeCells" id="employeeHourlyBillingFee" contenteditable>{{hourly_billing_fee}}</td>
+    <td class="employeeCells"><button class='updateEmployee'>Update</button></td>
+    <td class="employeeCells"><button class='deleteEmployee'>Delete</button></td>
 </script>
 
 <script id='addJob' type='text/x-handlebars-template'>

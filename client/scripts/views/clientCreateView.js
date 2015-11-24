@@ -37,7 +37,7 @@ Lancealot.ClientCreateView = Backbone.View.extend({
       name: name,
       address: address,
       city: city,
-      zipCode: zipCode,
+      zip_code: zipCode,
       phone: phone
     });
 

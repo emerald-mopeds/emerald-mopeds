@@ -52,6 +52,8 @@ app.get('/logout', function (req, res) {
 
 app.get('/api/clients', handle.fetchClients);
 app.post('/api/clients', handle.addClient);
+app.delete('/api/clients/:id', handle.deleteClient);
+app.put('/api/clients/:id', handle.updateClient);
 
 app.get('/api/tasks', handle.fetchTasks);
 app.post('/api/tasks', handle.addTask);
@@ -59,6 +61,8 @@ app.get('/api/commontasks', handle.getCommonTasks);
 
 app.get('/api/employees', handle.fetchEmployees);
 app.post('/api/employees', handle.addEmployee);
+app.delete('/api/employees/:id', handle.deleteEmployee);
+app.put('/api/employees/:id', handle.updateEmployee);
 
 app.get('/api/job/:id', function (req, res) {
   console.log('hi');
