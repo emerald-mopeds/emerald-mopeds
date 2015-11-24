@@ -28,7 +28,7 @@ Lancealot.PreferencesPageView = Backbone.View.extend({
         422: function() {
           $('input').val('');
           $('<div>The password entered is incorrect!</div>').insertAfter('button')
-            .delay(3000)
+            .delay(1500)
             .fadeOut(function() {
               $(this).remove(); 
             });
@@ -37,7 +37,7 @@ Lancealot.PreferencesPageView = Backbone.View.extend({
       success: function() {
         $('input').val('');
         $('<div>Password changed successfully!</div>').insertAfter('button')
-          .delay(3000)
+          .delay(1500)
           .fadeOut(function() {
             $(this).remove(); 
           });
