@@ -48,7 +48,6 @@ exports.loginUser = function (req, res) {
   User.where('username', username).fetch()
   .then(function (user) {
     if (!user) {
-      console.log(toto);
       res.redirect('/signup');
     }
     user.comparePassword(password, function(matches) {
