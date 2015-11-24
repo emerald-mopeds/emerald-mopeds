@@ -77,7 +77,7 @@ exports.updatePreferences = function (req, res) {
           res.send(userSaved);
         })
       } else {
-        res.redirect('/signup');
+        res.status(422).send();
       }
     });
   });

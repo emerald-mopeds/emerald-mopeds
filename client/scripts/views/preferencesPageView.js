@@ -24,6 +24,16 @@ Lancealot.PreferencesPageView = Backbone.View.extend({
     $.ajax('/api/preferences', {
       method: 'PUT',
       data: { password: password, newPassword: newPassword },
+      statusCode: {
+        422: function() {
+          $('input').val('');
+          $('<div>The password entered is incorrect!</div>').insertAfter('button')
+            .delay(3000)
+            .fadeOut(function() {
+              $(this).remove(); 
+            });
+          }
+      },
       success: function() {
         $('input').val('');
         $('<div>Password changed successfully!</div>').insertAfter('button')
