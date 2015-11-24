@@ -46,8 +46,14 @@ Lancealot.JobsListView = Backbone.View.extend({
     list.forEach(this.addOne, this);
   },
 
-  filterStatus: function(to) {
-    console.log('hi');
+  filterStatus: function(e) {
+    if (e.target.value === 'all') this.render();
+    else {
+      var list = this.collection.filter(function(model) {
+        return model.get('status') === e.target.value
+      });
+      this.filteredRender(list);
+    }
   }
 
 });
