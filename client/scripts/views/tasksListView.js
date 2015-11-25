@@ -13,7 +13,7 @@ Lancealot.TasksListView = Backbone.View.extend({
 
   initialize: function(options){
     this.url = options.jobId;
-    this.collection.on('sync', this.addAll, this);
+    this.collection.on('sync', this.render, this);
     this.collection.fetch({
       url: '/api/job/' + this.url
     });
@@ -36,6 +36,7 @@ Lancealot.TasksListView = Backbone.View.extend({
   render: function(){
     this.$el.empty();
     this.$el.html(this.template());
+    this.addAll();
     return this;
   },
 
