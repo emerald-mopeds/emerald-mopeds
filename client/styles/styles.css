@@ -120,6 +120,6 @@ label {
   font-size: 15px;
 }
 
-.clickable-row {
+.bordered-row {
   border: 1px solid black;
 }

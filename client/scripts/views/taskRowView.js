@@ -10,7 +10,7 @@ checking and unchecking checkboxes
 Lancealot.TaskRowView = Backbone.View.extend({
 
   tagName: 'tr',
-  className: 'clickable-row',
+  className: 'bordered-row',
 
   events: {
     // 'click': function() {
