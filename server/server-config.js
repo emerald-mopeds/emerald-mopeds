@@ -56,7 +56,7 @@ app.delete('/api/clients/:id', handle.deleteClient);
 app.put('/api/clients/:id', handle.updateClient);
 
 app.get('/api/tasks', handle.fetchTasks);
-app.post('/api/tasks', handle.addTask);
+app.post('/api/tasks', handle.addTaskToJob);
 app.get('/api/commontasks', handle.getCommonTasks);
 
 app.get('/api/employees', handle.fetchEmployees);

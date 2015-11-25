@@ -16,12 +16,13 @@ Lancealot.TasksPageView = Backbone.View.extend({
 
   events: {
     'keyup input': 'handleSearch',
-    'click button#createNewTask': 'renderTaskCreateView'
+    'click button#createNewTask': 'addTaskToJob'
   },
 
   initialize: function (options) {
     this.collection = new Lancealot.Tasks();
-    this.TasksListView = new Lancealot.TasksListView({collection: this.collection, jobId: options.jobId});
+    this.jobId = options.jobId;
+    this.TasksListView = new Lancealot.TasksListView({collection: this.collection, jobId: this.jobId});
     this.templateContent = {buttonId: 'createNewTask',
       buttonText: 'Create New Task',
       inputDomID: 'taskSearch',
@@ -39,9 +40,19 @@ Lancealot.TasksPageView = Backbone.View.extend({
     this.TasksListView.filteredRender(filteredList);
   },
 
-  renderClientCreateView: function(e) {
+  addTaskToJob: function (e) {
     e && e.preventDefault();
-    Backbone.history.navigate('/addtask', true);
+    var that = this;
+    $.ajax({
+      url: '/api/tasks/',
+      method: 'POST',
+      data: {
+        job_id: this.jobId
+      },
+      success: function () {
+        that.render();
+      }
+    })
   }
 
 });
