@@ -46,7 +46,15 @@ Lancealot.ClientRowView = Backbone.View.extend({
       zip_code: zipCode,
       phone: phone
     });
-    this.model.save();
+    this.model.save(null, {
+      success: function() {
+        $('<div>Changes changed successfully!</div>').insertBefore('table')
+          .delay(1500)
+          .fadeOut(function() {
+            $(this).remove(); 
+          });
+      }
+    });
   }
 
 });
