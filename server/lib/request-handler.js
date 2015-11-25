@@ -373,3 +373,24 @@ exports.addExpenseToTask = function (req, res) {
     res.status(500).send(err);
   });
 }
+
+exports.addTaskToJob = function (req, res) {
+  new Task({
+    user_id: req.session.user.id,
+    task_name: 'New Task',
+    common: false
+  }).save()
+  .then(function (newTask) {
+    new Job_Task({
+      job_id: req.body.job_id,
+      task_id: newTask.id,
+      status: 'Not Started'
+    }).save()
+    .then(function () {
+      res.send()
+    });
+  }, function (err) {
+    console.log(err);
+    res.status(500).send(err);
+  });
+}
