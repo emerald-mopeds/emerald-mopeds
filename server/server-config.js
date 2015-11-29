@@ -71,6 +71,7 @@ app.delete('/api/jobs/:id', handle.deleteJob);
 app.put('/api/jobs/:id', handle.updateJob);
 
 app.post('/api/expense/', handle.addExpenseToTask);
+app.put('/api/expenses/:id', handle.updateExpense);
 
 app.put('/api/preferences', handle.updatePreferences);
 

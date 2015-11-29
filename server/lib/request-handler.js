@@ -283,6 +283,19 @@ exports.getCommonTasks = function (req, res) {
   })
 };
 
+exports.updateExpense = function (req, res) {
+  Expense.where('id', +req.params.id).fetch()
+  .then(function (expense) {
+    expense.set({
+      expense_name: req.body.expense_name,
+      unit_price: req.body.unit_price
+    });
+    expense.save().then(function () {
+      res.status(204).send('Entry updated');
+    })
+  });
+}
+
 exports.createJobDoc = function(req, res) {
 //   Client.find({name:req.body.client}).exec(function (err, client){
 
