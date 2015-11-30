@@ -13,10 +13,7 @@ Lancealot.TaskRowView = Backbone.View.extend({
   className: 'bordered-row',
 
   events: {
-    // 'click': function() {
-    //   // this.model.navigateToView();
-    // },
-    'click input:checkbox': 'toggleComplete',
+    //'click input:checkbox': 'toggleComplete',
     'click .addEmployeeToTask': 'addEmployeeToTask',
     'click .addExpenseToTask': 'addExpenseToTask',
     'keydown .taskNameEdit': 'editTaskName'
@@ -49,30 +46,25 @@ Lancealot.TaskRowView = Backbone.View.extend({
     var modelData = this.model.toJSON();
 
     modelData.client = modelData.client || "No Client";
-    modelData.employees = modelData.employees.length ? modelData.employees.map(function (employee) {
-      return employee.first_name + ' ' + employee.last_name + ' ($' + employee.hourly_billing_fee + '/hr): ' + employee._pivot_time_spent + 'hrs, TOTAL: $' + employee.hourly_billing_fee * employee._pivot_time_spent;
-    }).join(', ') : "No Current Employees";
-    modelData.expenses = modelData.expenses.length ? modelData.expenses.map(function (expense) {
-      return expense.expense_name + ' ($' + expense.unit_price + ')';
-    }).join(', ') : "No Current Expenses";
+    // modelData.employees = modelData.employees.length ? modelData.employees.map(function (employee) {
+    //   return employee.first_name + ' ' + employee.last_name + ' ($' + employee.hourly_billing_fee + '/hr): ' + employee._pivot_time_spent + 'hrs, TOTAL: $' + employee.hourly_billing_fee * employee._pivot_time_spent;
+    // }).join(', ') : "No Current Employees";
+    // modelData.expenses = modelData.expenses.length ? modelData.expenses.map(function (expense) {
+    //   return expense.expense_name + ' ($' + expense.unit_price + ')';
+    // }).join(', ') : "No Current Expenses";
 
-    // // adding the "checked" property to our model
-    // // will tell our input HTML tag whether to check off the box or not (true v. false)
-    // modelData.checked = modelData.status ? 'checked' : '';
+    var employees = new Lancealot.TaskEmployeeCollection(modelData.employees);
+    this.employeeView = new Lancealot.TaskEmployeeView({collection: employees});
 
-    // adding "formattedDate" properties will format the date to look nice(ish)
-    var startDate = new Date(modelData.start);
-    var endDate = new Date(modelData.end);
+    var expenses = new Lancealot.TaskExpenseCollection(modelData.expenses);
+    this.expenseView = new Lancealot.TaskExpenseView({collection: expenses});
 
-    modelData.formattedStart = startDate.toDateString();
-    modelData.formattedEnd = endDate.toDateString();
-
-    this.$el.html(this.template(modelData));
+    this.$el.html(this.template(modelData)).append([this.employeeView.el, this.expenseView.el]);
 
     //this adds all employees to the dropdown list
     var employeeSelect = this.$el.find('.employeeSelect');
     modelData.potentialEmployees.forEach(function(item, index) {
-        employeeSelect.append($("<option />").val(index).text(item.first_name + ' ' + item.last_name));
+      employeeSelect.append($("<option />").val(index).text(item.first_name + ' ' + item.last_name));
     });
 
     return this;

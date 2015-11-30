@@ -61,9 +61,6 @@
 
 <script id='taskRow' type='text/x-handlebars-template'>
   <h2>Task</h2><p class="taskNameEdit" contenteditable>{{task.task_name}}</p>
-  <h2>Employees</h2><p>{{employees}}</p>
-  <select class="employeeSelect"></select><button class="addEmployeeToTask">+</button>
-  <h2>Expenses</h2><p>{{expenses}}</p><button class="addExpenseToTask">+</button>
 </script>
 
 <script id='clientInfo' type='text/x-handlebars-template'>
@@ -88,6 +85,31 @@
     <th class="employeeCells"></th>
     <th class="employeeCells"></th>
   </thead>
+</script>
+
+<script id='taskexpensetable' type='text/x-handlebars-template'>
+  <h2>Expenses</h2>
+  <table class="table table-striped">
+  <thead>
+    <th class="taskExpenseCells">Expense Name</th>
+    <th class="taskExpenseCells">Cost</th>
+  </thead>
+  </table>
+  <input class="taskName" placeholder="Task Name"></input><input class="taskCost" placeholder="Task Cost"></input><button class="addExpenseToTask">+</button>
+</script>
+
+<script id='taskemployeetable' type='text/x-handlebars-template'>
+  <h2>Employees</h2>
+  <table class="table table-striped">
+  <thead>
+    <th class="taskEmployeeCells">First Name</th>
+    <th class="taskEmployeeCells">Last Name</th>
+    <th class="taskEmployeeCells">Rate</th>
+    <th class="taskEmployeeCells">Hrs Worked</th>
+    <th class="taskEmployeeCells">Total Cost</th>
+  </thead>
+  </table>
+  <select class="employeeSelect"></select><button class="addEmployeeToTask">+</button>
 </script>
 
 <script id='employeeInfo' type='text/x-handlebars-template'>
