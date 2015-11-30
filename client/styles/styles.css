@@ -123,3 +123,7 @@ label {
 .clickable-row {
   border: 1px solid black;
 }
+
+#addTask {
+  display: none;
+}
