@@ -18,7 +18,24 @@ Lancealot.TaskRowView = Backbone.View.extend({
     // },
     'click input:checkbox': 'toggleComplete',
     'click .addEmployeeToTask': 'addEmployeeToTask',
-    'click .addExpenseToTask': 'addExpenseToTask'
+    'click .addExpenseToTask': 'addExpenseToTask',
+    'keydown .taskNameEdit': 'editTaskName'
+  },
+
+  editTaskName: function (e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      var task_id = this.model.get('task_id');
+      var task_name = this.$el.find('.taskNameEdit').text();
+      this.$el.find('.taskNameEdit').blur();
+      $.ajax({
+        url: '/api/task/' + task_id,
+        method: 'PUT',
+        data: {
+          task_name: task_name
+        }
+      });
+    }
   },
 
   template: Templates['taskRow'],

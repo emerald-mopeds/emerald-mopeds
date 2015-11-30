@@ -263,6 +263,20 @@ exports.addTask = function (req, res) {
   });
 };
 
+exports.updateTaskName = function (req, res) {
+  var id = +req.params.id;
+  Task.where({
+    id: id
+  }).fetch().then(function (model) {
+    model.set({
+      task_name: req.body.task_name
+    });
+    model.save().then(function () {
+      res.status(204).send('Entry updated');
+    })
+  });
+};
+
 exports.fetchTasks = function (req, res) {
   Task.fetchAll()
   .then(function (tasks) {

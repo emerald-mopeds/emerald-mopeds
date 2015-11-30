@@ -57,6 +57,8 @@ app.put('/api/clients/:id', handle.updateClient);
 
 app.get('/api/tasks', handle.fetchTasks);
 app.post('/api/tasks', handle.addTaskToJob);
+app.put('/api/task/:id', handle.updateTaskName);
+
 app.get('/api/commontasks', handle.getCommonTasks);
 
 app.get('/api/employees', handle.fetchEmployees);
