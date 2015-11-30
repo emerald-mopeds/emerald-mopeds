@@ -171,8 +171,14 @@ exports.fetchJob = function (req, res) {
   Job_Task.where('job_id', jobId).fetchAll({withRelated: ['employees', 'expenses', 'task', 'client']})
   .then(function (jobs_tasks) {
     if (jobs_tasks) {
-      console.log(jobs_tasks.serialize())
-      res.send(jobs_tasks.serialize());
+      Employee.where('user_id',req.session.user.id).fetchAll().then(function (potentialEmployees) {
+        var returnObj = jobs_tasks.serialize();
+        returnObj.forEach(function (item) {
+          item.potentialEmployees = potentialEmployees.serialize();
+        });
+        console.log(returnObj)
+        res.send(returnObj);
+      })
     } else {
       returnObj.employees = returnObj.expenses = null;
       res.send(returnObj);

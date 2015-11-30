@@ -69,6 +69,13 @@ Lancealot.TaskRowView = Backbone.View.extend({
 
     this.$el.html(this.template(modelData));
 
+    //this adds all employees to the dropdown list
+    var employeeSelect = this.$el.find('.employeeSelect');
+    modelData.potentialEmployees.forEach(function(item) {
+        console.log(item.first_name);
+        employeeSelect.append($("<option />").text(item.first_name + ' ' + item.last_name));
+    });
+
     return this;
   },
 
