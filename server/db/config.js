@@ -70,10 +70,12 @@ Promise.all([
   }), tableCreated('expenses'),
   knex.schema.createTableIfNotExists('jobs', function (table) {
     table.increments('id').primary();
+    table.integer('user_id').unsigned().references('users.id');
     table.integer('client_id').unsigned().references('clients.id');
     table.string('job_status');
     table.string('job_name');
     table.datetime('due_date');
+    table.boolean('isActive');
     table.datetime('updated_at');
     table.datetime('created_at');
   }), tableCreated('jobs'),

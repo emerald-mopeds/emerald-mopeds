@@ -143,7 +143,10 @@ exports.updateClient = function (req, res) {
 // */
 
 exports.fetchJobs = function (req, res) {
-  Client.where('user_id', req.session.user.id).fetchAll({withRelated: ['jobs']})
+  Client.where({
+    user_id: req.session.user.id,
+    isActive: true
+  }).fetchAll({withRelated: ['jobs']})
   .then(function (clients) {
     var jobsArray = [];
     clients.serialize().forEach(function (client) {
@@ -195,16 +198,50 @@ exports.fetchClients = function (req, res) {
 
 exports.addJob = function (req, res) {
   new Job({
+    user_id: req.session.user.id,
     client_id: req.body.client_id,
     job_name: req.body.job_name,
     job_status: req.body.job_status,
-    due_date: req.body.due_date
+    due_date: req.body.due_date,
+    isActive: true
   }).save()
   .then(function (newJob) {
     res.send(newJob);
   }, function (err) {
     res.status(500).send(err);
   })
+};
+
+exports.updateJob = function (req, res) {
+  var id = +req.params.id;
+  Job.where({
+    user_id: req.session.user.id,
+    id: id
+  }).fetch().then(function (model) {
+    model.set({
+      client_id: req.body.client_id, //will need to retrieve client id based on client selected
+      job_name: req.body.job_name,
+      job_status: req.body.job_status,
+      due_date: req.body.due_date
+    });
+    model.save();
+    res.status(204).send('Job updated');
+  });
+};
+
+exports.deleteJob = function (req, res) {
+  var id = +req.params.id;
+  Job.where({
+    user_id: req.session.user.id,
+    id: id
+  }).fetch().then(function (model) {
+    console.log(model);
+    model.set({
+      isActive: false
+    });
+    model.save();
+    res.status(204).send('Job status updated');
+  });
 };
 
 exports.getTasks = function (req, res) {
