@@ -18,24 +18,6 @@
     <button id="{{buttonId}}" class="btn btn-default">{{buttonText}}</button>
 </script>
 
-<script id='taskSubHeader' type='text/x-handlebars-template'>
-  <input class="form-control filter" id="{{inputDomID}}" type="text" placeholder="{{filterbyText}}"/>
-  <button id="{{buttonId}}" class="btn btn-default showForm">{{buttonText}}</button>
-  <form class="form-group" id="taskForm">
-    <label>Task Name: </label>
-      <input class="form-control" id="name" type="text" required/><br/>
-    <label>Employee</label>
-      <select class="form-control" id="employee">
-        {{#each employee }}
-          <option value="{{id}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
-        {{/each}}
-      </select>
-    <label>Expenses</label>
-      <input class="form-control" id="expense_name" type="text" required/><br/>
-    <button class="submit btn btn-default addTask">Add Task</button>
-  </form>
-</script>
-
 <script id='jobstable' type='text/x-handlebars-template'>
     <thead>
       <th>Client</th>
