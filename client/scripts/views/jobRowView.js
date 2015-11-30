@@ -16,7 +16,8 @@ Lancealot.JobRowView = Backbone.View.extend({
     'click': function() {
       this.model.navigateToView();
     },
-    'click input:checkbox': 'toggleComplete'
+    'click input:checkbox': 'toggleComplete',
+    'click .deleteJob': 'deleteJob'
   },
 
   template: Templates['jobRow'],
@@ -51,7 +52,11 @@ Lancealot.JobRowView = Backbone.View.extend({
     var checked = e.target.checked;
     var client = this.model.attributes.client.name;
     this.model.save({status: checked});
-  }
+  },
 
+  deleteJob: function(e) {
+    e && e.preventDefault();
+    this.model.destroy();
+  }
 
 });
