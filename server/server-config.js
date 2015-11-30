@@ -57,12 +57,16 @@ app.put('/api/clients/:id', handle.updateClient);
 
 app.get('/api/tasks', handle.fetchTasks);
 app.post('/api/tasks', handle.addTaskToJob);
+app.put('/api/task/:id', handle.updateTaskName);
+
 app.get('/api/commontasks', handle.getCommonTasks);
 
 app.get('/api/employees', handle.fetchEmployees);
 app.post('/api/employees', handle.addEmployee);
 app.delete('/api/employees/:id', handle.deleteEmployee);
 app.put('/api/employees/:id', handle.updateEmployee);
+
+app.post('/api/employee/:id', handle.addEmployeeToTask);
 
 app.get('/api/job/:id', handle.fetchJob);
 app.get('/api/jobs', handle.fetchJobs);
@@ -71,6 +75,7 @@ app.delete('/api/jobs/:id', handle.deleteJob);
 app.put('/api/jobs/:id', handle.updateJob);
 
 app.post('/api/expense/', handle.addExpenseToTask);
+app.put('/api/expenses/:id', handle.updateExpense);
 
 app.put('/api/preferences', handle.updatePreferences);
 

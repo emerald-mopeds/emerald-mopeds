@@ -171,8 +171,14 @@ exports.fetchJob = function (req, res) {
   Job_Task.where('job_id', jobId).fetchAll({withRelated: ['employees', 'expenses', 'task', 'client']})
   .then(function (jobs_tasks) {
     if (jobs_tasks) {
-      console.log(jobs_tasks.serialize())
-      res.send(jobs_tasks.serialize());
+      Employee.where('user_id',req.session.user.id).fetchAll().then(function (potentialEmployees) {
+        var returnObj = jobs_tasks.serialize();
+        returnObj.forEach(function (item) {
+          item.potentialEmployees = potentialEmployees.serialize();
+        });
+        console.log(returnObj)
+        res.send(returnObj);
+      })
     } else {
       returnObj.employees = returnObj.expenses = null;
       res.send(returnObj);
@@ -263,6 +269,20 @@ exports.addTask = function (req, res) {
   });
 };
 
+exports.updateTaskName = function (req, res) {
+  var id = +req.params.id;
+  Task.where({
+    id: id
+  }).fetch().then(function (model) {
+    model.set({
+      task_name: req.body.task_name
+    });
+    model.save().then(function () {
+      res.status(204).send('Entry updated');
+    })
+  });
+};
+
 exports.fetchTasks = function (req, res) {
   Task.fetchAll()
   .then(function (tasks) {
@@ -282,6 +302,19 @@ exports.getCommonTasks = function (req, res) {
     res.status(500).send(err);
   })
 };
+
+exports.updateExpense = function (req, res) {
+  Expense.where('id', +req.params.id).fetch()
+  .then(function (expense) {
+    expense.set({
+      expense_name: req.body.expense_name,
+      unit_price: req.body.unit_price
+    });
+    expense.save().then(function () {
+      res.status(204).send('Entry updated');
+    })
+  });
+}
 
 exports.createJobDoc = function(req, res) {
 //   Client.find({name:req.body.client}).exec(function (err, client){
@@ -408,6 +441,16 @@ exports.addExpenseToTask = function (req, res) {
   }, function (err) {
     console.log(err);
     res.status(500).send(err);
+  });
+}
+
+exports.addEmployeeToTask = function (req, res) {
+  var task_id = +req.params.id;
+  new Job_Task({
+    id: task_id
+  }).employees().attach({employee_id: req.body.newEmployee, time_spent: 0})
+  .then(function () {
+    res.send();
   });
 }
 
