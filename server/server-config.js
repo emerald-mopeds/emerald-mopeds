@@ -66,6 +66,8 @@ app.post('/api/employees', handle.addEmployee);
 app.delete('/api/employees/:id', handle.deleteEmployee);
 app.put('/api/employees/:id', handle.updateEmployee);
 
+app.post('/api/employee/:id', handle.addEmployeeToTask);
+
 app.get('/api/job/:id', handle.fetchJob);
 app.get('/api/jobs', handle.fetchJobs);
 app.post('/api/jobs', handle.addJob);

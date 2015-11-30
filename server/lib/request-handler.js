@@ -444,6 +444,16 @@ exports.addExpenseToTask = function (req, res) {
   });
 }
 
+exports.addEmployeeToTask = function (req, res) {
+  var task_id = +req.params.id;
+  new Job_Task({
+    id: task_id
+  }).employees().attach({employee_id: req.body.newEmployee, time_spent: 0})
+  .then(function () {
+    res.send();
+  });
+}
+
 exports.addTaskToJob = function (req, res) {
   new Task({
     user_id: req.session.user.id,
