@@ -1,16 +1,14 @@
-var db = require('../database');
-var mongoose = require('mongoose');
-var autoIncrement = require('mongoose-auto-increment');
+var bookshelf = require('../config');
 
-var clientSchema = mongoose.Schema({
-  _id: Number, 
-  name: String,
-  address: String,
-  phone: String
+var Client = bookshelf.Model.extend({
+  tableName: 'clients',
+  hasTimestamps: true,
+  user: function() {
+    return this.belongsTo(require('./user'));
+  },
+  jobs: function() {
+    return this.hasMany(require('./job'));
+  }
 });
-
-clientSchema.plugin(autoIncrement.plugin, 'Client');
-
-var Client = mongoose.model('Client', clientSchema);
 
 module.exports = Client;

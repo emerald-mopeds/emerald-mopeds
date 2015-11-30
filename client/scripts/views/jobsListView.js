@@ -13,21 +13,27 @@ Lancealot.JobsListView = Backbone.View.extend({
   tagName: 'table',
   className: 'table table-striped',
 
-  template: Templates['tableheads'],
+  template: Templates['jobstable'],
 
   initialize: function(){
-    this.collection.on('sync', this.addAll, this);
+    this.collection.on('sync', this.render, this);
+    this.listenTo(this.collection, 'destroy', this.render);
     this.collection.fetch();
   },
 
-  render: function(){
+  events: {
+    'change #statuses':  'filterStatus'
+  },
+
+  render: function() {
     this.$el.empty();
     this.$el.html(this.template());
+    this.addAll();
     return this;
   },
 
   addOne: function(item){
-    var view = new Lancealot.JobView({ model: item });
+    var view = new Lancealot.JobRowView({ model: item });
     this.$el.append(view.render().el);
   },
 
@@ -39,6 +45,16 @@ Lancealot.JobsListView = Backbone.View.extend({
     this.$el.empty();
     this.$el.html(this.template());
     list.forEach(this.addOne, this);
+  },
+
+  filterStatus: function(e) {
+    if (e.target.value === 'all') this.render();
+    else {
+      var list = this.collection.filter(function(model) {
+        return model.get('status') === e.target.value
+      });
+      this.filteredRender(list);
+    }
   }
 
 });

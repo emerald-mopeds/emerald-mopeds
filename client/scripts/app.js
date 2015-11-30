@@ -15,17 +15,14 @@ window.Lancealot = Backbone.View.extend({
   template: Templates['layout'],
 
   events: {
-    'click li a.index':  'renderIndexView',
-    'click li a.logout': 'renderAddView',
+    'click li a.jobs':  'renderJobsView',
     'click li a.clients': 'renderClientsView',
-    'click li a.addClient': 'renderClientEntryView',
-    'submit #addJob': 'renderIndexView',
-    'submit #addClient': 'renderAddView'
+    'click li a.employees' : 'renderEmployeesView',
+    'click li a.preferences' : 'renderPreferences'
   },
 
   initialize: function(){
     $("#container").append(this.render().el);
-
     this.router = new Lancealot.Router({ el: this.$el.find('#container') });
     Backbone.history.start({ pushState: true });
   },
@@ -35,9 +32,9 @@ window.Lancealot = Backbone.View.extend({
     return this;
   },
 
-  renderIndexView: function(e) {
+  renderJobsView: function(e) {
     e && e.preventDefault();
-    this.router.navigate('/', { trigger: true });
+    this.router.navigate('/jobs', { trigger: true });
   },
 
   renderClientsView: function(e) {
@@ -45,14 +42,14 @@ window.Lancealot = Backbone.View.extend({
     this.router.navigate('/clients', { trigger: true });
   },
 
-  renderClientEntryView: function(e) {
+  renderEmployeesView: function(e) {
     e && e.preventDefault();
-    this.router.navigate('/addclient', { trigger: true });
+    this.router.navigate('/employees', { trigger: true });
   },
 
-  renderAddView: function(e) {
+  renderPreferences: function(e) {
     e && e.preventDefault();
-    this.router.navigate('/add', { trigger: true });
+    this.router.navigate('/preferences', { trigger: true });
   }
 
 });

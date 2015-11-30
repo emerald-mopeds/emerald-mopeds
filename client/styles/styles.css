@@ -3,7 +3,7 @@ Navbar
 */
 
 .navbar {
-  background-color: #85e0e0;
+  background-color: #fa8c34;
   font-weight: 700;
   font-size: 20px;
   font-family: 'Quicksand', sans-serif;
@@ -68,7 +68,7 @@ div {
 Forms, inputs, and tables
 */
 
-#clientSearch {
+input.filter {
   width: 40%;
   margin: auto;
 }
@@ -86,8 +86,18 @@ Forms, inputs, and tables
   color: #30312e;
 }
 
+.table select {
+  color: #30312e;
+  font-weight: bold;
+  
+}
+
 td {
   color: #57616f;
+}
+
+tr.clickable-row {
+    cursor: pointer;
 }
 
 table, form {
@@ -108,4 +118,8 @@ label {
 
 #no_client {
   font-size: 15px;
+}
+
+.bordered-row {
+  border: 1px solid black;
 }

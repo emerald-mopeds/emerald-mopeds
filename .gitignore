@@ -31,3 +31,6 @@ client/lib
 .floobit
 .floo
 .flooignore
+
+# Mac stuff
+.DS_Store

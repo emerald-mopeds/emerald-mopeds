@@ -4,21 +4,28 @@
 For templates, look at client/views/backbone_templates.
 */
 
-Lancealot.ClientsListView = Backbone.View.extend({
+Lancealot.TasksListView = Backbone.View.extend({
 
   tagName: "table",
   className: 'table table-striped',
 
-  template: Templates['clienttable'],
+  template: Templates['tasktable'],
 
-  initialize: function(){
+  initialize: function(options){
+    this.url = options.jobId;
     this.collection.on('sync', this.render, this);
-    this.listenTo(this.collection, 'destroy', this.render);
-    this.collection.fetch();
+    this.collection.fetch({
+      url: '/api/job/' + this.url
+    });
   },
 
   addOne: function(item){
-    var view = new Lancealot.ClientRowView({ model: item });
+    var view = new Lancealot.TaskRowView({ model: item });
+    view.on('reinit', function () {
+      this.collection.fetch({
+        url: '/api/job/' + this.url
+      })
+    }, this);
     this.$el.append(view.render().el);
   },
 

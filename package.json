@@ -2,7 +2,7 @@
   "name": "lance-a-lot",
   "version": "1.0.0",
   "description": "a job management tool for freelancers",
-  "main": "/server/server.js",
+  "main": "./server/server.js",
   "engines": {
     "node": "4.2.2"
   },
@@ -23,7 +23,9 @@
   "dependencies": {
     "backbone": "1.2.3",
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.0.5",
     "body-parser": "1.14.1",
+    "bookshelf": "^0.9.1",
     "bower": "1.6.5",
     "chai": "3.4.1",
     "ejs": "2.3.4",
@@ -40,9 +42,9 @@
     "grunt-nodemon": "0.2.1",
     "grunt-shell": "0.6.4",
     "jquery": "2.1.4",
-    "mongoose": "4.2.5",
-    "mongoose-auto-increment": "5.0.1",
+    "knex": "^0.9.0",
     "morgan": "1.6.1",
+    "mysql": "^2.9.0",
     "node-mongo-seeds": "2.2.7",
     "request": "2.65.0",
     "supertest": "1.1.0",

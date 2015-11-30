@@ -1,15 +1,9 @@
-// Clients List View --> connected to Clients Collection
-
-/*
-For templates, look at client/views/backbone_templates.
-*/
-
-Lancealot.ClientsListView = Backbone.View.extend({
+Lancealot.EmployeesListView = Backbone.View.extend({
 
   tagName: "table",
   className: 'table table-striped',
 
-  template: Templates['clienttable'],
+  template: Templates['employeetable'],
 
   initialize: function(){
     this.collection.on('sync', this.render, this);
@@ -18,7 +12,7 @@ Lancealot.ClientsListView = Backbone.View.extend({
   },
 
   addOne: function(item){
-    var view = new Lancealot.ClientRowView({ model: item });
+    var view = new Lancealot.EmployeeRowView({ model: item });
     this.$el.append(view.render().el);
   },
 

@@ -1,5 +1,0 @@
-{
-	"undefined": "mongodb://localhost/lancealot",
-	"dev": "mongodb://localhost/lancealot",
-	"prod": "mongodb://localhost/lancealot"
-}

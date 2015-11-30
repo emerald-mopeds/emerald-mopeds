@@ -1,4 +1,4 @@
-// Job View --> connected to Job Model
+// JobRowView --> connected to Job Model
 
 /*
 For templates, look at client/views/backbone_templates.
@@ -7,15 +7,20 @@ Note: render and toggleComplete help deal with
 checking and unchecking checkboxes
 */
 
-Lancealot.JobView = Backbone.View.extend({
+Lancealot.JobRowView = Backbone.View.extend({
 
   tagName: 'tr',
+  className: 'clickable-row',
 
   events: {
-    'click input:checkbox': 'toggleComplete'
+    'click': function() {
+      this.model.navigateToView();
+    },
+    'click input:checkbox': 'toggleComplete',
+    'click .deleteJob': 'deleteJob'
   },
 
-  template: Templates['job'],
+  template: Templates['jobRow'],
 
   initialize: function() {
     this.model.on('change', this.render, this);
@@ -47,7 +52,11 @@ Lancealot.JobView = Backbone.View.extend({
     var checked = e.target.checked;
     var client = this.model.attributes.client.name;
     this.model.save({status: checked});
-  }
+  },
 
+  deleteJob: function(e) {
+    e && e.preventDefault();
+    this.model.destroy();
+  }
 
 });
