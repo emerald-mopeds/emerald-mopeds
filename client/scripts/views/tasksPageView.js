@@ -12,12 +12,11 @@ rendering of results to JobsListView via the handleSearch function
 
 Lancealot.TasksPageView = Backbone.View.extend({
 
-  template: Templates['taskSubHeader'],
+  template: Templates['subHeader'],
 
   events: {
     'keyup input': 'handleSearch',
-    'click button.addTask': 'addTaskToJob',
-    'click button.showForm': 'showForm'
+    'click button.addTask': 'addTaskToJob'
   },
 
   initialize: function (options) {
@@ -55,17 +54,6 @@ Lancealot.TasksPageView = Backbone.View.extend({
         that.render();
       }
     })
-  },
-
-  showForm: function(e) {
-    e && e.preventDefault();
-    this.$('form').toggle();
-    if (!this.formVisibility){
-      this.$('.showForm').html('Cancel Add New Task');
-    }else{
-      this.$('.showForm').html('Create New Task');
-    }
-    this.formVisibility = !this.formVisibility;
-  },
+  }
 
 });
